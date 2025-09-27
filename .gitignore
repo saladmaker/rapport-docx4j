@@ -1,0 +1,48 @@
+# -----------------------------
+# Build output
+# -----------------------------
+**/target/
+**/build/
+out/
+output
+
+# -----------------------------
+# IDE specific files
+# -----------------------------
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+
+# -----------------------------
+# Logs & temporary files
+# -----------------------------
+*.log
+*.tmp
+*.swp
+*.bak
+
+# -----------------------------
+# OS-specific junk
+# -----------------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# Office documents
+# -----------------------------
+*.docx
