@@ -492,6 +492,42 @@
             <w:szCs w:val="28"/>
         </w:rPr>
     </w:style>
+    <w:style w:type="paragraph" w:styleId="TableCell">
+        <w:name w:val="TableCell"/>
+        <w:basedOn w:val="Normal"/>
+        <w:qFormat/>
+        <w:pPr>
+            <w:bidi/>
+        </w:pPr>
+        <w:rPr>
+            <!-- explicit fonts for all styles -->
+            <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"
+                      w:eastAsia="Times New Roman" w:cs="Times New Roman"/>
+            <!-- explicit language for all styles -->
+            <w:lang w:val="ar-DZ" w:bidi="ar-DZ"/>
+            <w:sz w:val="24"/>
+            <w:szCs w:val="24"/>
+        </w:rPr>
+    </w:style>
+    <w:style w:type="paragraph"  w:styleId="BoldTableCell">
+        <w:name w:val="BoldTableCell"/>
+        <w:basedOn w:val="Normal"/>
+        <w:qFormat/>
+        <w:pPr>
+            <w:bidi/>
+        </w:pPr>
+        <w:rPr>
+            <!-- explicit fonts for all styles -->
+            <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"
+                      w:eastAsia="Times New Roman" w:cs="Times New Roman"/>
+            <!-- explicit language for all styles -->
+            <w:lang w:val="ar-DZ" w:bidi="ar-DZ"/>
+            <w:sz w:val="24"/>
+            <w:szCs w:val="24"/>
+            <w:b/>
+            <w:bCs/>
+        </w:rPr>
+    </w:style>
 
 
     <w:style w:type="paragraph" w:styleId="Heading1">
@@ -1021,7 +1057,7 @@
             <w:color w:val="2F5496" w:themeColor="accent1" w:themeShade="BF"/>
             <w:spacing w:val="5"/>
         </w:rPr>
-    </w:style>    
+    </w:style>
     <w:style w:type="paragraph" w:customStyle="1" w:styleId="imageStyle">
         <w:name w:val="imageStyle"/>
         <w:basedOn w:val="Normal"/>

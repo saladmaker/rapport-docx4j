@@ -266,25 +266,24 @@ public final class GenerationContext {
         return p;
     }
     static P createNumberedParagraph(String text, BigInteger numId, BigInteger ilvl) {
-
         P p = F.createP();
 
-        // numbering
+        // Paragraph properties - NO pStyle reference
         PPr ppr = F.createPPr();
+
+        // Numbering only
         PPrBase.NumPr numPr = F.createPPrBaseNumPr();
-
-        PPrBase.NumPr.NumId numIdEl = F.createPPrBaseNumPrNumId();
-        numIdEl.setVal(numId);
-        numPr.setNumId(numIdEl);
-
         PPrBase.NumPr.Ilvl ilvlEl = F.createPPrBaseNumPrIlvl();
         ilvlEl.setVal(ilvl);
         numPr.setIlvl(ilvlEl);
-
+        PPrBase.NumPr.NumId numIdEl = F.createPPrBaseNumPrNumId();
+        numIdEl.setVal(numId);
+        numPr.setNumId(numIdEl);
         ppr.setNumPr(numPr);
+
         p.setPPr(ppr);
 
-        // text
+        // Text run
         R r = F.createR();
         Text t = F.createText();
         t.setValue(text);

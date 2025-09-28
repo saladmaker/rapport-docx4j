@@ -8,7 +8,7 @@ import rpp.test.DocumentGenerator;
 import java.io.IOException;
 import java.util.Map;
 
-public class TestGenerator implements DocumentGenerator {
+public class FrenchModel implements DocumentGenerator {
     static String intro = """
             Le secteur de la formation et de l’enseignement professionnels a pour mission de répondre à la fois à la demande sociale en formation exprimée par les jeunes sortants de l’éducation nationale, et aux besoins en qualification professionnelles exprimés par les entreprises et le marché du travail.
             
@@ -21,7 +21,7 @@ public class TestGenerator implements DocumentGenerator {
     public void generate(WordprocessingMLPackage document) {
         byte[] image = null;
         try {
-            image = TestGenerator.class.getClassLoader().getResourceAsStream("ORGANIGRAME.jpg").readAllBytes();
+            image = FrenchModel.class.getClassLoader().getResourceAsStream("ORGANIGRAME.jpg").readAllBytes();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

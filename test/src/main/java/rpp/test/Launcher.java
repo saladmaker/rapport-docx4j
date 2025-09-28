@@ -3,9 +3,7 @@ package rpp.test;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 
 
-import java.io.File;
-import java.io.IOException;
-import java.io.UncheckedIOException;
+import java.io.*;
 import java.lang.reflect.Constructor;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -51,7 +49,7 @@ public class Launcher {
         String outputFileName = generatorSimple + "_" + safeThemeName + "_" + timestamp + ".docx";
 
         File outputFolder = new File(OUTPUT_DIR);
-        if (!outputFolder.exists()){
+        if (!outputFolder.exists()) {
             outputFolder.mkdirs();
         }
 
@@ -107,11 +105,9 @@ public class Launcher {
             String path = file.toAbsolutePath().toString();
 
             if (isWSL()) {
-                // Convert WSL path to UNC path: /home/... -> \\wsl$\<distro>\home\...
-                String distro = System.getenv("WSL_DISTRO_NAME");
-                if (distro == null) distro = "Ubuntu";
-                String winPath = "\\\\wsl$\\" + distro + path.replace("/", "\\");
-                new ProcessBuilder("cmd.exe", "/c", "start", "\"\"", winPath)
+                // Convert Linux path to Windows path using wslpath
+                String winPath = toWindowsPath(path);
+                new ProcessBuilder("explorer.exe", winPath)
                         .inheritIO()
                         .start();
             } else if (os.contains("win")) {
@@ -135,5 +131,14 @@ public class Launcher {
 
     private static boolean isWSL() {
         return System.getenv("WSL_INTEROP") != null || System.getenv("WSL_DISTRO_NAME") != null;
+    }
+
+    private static String toWindowsPath(String linuxPath) throws IOException {
+        Process p = new ProcessBuilder("wslpath", "-w", linuxPath)
+                .redirectErrorStream(true)
+                .start();
+        try (BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
+            return r.readLine().trim();
+        }
     }
 }

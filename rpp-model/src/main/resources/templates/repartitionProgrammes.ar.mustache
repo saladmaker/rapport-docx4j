@@ -1,0 +1,188 @@
+<w:tbl xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+    <w:tblPr>
+        <w:tblStyle w:val="TableGrid"/>
+        <w:tblW w:w="0" w:type="auto"/>
+        <w:tblLook w:val="04A0" w:firstRow="1" w:lastRow="0" w:firstColumn="1"
+                   w:lastColumn="0" w:noHBand="0" w:noVBand="1"/>
+        <!-- Add BIDI support for the entire table -->
+        <w:bidiVisual/>
+    </w:tblPr>
+    <w:tblGrid>
+        <w:gridCol w:w="3020"/>
+        <w:gridCol w:w="3021"/>
+        <w:gridCol w:w="3021"/>
+    </w:tblGrid>
+
+    <!-- Header row -->
+    <w:tr>
+        <w:tc>
+            <w:tcPr><w:tcW w:w="3020" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="BoldTableCell"/>
+                    <w:jc w:val="center"/>
+                    <w:bidi/>
+                </w:pPr>
+                <w:r>
+                    <w:rPr>
+                        <w:rtl/>
+                        <w:lang w:val="ar-DZ" w:bidi="ar-DZ"/>
+                    </w:rPr>
+                    <w:t>البرامج</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+        <w:tc>
+            <w:tcPr><w:tcW w:w="3021" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="BoldTableCell"/>
+                    <w:jc w:val="center"/>
+                    <w:bidi/>
+                </w:pPr>
+                <w:r>
+                    <w:rPr>
+                        <w:rtl/>
+                        <w:lang w:val="ar-DZ" w:bidi="ar-DZ"/>
+                    </w:rPr>
+                    <w:t>رخص الالتزام</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+        <w:tc>
+            <w:tcPr><w:tcW w:w="3021" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="BoldTableCell"/>
+                    <w:jc w:val="center"/>
+                    <w:bidi/>
+                </w:pPr>
+                <w:r>
+                    <w:rPr>
+                        <w:rtl/>
+                        <w:lang w:val="ar-DZ" w:bidi="ar-DZ"/>
+                    </w:rPr>
+                    <w:t>اعتمادات الدفع</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+    </w:tr>
+
+    <!-- Data rows -->
+    {{#repartition}}
+        <w:tr>
+            <!-- First column - let BIDI handle alignment -->
+            <w:tc>
+                <w:tcPr>
+                    <w:tcW w:w="3020" w:type="dxa"/>
+                    <w:vAlign w:val="center"/>
+                </w:tcPr>
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="TableCell"/>
+                        <w:bidi/>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rtl/>
+                            <w:lang w:val="ar-DZ" w:bidi="ar-DZ"/>
+                        </w:rPr>
+                        <w:t>{{name}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+
+            <!-- AE column (center) -->
+            <w:tc>
+                <w:tcPr><w:tcW w:w="3021" w:type="dxa"/></w:tcPr>
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="TableCell"/>
+                        <w:jc w:val="center"/>
+                        <w:bidi/>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:lang w:val="ar-DZ" w:bidi="ar-DZ"/>
+                        </w:rPr>
+                        <w:t>{{aeFormatted}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+
+            <!-- CP column (center) -->
+            <w:tc>
+                <w:tcPr><w:tcW w:w="3021" w:type="dxa"/></w:tcPr>
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="TableCell"/>
+                        <w:jc w:val="center"/>
+                        <w:bidi/>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:lang w:val="ar-DZ" w:bidi="ar-DZ"/>
+                        </w:rPr>
+                        <w:t>{{cpFormatted}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+        </w:tr>
+    {{/repartition}}
+
+    <!-- Total row -->
+    <w:tr>
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="3020" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="BoldTableCell"/>
+                    <w:jc w:val="center"/>
+                    <w:bidi/>
+                </w:pPr>
+                <w:r>
+                    <w:rPr>
+                        <w:rtl/>
+                        <w:lang w:val="ar-DZ" w:bidi="ar-DZ"/>
+                    </w:rPr>
+                    <w:t>مجموع النفقات</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+        <w:tc>
+            <w:tcPr><w:tcW w:w="3021" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="BoldTableCell"/>
+                    <w:jc w:val="center"/>
+                    <w:bidi/>
+                </w:pPr>
+                <w:r>
+                    <w:rPr>
+                        <w:lang w:val="ar-DZ" w:bidi="ar-DZ"/>
+                    </w:rPr>
+                    <w:t>{{totalAE}}</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+        <w:tc>
+            <w:tcPr><w:tcW w:w="3021" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="BoldTableCell"/>
+                    <w:jc w:val="center"/>
+                    <w:bidi/>
+                </w:pPr>
+                <w:r>
+                    <w:rPr>
+                        <w:lang w:val="ar-DZ" w:bidi="ar-DZ"/>
+                    </w:rPr>
+                    <w:t>{{totalCP}}</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+    </w:tr>
+</w:tbl>

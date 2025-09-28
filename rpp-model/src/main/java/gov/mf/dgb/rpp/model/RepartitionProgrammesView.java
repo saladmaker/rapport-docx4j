@@ -14,7 +14,7 @@ public interface RepartitionProgrammesView {
         }
     }
 //todo
-//    @JStache(path = "repartitionProgrammes.fr.mustache")
+    @JStache(path = "templates/repartitionProgrammes.ar.mustache")
     interface RepartitionProgrammesViewAR extends RepartitionProgrammesView{
         static RepartitionProgrammesViewAR of(List<RepartitionProgramme> repartitions){
             return () -> repartitions;
@@ -26,6 +26,7 @@ public interface RepartitionProgrammesView {
     static RepartitionProgrammesView of(
             List<RepartitionProgramme> repartitionProgrammes,
             LanguageDirection direction){
+        //invariants check
         Objects.requireNonNull(repartitionProgrammes);
         Objects.requireNonNull(direction);
         return switch (direction){
