@@ -7,7 +7,8 @@ import java.util.List;
 
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 
-
+//todo make validation before building the prototype
+//validate uniqueness of programmes in repartitions
 @Prototype.Blueprint
 @Prototype.CustomMethods(FichePortefeuilleSupport.class)
 interface FichePortefeuilleBlueprint extends Writable {
@@ -20,6 +21,9 @@ interface FichePortefeuilleBlueprint extends Writable {
 
     @Option.Singular
     List<RepartitionProgramme> repartitionProgrammes();
+
+    @Option.Singular
+    List<RepartitionCentreResponsabilite> repartitionProgrammeCentreResps();
 
     @Override
     default void write(WordprocessingMLPackage document, GenerationContext context) {
