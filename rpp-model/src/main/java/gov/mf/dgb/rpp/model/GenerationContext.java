@@ -241,12 +241,14 @@ public final class GenerationContext {
         document.getMainDocumentPart().addObject(p);
     }
     void addRenderedContent(Object view){
+        String s = null;
         try {
             String xmlPart = JSTACHIO.execute(view);
-            System.out.println("generated table: \n" + xmlPart);
+            s = xmlPart;
             Object tableObject = XmlUtils.unmarshalString(xmlPart);
             document.getMainDocumentPart().addObject(tableObject);
         } catch (JAXBException e) {
+            System.out.println("generated table: \n" + s);
             throw new RuntimeException(e);
         }
 

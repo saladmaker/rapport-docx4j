@@ -14,7 +14,7 @@ interface RepartitionProgrammesCentreResponsabiliteView {
             return () -> repartitions;
         }
     }
-
+    @JStache(path = "templates/repartitionProgrammesCentreResponsabilite.ar.mustache")
     interface RepartitionProgrammesCentreResponsabiliteViewAR extends RepartitionProgrammesCentreResponsabiliteView {
         static RepartitionProgrammesCentreResponsabiliteViewAR of(List<RepartitionCentreResponsabiliteView> repartitions) {
             return () -> repartitions;
@@ -85,7 +85,7 @@ interface RepartitionProgrammesCentreResponsabiliteView {
                 .mapToLong(RepartitionCentreResponsabiliteView::autreOrganismesSousTutelles)
                 .sum();
     }
-
+    //todo remove implementation of the interface
     record RepartitionCentreResponsabiliteView(RepartitionCentreResponsabilite delegate)
             implements RepartitionCentreResponsabilite {
 
@@ -120,13 +120,9 @@ interface RepartitionProgrammesCentreResponsabiliteView {
         }
 
         String total() {
-            var total = servicesCentraux() +
-                    servicesDeconcentres() +
-                    organismesSousTutelles() +
-                    organesTerritoriaux() +
-                    autreOrganismesSousTutelles();
-            return NumberFormatter.format(total);
+            return NumberFormatter.format(totalNumber());
         }
+
         Long totalNumber(){
             return servicesCentraux() +
                     servicesDeconcentres() +
@@ -134,5 +130,8 @@ interface RepartitionProgrammesCentreResponsabiliteView {
                     organesTerritoriaux() +
                     autreOrganismesSousTutelles();
         }
+
+
+
     }
 }

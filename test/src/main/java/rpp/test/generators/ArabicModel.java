@@ -8,6 +8,7 @@ import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import rpp.test.DocumentGenerator;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 public class ArabicModel implements DocumentGenerator {
@@ -56,6 +57,8 @@ public class ArabicModel implements DocumentGenerator {
                 .fichePortefeuille(FichePortefeuille.builder()
                         .addRepartitionProgramme(new RepartitionProgramme("برنامج أ", 12332423L, 343423423L))
                         .addRepartitionProgramme(new RepartitionProgramme("برنامج ب", 33423423L, 3434234234L))
+                        .addRepartitionProgrammeCentreResp(RepartitionCentreResponsabilite.create("برنامج أ", List.of(34243L, 34234L,324234L)))
+                        .addRepartitionProgrammeCentreResp(RepartitionCentreResponsabilite.create("برنامج ب", List.of(4234L, 234234L, 34324L, 342342L)))
                         .build())
                 .build();
         au.write(document, GenerationContext.of(LanguageDirection.RTL, document, Map.of()));
