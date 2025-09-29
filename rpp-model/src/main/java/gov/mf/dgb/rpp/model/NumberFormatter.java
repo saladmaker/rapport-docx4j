@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
-public class NumberFormatter {
+class NumberFormatter {
     private static final DecimalFormat SPACE_GROUPING;
 
     static {

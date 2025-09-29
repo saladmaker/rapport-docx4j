@@ -1,0 +1,179 @@
+<w:tbl xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+    <w:tblPr>
+        <w:tblStyle w:val="TableGrid"/>
+        <w:tblW w:w="9062" w:type="dxa"/>
+        <w:tblLook w:val="04A0" w:firstRow="1" w:lastRow="0"
+                   w:firstColumn="1" w:lastColumn="0" w:noHBand="0" w:noVBand="1"/>
+    </w:tblPr>
+
+    {{^hasAutreOrganismesSousTutelle}}
+        <!-- ========== 6 columns version ========== -->
+        <w:tblGrid>
+            <w:gridCol w:w="1511"/>
+            <w:gridCol w:w="1510"/>
+            <w:gridCol w:w="1510"/>
+            <w:gridCol w:w="1510"/>
+            <w:gridCol w:w="1510"/>
+            <w:gridCol w:w="1511"/>
+        </w:tblGrid>
+
+        <!-- Header -->
+        <w:tr>
+            <w:tc><w:tcPr><w:tcW w:w="1511" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>Programmes</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1510" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>Services centraux</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1510" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>Services déconcentrés</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1510" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>Organismes sous tutelle</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1510" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>Organes territoriaux</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1511" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>Total</w:t></w:r></w:p>
+            </w:tc>
+        </w:tr>
+
+        <!-- Data rows -->
+        {{#repartitions}}
+            <w:tr>
+                <w:tc><w:tcPr><w:tcW w:w="1511" w:type="dxa"/></w:tcPr>
+                    <w:p><w:pPr><w:pStyle w:val="TableCell"/><w:jc w:val="left"/></w:pPr><w:r><w:t>{{name}}</w:t></w:r></w:p>
+                </w:tc>
+                <w:tc><w:tcPr><w:tcW w:w="1510" w:type="dxa"/></w:tcPr>
+                    <w:p><w:pPr><w:pStyle w:val="TableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{servicesCentraux}}</w:t></w:r></w:p>
+                </w:tc>
+                <w:tc><w:tcPr><w:tcW w:w="1510" w:type="dxa"/></w:tcPr>
+                    <w:p><w:pPr><w:pStyle w:val="TableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{servicesDeconcentres}}</w:t></w:r></w:p>
+                </w:tc>
+                <w:tc><w:tcPr><w:tcW w:w="1510" w:type="dxa"/></w:tcPr>
+                    <w:p><w:pPr><w:pStyle w:val="TableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{organismesSousTutelles}}</w:t></w:r></w:p>
+                </w:tc>
+                <w:tc><w:tcPr><w:tcW w:w="1510" w:type="dxa"/></w:tcPr>
+                    <w:p><w:pPr><w:pStyle w:val="TableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{organesTerritoriaux}}</w:t></w:r></w:p>
+                </w:tc>
+                <w:tc><w:tcPr><w:tcW w:w="1511" w:type="dxa"/></w:tcPr>
+                    <w:p><w:pPr><w:pStyle w:val="TableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{total}}</w:t></w:r></w:p>
+                </w:tc>
+            </w:tr>
+        {{/repartitions}}
+
+        <!-- Totals row -->
+        <w:tr>
+            <w:tc><w:tcPr><w:tcW w:w="1511" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="left"/></w:pPr><w:r><w:t>Total des dépenses</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1510" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{totalServicesCentraux}}</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1510" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{totalServicesDeconcentres}}</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1510" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{totalOragnismesSousTutelles}}</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1510" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{totalOrganesTerritoriaux}}</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1511" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{globalTotal}}</w:t></w:r></w:p>
+            </w:tc>
+        </w:tr>
+    {{/hasAutreOrganismesSousTutelle}}
+
+
+    {{#hasAutreOrganismesSousTutelle}}
+        <!-- ========== 7 columns version ========== -->
+        <w:tblGrid>
+            <w:gridCol w:w="1295"/>
+            <w:gridCol w:w="1295"/>
+            <w:gridCol w:w="1294"/>
+            <w:gridCol w:w="1294"/>
+            <w:gridCol w:w="1294"/>
+            <w:gridCol w:w="1295"/>
+            <w:gridCol w:w="1295"/>
+        </w:tblGrid>
+
+        <!-- Header -->
+        <w:tr>
+            <w:tc><w:tcPr><w:tcW w:w="1295" w:type="dxa"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>Programmes</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1295" w:type="dxa"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>Services centraux</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1294" w:type="dxa"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>Services déconcentrés</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1294" w:type="dxa"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>Organismes sous tutelle</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1294" w:type="dxa"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>Autres organismes sous tutelle</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1295" w:type="dxa"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>Organes territoriaux</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1295" w:type="dxa"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>Total</w:t></w:r></w:p>
+            </w:tc>
+        </w:tr>
+
+        <!-- Data rows -->
+        {{#repartitions}}
+            <w:tr>
+                <w:tc><w:tcPr><w:tcW w:w="1295" w:type="dxa"/></w:tcPr>
+                    <w:p><w:pPr><w:pStyle w:val="TableCell"/><w:jc w:val="left"/></w:pPr><w:r><w:t>{{name}}</w:t></w:r></w:p>
+                </w:tc>
+                <w:tc><w:tcPr><w:tcW w:w="1295" w:type="dxa"/></w:tcPr>
+                    <w:p><w:pPr><w:pStyle w:val="TableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{servicesCentraux}}</w:t></w:r></w:p>
+                </w:tc>
+                <w:tc><w:tcPr><w:tcW w:w="1294" w:type="dxa"/></w:tcPr>
+                    <w:p><w:pPr><w:pStyle w:val="TableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{servicesDeconcentres}}</w:t></w:r></w:p>
+                </w:tc>
+                <w:tc><w:tcPr><w:tcW w:w="1294" w:type="dxa"/></w:tcPr>
+                    <w:p><w:pPr><w:pStyle w:val="TableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{organismesSousTutelles}}</w:t></w:r></w:p>
+                </w:tc>
+                <w:tc><w:tcPr><w:tcW w:w="1294" w:type="dxa"/></w:tcPr>
+                    <w:p><w:pPr><w:pStyle w:val="TableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{autreOrganismesSousTutelles}}</w:t></w:r></w:p>
+                </w:tc>
+                <w:tc><w:tcPr><w:tcW w:w="1295" w:type="dxa"/></w:tcPr>
+                    <w:p><w:pPr><w:pStyle w:val="TableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{organesTerritoriaux}}</w:t></w:r></w:p>
+                </w:tc>
+                <w:tc><w:tcPr><w:tcW w:w="1295" w:type="dxa"/></w:tcPr>
+                    <w:p><w:pPr><w:pStyle w:val="TableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{total}}</w:t></w:r></w:p>
+                </w:tc>
+            </w:tr>
+        {{/repartitions}}
+
+        <!-- Totals row -->
+        <w:tr>
+            <w:tc><w:tcPr><w:tcW w:w="1295" w:type="dxa"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="left"/></w:pPr><w:r><w:t>Total des dépenses</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1295" w:type="dxa"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{totalServicesCentraux}}</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1294" w:type="dxa"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{totalServicesDeconcentres}}</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1294" w:type="dxa"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{totalOragnismesSousTutelles}}</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1294" w:type="dxa"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{totalAutreOrganismesSousTutelles}}</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1295" w:type="dxa"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{totalOrganesTerritoriaux}}</w:t></w:r></w:p>
+            </w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1295" w:type="dxa"/></w:tcPr>
+                <w:p><w:pPr><w:pStyle w:val="BoldTableCell"/><w:jc w:val="center"/></w:pPr><w:r><w:t>{{globalTotal}}</w:t></w:r></w:p>
+            </w:tc>
+        </w:tr>
+    {{/hasAutreOrganismesSousTutelle}}
+</w:tbl>

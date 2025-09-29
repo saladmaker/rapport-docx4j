@@ -6,6 +6,7 @@ import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import rpp.test.DocumentGenerator;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 public class FrenchModel implements DocumentGenerator {
@@ -51,6 +52,8 @@ public class FrenchModel implements DocumentGenerator {
                 .fichePortefeuille(FichePortefeuille.builder()
                         .addRepartitionProgramme(new RepartitionProgramme("Programme A", 213123L, 322232L))
                         .addRepartitionProgramme(new RepartitionProgramme("Programme B", 234233L, 324234L))
+                        .addRepartitionProgrammeCentreResp(RepartitionCentreResponsabilite.create("Prgramme A", List.of(1223L, 34234L, 3423L, 34234L)))
+                        .addRepartitionProgrammeCentreResp(RepartitionCentreResponsabilite.create("Prgramme B", List.of(1223L, 34234L, 3423L, 34234L)))
                                 .build())
                         .build();
 

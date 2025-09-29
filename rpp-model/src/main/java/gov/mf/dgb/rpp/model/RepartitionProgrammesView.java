@@ -13,7 +13,7 @@ public interface RepartitionProgrammesView {
             return () -> repartitions;
         }
     }
-//todo
+
     @JStache(path = "templates/repartitionProgrammes.ar.mustache")
     interface RepartitionProgrammesViewAR extends RepartitionProgrammesView{
         static RepartitionProgrammesViewAR of(List<RepartitionProgramme> repartitions){
