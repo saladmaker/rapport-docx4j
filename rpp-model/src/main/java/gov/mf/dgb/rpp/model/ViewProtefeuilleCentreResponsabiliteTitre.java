@@ -4,15 +4,21 @@ import io.helidon.builder.api.Option;
 
 import java.util.List;
 
-/**
- *
- */
 interface ViewProtefeuilleCentreResponsabiliteTitre {
+
     List<RepartitionCentreResponsabiliteTitre> delegates();
+
     GenerationContext context();
+
+    default boolean hasAutreTitre(){
+        return delegates().stream()
+                .anyMatch(RepartitionCentreResponsabiliteTitre::hasAutreTitre);
+    }
+
 
     default List<CentreResponsabiliteTitre> repartitions(){
         return delegates().stream()
+                .filter(e -> !(0 == e.total()))
                 .map(e -> new CentreResponsabiliteTitre(e, context()))
                 .toList();
     }
@@ -22,7 +28,6 @@ interface ViewProtefeuilleCentreResponsabiliteTitre {
     }
     record ViewProtefeuilleCentreResponsabiliteTitreFR(List<RepartitionCentreResponsabiliteTitre> delegates, GenerationContext context)
             implements ViewProtefeuilleCentreResponsabiliteTitre{
-
     }
 
     class CentreResponsabiliteTitre{
