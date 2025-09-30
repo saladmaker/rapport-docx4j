@@ -5,7 +5,8 @@ import io.jstach.jstache.JStache;
 import java.util.List;
 import java.util.Objects;
 
-public interface RepartitionProgrammesView {
+//todo refactor all views should start with ViewXXX
+interface RepartitionProgrammesView {
 
     @JStache(path = "templates/repartitionProgrammes.fr.mustache")
     interface RepartitionProgrammesViewFR extends RepartitionProgrammesView{

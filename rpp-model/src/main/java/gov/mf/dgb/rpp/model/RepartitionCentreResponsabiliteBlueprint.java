@@ -27,6 +27,14 @@ interface RepartitionCentreResponsabiliteBlueprint {
     @Option.DefaultLong(0)
     Long autreOrganismesSousTutelles();
 
+
+    default Long total(){
+        return servicesCentraux() +
+                servicesDeconcentres() +
+                organismesSousTutelles() +
+                organesTerritoriaux() +
+                autreOrganismesSousTutelles();
+    }
     final class Support {
 
         @Prototype.FactoryMethod

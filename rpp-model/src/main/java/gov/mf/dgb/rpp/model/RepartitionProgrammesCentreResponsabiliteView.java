@@ -5,18 +5,27 @@ import io.jstach.jstache.JStache;
 import java.util.List;
 import java.util.Objects;
 
+//todo refactor all views should start with ViewXXX
 interface RepartitionProgrammesCentreResponsabiliteView {
-    List<RepartitionCentreResponsabiliteView> repartitions();
+
+    List<RepartitionCentreResponsabilite> delegates();
+
+    default List<RepartitionCentreResponsabiliteView> repartitions(){
+        return delegates().stream()
+                .map(RepartitionCentreResponsabiliteView::new)
+                .toList();
+    }
 
     @JStache(path = "templates/repartitionProgrammesCentreResponsabilite.fr.mustache")
     interface RepartitionProgrammesCentreResponsabiliteViewFR extends RepartitionProgrammesCentreResponsabiliteView {
-        static RepartitionProgrammesCentreResponsabiliteViewFR of(List<RepartitionCentreResponsabiliteView> repartitions) {
+        static RepartitionProgrammesCentreResponsabiliteViewFR of(List<RepartitionCentreResponsabilite> repartitions) {
             return () -> repartitions;
         }
     }
+
     @JStache(path = "templates/repartitionProgrammesCentreResponsabilite.ar.mustache")
     interface RepartitionProgrammesCentreResponsabiliteViewAR extends RepartitionProgrammesCentreResponsabiliteView {
-        static RepartitionProgrammesCentreResponsabiliteViewAR of(List<RepartitionCentreResponsabiliteView> repartitions) {
+        static RepartitionProgrammesCentreResponsabiliteViewAR of(List<RepartitionCentreResponsabilite> repartitions) {
             return () -> repartitions;
         }
     }
@@ -29,42 +38,38 @@ interface RepartitionProgrammesCentreResponsabiliteView {
         Objects.requireNonNull(repartitions);
         Objects.requireNonNull(direction);
 
-        List<RepartitionCentreResponsabiliteView> views = repartitions.stream()
-                .map(RepartitionCentreResponsabiliteView::new)
-                .toList();
-
         return switch (direction) {
             case LTR -> RepartitionProgrammesCentreResponsabiliteView
-                    .RepartitionProgrammesCentreResponsabiliteViewFR.of(views);
+                    .RepartitionProgrammesCentreResponsabiliteViewFR.of(repartitions);
             case RTL -> RepartitionProgrammesCentreResponsabiliteView.
-                    RepartitionProgrammesCentreResponsabiliteViewAR.of(views);
+                    RepartitionProgrammesCentreResponsabiliteViewAR.of(repartitions);
         };
     }
 
     default String totalServicesCentraux() {
-        var total = repartitions().stream()
-                .mapToLong(RepartitionCentreResponsabiliteView::servicesCentraux)
+        var total = delegates().stream()
+                .mapToLong(RepartitionCentreResponsabilite::servicesCentraux)
                 .sum();
         return NumberFormatter.format(total);
     }
 
     default String totalServicesDeconcentres() {
-        var total = repartitions().stream()
-                .mapToLong(RepartitionCentreResponsabiliteView::servicesDeconcentres)
+        var total = delegates().stream()
+                .mapToLong(RepartitionCentreResponsabilite::servicesDeconcentres)
                 .sum();
         return NumberFormatter.format(total);
     }
 
     default String totalOragnismesSousTutelles() {
-        var total = repartitions().stream()
-                .mapToLong(RepartitionCentreResponsabiliteView::organismesSousTutelles)
+        var total = delegates().stream()
+                .mapToLong(RepartitionCentreResponsabilite::organismesSousTutelles)
                 .sum();
         return NumberFormatter.format(total);
     }
 
     default String totalOrganesTerritoriaux() {
-        var total = repartitions().stream()
-                .mapToLong(RepartitionCentreResponsabiliteView::organesTerritoriaux)
+        var total = delegates().stream()
+                .mapToLong(RepartitionCentreResponsabilite::organesTerritoriaux)
                 .sum();
         return NumberFormatter.format(total);
     }
@@ -72,8 +77,8 @@ interface RepartitionProgrammesCentreResponsabiliteView {
         return NumberFormatter.format(totalAutreOrganismesSousTutelle());
     }
     default String globalTotal(){
-        var total = repartitions().stream()
-                .mapToLong(RepartitionCentreResponsabiliteView::totalNumber)
+        var total = delegates().stream()
+                .mapToLong(RepartitionCentreResponsabilite::total)
                 .sum();
         return NumberFormatter.format(total);
     }
@@ -81,56 +86,39 @@ interface RepartitionProgrammesCentreResponsabiliteView {
         return totalAutreOrganismesSousTutelle() != 0L;
     }
     private Long totalAutreOrganismesSousTutelle() {
-        return repartitions().stream()
-                .mapToLong(RepartitionCentreResponsabiliteView::autreOrganismesSousTutelles)
+        return delegates().stream()
+                .mapToLong(RepartitionCentreResponsabilite::autreOrganismesSousTutelles)
                 .sum();
     }
-    //todo remove implementation of the interface
-    record RepartitionCentreResponsabiliteView(RepartitionCentreResponsabilite delegate)
-            implements RepartitionCentreResponsabilite {
+    record RepartitionCentreResponsabiliteView(RepartitionCentreResponsabilite delegate) {
 
-        @Override
         public String name() {
             return delegate().name();
         }
 
-        @Override
-        public Long servicesCentraux() {
-            return delegate.servicesCentraux();
+        public String servicesCentraux() {
+            return NumberFormatter.format(delegate.servicesCentraux());
         }
 
-        @Override
-        public Long servicesDeconcentres() {
-            return delegate.servicesDeconcentres();
+        public String servicesDeconcentres() {
+            return NumberFormatter.format(delegate.servicesDeconcentres());
         }
 
-        @Override
-        public Long organismesSousTutelles() {
-            return delegate.organismesSousTutelles();
+        public String organismesSousTutelles() {
+            return NumberFormatter.format(delegate.organismesSousTutelles());
         }
 
-        @Override
-        public Long organesTerritoriaux() {
-            return delegate.organesTerritoriaux();
+        public String organesTerritoriaux() {
+            return NumberFormatter.format(delegate.organesTerritoriaux());
         }
 
-        @Override
-        public Long autreOrganismesSousTutelles() {
-            return delegate.autreOrganismesSousTutelles();
+        public String autreOrganismesSousTutelles() {
+            return NumberFormatter.format(delegate.autreOrganismesSousTutelles());
         }
 
         String total() {
-            return NumberFormatter.format(totalNumber());
+            return NumberFormatter.format(delegate.total());
         }
-
-        Long totalNumber(){
-            return servicesCentraux() +
-                    servicesDeconcentres() +
-                    organismesSousTutelles() +
-                    organesTerritoriaux() +
-                    autreOrganismesSousTutelles();
-        }
-
 
 
     }

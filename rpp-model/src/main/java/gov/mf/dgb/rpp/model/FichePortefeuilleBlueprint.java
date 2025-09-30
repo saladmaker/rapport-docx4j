@@ -18,6 +18,7 @@ interface FichePortefeuilleBlueprint extends Writable {
     String FCHPORT_3_TABLE_1_TEXT = "section1.ficheportefeuille.table.1.title";
     String FCHPORT_4_TABLE_2_TEXT = "section1.ficheportefeuille.table.2.title";
     String FCHPORT_5_TABLE_3_TEXT = "section1.ficheportefeuille.table.3.title";
+    String FCHPORT_6_TABLE_4_TEXT = "section1.ficheportefeuille.table.4.title";
 
     @Option.Singular
     List<RepartitionProgramme> versionBRepartitionProgrammes();
@@ -27,6 +28,11 @@ interface FichePortefeuilleBlueprint extends Writable {
 
     @Option.Singular
     List<RepartitionCentreResponsabilite> repartitionProgrammeCentreResps();
+
+    @Option.Singular
+    List<RepartitionTitre> repartitionProgrammesTitres();
+
+
 
     @Override
     default void write(WordprocessingMLPackage document, GenerationContext context) {
@@ -50,7 +56,11 @@ interface FichePortefeuilleBlueprint extends Writable {
         RepartitionProgrammesCentreResponsabiliteView repartitionProgrammesCentreResponsabiliteTable =
                 RepartitionProgrammesCentreResponsabiliteView.of(repartitionProgrammeCentreResps(), context.direction());
         context.addRenderedContent(repartitionProgrammesCentreResponsabiliteTable);
-
-
+        System.out.println(PageLayout.PORTRAIT.usableWidth());
+        System.out.println(PageLayout.LANDSCAPE.usableWidth());
+//        context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_6_TABLE_4_TEXT);
+//        RepartitionProgrammesTitreView repartitionProgrammesTitreView =
+//                RepartitionProgrammesTitreView.of(repartitionProgrammesTitres(), context.direction());
+//        context.addRenderedContent(repartitionProgrammesTitreView);
     }
 }

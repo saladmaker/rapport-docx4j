@@ -7,10 +7,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Prototype.Blueprint
-@Prototype.CustomMethods(RepartitionTitreBlueprint.CustomMethods.class)
-interface RepartitionTitreBlueprint {
-
-    String name();
+interface RepartitionCentreResponsabiliteTitreBlueprint {
+    CentreResponsabilite serviceType();
 
     @Option.DefaultLong(0L)
     Long titre1();
@@ -33,7 +31,7 @@ interface RepartitionTitreBlueprint {
     @Option.DefaultLong(0L)
     Long titre7();
 
-    default long total(){
+    default Long total(){
         return titre1() +
                 titre2() +
                 titre3() +
@@ -43,32 +41,34 @@ interface RepartitionTitreBlueprint {
                 titre7();
     }
 
-    default boolean isMF(){
-        return (titre5() != 0) &&
-                (titre6() != 0) &&
-                (titre7() != 0);
+    default boolean hasAutreTitre(){
+        return (titre5() + titre6() + titre7()) > 0;
     }
+    final class CustomMethods{
+        static void repartitions(RepartitionCentreResponsabiliteTitre.BuilderBase<?, ?> builder, List<Long> repartitions){
+            Objects.requireNonNull(repartitions);
 
-    final class CustomMethods {
-        @Prototype.FactoryMethod
-        static RepartitionTitre create(String name, List<Long> repartitions){
-            return RepartitionTitre.builder()
-                    .name(name)
-                    .repartition(repartitions)
-                    .build();
-        }
+            var repartitionsSize = repartitions.size();
 
-        @Prototype.BuilderMethod
-        static void repartition(RepartitionTitre.BuilderBase<?, ?> builder, List<Long> repartitions) {
-            Objects.requireNonNull(repartitions, "repartitions can not be null!");
-
-            if (repartitions.size() > 7) {
-                throw new IllegalArgumentException(
-                        "repartition shoul be of size 7 repartition, found size: " + repartitions.size());
+            // repartitions should have t1, t2, t3, t4, [t5, t6, t7]
+            if (repartitionsSize < 4 || repartitionsSize > 7) {
+                throw new IllegalArgumentException("repartitions size should have a size of 4-7, found: "
+                        + repartitions.size() + " repartitions:" + repartitions.toString());
             }
+            if (builder.serviceType().isPresent()) {
+                var serviceType = builder.serviceType().get();
+                if (!(CentreResponsabilite.SERVICES_CENTRAUX == serviceType) && repartitionsSize > 4) {
+                    throw new IllegalArgumentException(
+                            "repartitions size for non service centraux should be 4, found: service type " + serviceType
+                                    + " size:"
+                                    + repartitionsSize + " repartitions:" + repartitions.toString());
 
-            for (int i = 0; i < repartitions.size(); i++) {
+                }
+            }
+            for (int i = 0; i < repartitionsSize; i++) {
+
                 switch (i) {
+
                     case 0 -> {
                         builder.titre1(repartitions.get(i));
                     }
@@ -90,9 +90,9 @@ interface RepartitionTitreBlueprint {
                     case 6 -> {
                         builder.titre7(repartitions.get(i));
                     }
+
                 }
             }
         }
     }
-
 }
