@@ -4,9 +4,6 @@ import gov.mf.dgb.rpp.model.*;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import rpp.test.DocumentGenerator;
 
-import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
-import rpp.test.DocumentGenerator;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -62,5 +59,6 @@ public class ArabicModel implements DocumentGenerator {
                         .build())
                 .build();
         au.write(document, GenerationContext.of(LanguageDirection.RTL, document, Map.of()));
+
     }
 }

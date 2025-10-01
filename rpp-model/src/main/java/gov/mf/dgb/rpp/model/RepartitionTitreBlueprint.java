@@ -44,8 +44,8 @@ interface RepartitionTitreBlueprint {
     }
 
     default boolean isMF(){
-        return (titre5() != 0) &&
-                (titre6() != 0) &&
+        return (titre5() != 0) ||
+                (titre6() != 0) ||
                 (titre7() != 0);
     }
 

@@ -1,11 +1,13 @@
 package gov.mf.dgb.rpp.model;
 
+import io.jstach.jstache.JStache;
+
 import java.util.List;
 import java.util.Objects;
 
 //todo add mf version neat solution for orientation switch
 //todo refactor all views should start with ViewXXX
-public interface RepartitionProgrammesTitreView {
+interface ViewRepartitionProgrammesTitre {
     List<RepartitionTitre> delegates();
 
     default List<RepartitionTitreView> repartitions(){
@@ -14,33 +16,26 @@ public interface RepartitionProgrammesTitreView {
                 .toList();
     }
 
-    default boolean requireLandscape(){
-        return delegates().stream()
-                .anyMatch(RepartitionTitre::isMF);
-    }
-
-    interface RepartitionProgrammesTitreViewFR extends RepartitionProgrammesTitreView{
-        static RepartitionProgrammesTitreViewFR of(List<RepartitionTitre> delegates){
-            return () -> delegates;
-        }
+    @JStache(path = "templates/repartitionProgrammesTitre.fr.mustache")
+    record ViewRepartitionProgrammesTitreFR(List<RepartitionTitre> delegates) implements ViewRepartitionProgrammesTitre {
 
     }
 
-    interface RepartitionProgrammesTitreViewAR extends RepartitionProgrammesTitreView{
-        static RepartitionProgrammesTitreViewAR of(List<RepartitionTitre> delegates){
-            return () -> delegates;
-        }
+    @JStache(path = "templates/repartitionProgrammesTitre.ar.mustache")
+    record ViewRepartitionProgrammesTitreAR(List<RepartitionTitre> delegates) implements ViewRepartitionProgrammesTitre {
+
     }
 
-    static RepartitionProgrammesTitreView of(List<RepartitionTitre> delegates, LanguageDirection direction){
+    static ViewRepartitionProgrammesTitre of(List<RepartitionTitre> delegates, LanguageDirection direction){
         Objects.requireNonNull(delegates);
         Objects.requireNonNull(direction);
 
         return switch (direction){
-            case LTR -> RepartitionProgrammesTitreView.RepartitionProgrammesTitreViewFR.of(delegates);
-            case RTL -> RepartitionProgrammesTitreView.RepartitionProgrammesTitreViewAR.of(delegates);
+            case LTR -> new ViewRepartitionProgrammesTitreFR(delegates);
+            case RTL -> new ViewRepartitionProgrammesTitreAR(delegates);
         };
     }
+
     record RepartitionTitreView(RepartitionTitre delegate){
 
         public String name() {
@@ -81,30 +76,44 @@ public interface RepartitionProgrammesTitreView {
 
     }
 
+    default String globalTotal(){
+        var total = delegates().stream()
+                .mapToLong(RepartitionTitre::total)
+                .sum();
+        return NumberFormatter.format(total);
+    }
+    default boolean hasAutreTitre(){
+        return delegates().stream()
+                .anyMatch(RepartitionTitre::isMF);
+    }
     default String totalTitre1(){
         var total= delegates().stream()
                 .mapToLong(RepartitionTitre::titre1)
                 .sum();
         return NumberFormatter.format(total);
     }
+
     default String totalTitre2(){
         var total = delegates().stream()
                 .mapToLong(RepartitionTitre::titre2)
                 .sum();
         return NumberFormatter.format(total);
     }
+
     default String totalTitre3(){
         var total = delegates().stream()
                 .mapToLong(RepartitionTitre::titre3)
                 .sum();
         return NumberFormatter.format(total);
     }
+
     default String totalTitre4(){
         var total = delegates().stream()
                 .mapToLong(RepartitionTitre::titre4)
                 .sum();
         return NumberFormatter.format(total);
     }
+
     default String totalTitre5(){
         var total = delegates().stream()
                 .mapToLong(RepartitionTitre::titre5)
@@ -118,17 +127,14 @@ public interface RepartitionProgrammesTitreView {
                 .sum();
         return NumberFormatter.format(total);
     }
+
     default String totalTitre7(){
         var total = delegates().stream()
                 .mapToLong(RepartitionTitre::titre7)
                 .sum();
         return NumberFormatter.format(total);
     }
-    default String globalTotal(){
-        var total = delegates().stream()
-                .mapToLong(RepartitionTitre::total)
-                .sum();
-        return NumberFormatter.format(total);
-    }
+
+
 
 }

@@ -50,13 +50,33 @@ public class FrenchModel implements DocumentGenerator {
                         .image(image)
                         .build())
                 .fichePortefeuille(FichePortefeuille.builder()
-                        .addRepartitionProgramme(new RepartitionProgramme("Programme A", 213123L, 322232L))
-                        .addRepartitionProgramme(new RepartitionProgramme("Programme B", 234233L, 324234L))
-                        .addRepartitionProgrammeCentreResp(RepartitionCentreResponsabilite.create("Prgramme A", List.of(1223L, 34234L, 3423L, 34234L)))
-                        .addRepartitionProgrammeCentreResp(RepartitionCentreResponsabilite.create("Prgramme B", List.of(1223L, 34234L, 3423L, 34234L)))
-                                .build())
-                        .build();
+                        .addRepartitionProgramme(new RepartitionProgramme("Formation professionnelle", 19506191000L, 20143691000L))
+                        .addRepartitionProgramme(new RepartitionProgramme("Enseignement professionnel", 540000000L, 622000000L))
+                        .addRepartitionProgramme(new RepartitionProgramme("Administration générale", 98536426000L, 97250926000L))
+                        .addVersionBRepartitionProgramme(
+                                new RepartitionProgramme("Formation professionnelle", 109366562L, 110004062L))
+                        .addVersionBRepartitionProgramme(
+                                new RepartitionProgramme("Enseignement professionnel", 2436520L, 2518520L))
+                        .addVersionBRepartitionProgramme(
+                                new RepartitionProgramme("Administration générale", 6779535L, 5494035L))
+                        .addRepartitionProgrammeCentreResp(
+                                RepartitionCentreResponsabilite.create("Formation professionnelle",
+                                        List.of(360311L, 10655000L, 89737251L, 8614000L)))
+                        .addRepartitionProgrammeCentreResp(
+                                RepartitionCentreResponsabilite.create("Enseignement professionnel",
+                                        List.of(64000L, 228000L, 1856520L, 288000L)))
+                        .addRepartitionProgrammeCentreResp(
+                                RepartitionCentreResponsabilite.create("Administration générale",
+                                        List.of(1723123L, 4863195L, 138717L, 54500L)))
 
+                        .addRepartitionProgrammesTitre(RepartitionTitre.create("Arts et lettres",
+                                List.of(11076119L, 2683352L, 3217628L, 2962406L)))
+                        .addRepartitionProgrammesTitre(RepartitionTitre.create("Patrimoine culturel",
+                                List.of(4573433L, 427752L, 2816372L, 1024000L)))
+                        .addRepartitionProgrammesTitre(RepartitionTitre.create("Administration générale",
+                                List.of(4497238L, 558043L, 466000L, 79326L)))
+                        .build())
+                .build();
         au.write(document, GenerationContext.of(LanguageDirection.LTR, document, Map.of()));
     }
 }

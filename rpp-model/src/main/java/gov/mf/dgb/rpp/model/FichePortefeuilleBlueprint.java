@@ -56,11 +56,11 @@ interface FichePortefeuilleBlueprint extends Writable {
         RepartitionProgrammesCentreResponsabiliteView repartitionProgrammesCentreResponsabiliteTable =
                 RepartitionProgrammesCentreResponsabiliteView.of(repartitionProgrammeCentreResps(), context.direction());
         context.addRenderedContent(repartitionProgrammesCentreResponsabiliteTable);
-        System.out.println(PageLayout.PORTRAIT.usableWidth());
-        System.out.println(PageLayout.LANDSCAPE.usableWidth());
-//        context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_6_TABLE_4_TEXT);
-//        RepartitionProgrammesTitreView repartitionProgrammesTitreView =
-//                RepartitionProgrammesTitreView.of(repartitionProgrammesTitres(), context.direction());
-//        context.addRenderedContent(repartitionProgrammesTitreView);
+
+        context.applyLayout(PageLayout.LANDSCAPE);
+        context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_6_TABLE_4_TEXT);
+        ViewRepartitionProgrammesTitre viewRepartitionProgrammesTitre =
+                ViewRepartitionProgrammesTitre.of(repartitionProgrammesTitres(), context.direction());
+        context.addRenderedContent(viewRepartitionProgrammesTitre);
     }
 }
