@@ -19,6 +19,7 @@ interface FichePortefeuilleBlueprint extends Writable {
     String FCHPORT_4_TABLE_2_TEXT = "section1.ficheportefeuille.table.2.title";
     String FCHPORT_5_TABLE_3_TEXT = "section1.ficheportefeuille.table.3.title";
     String FCHPORT_6_TABLE_4_TEXT = "section1.ficheportefeuille.table.4.title";
+    String FCHPORT_7_TABLE_5_TEXT = "section1.ficheportefeuille.table.5.title";
 
     @Option.Singular
     List<RepartitionProgramme> versionBRepartitionProgrammes();
@@ -31,6 +32,9 @@ interface FichePortefeuilleBlueprint extends Writable {
 
     @Option.Singular
     List<RepartitionTitre> repartitionProgrammesTitres();
+
+    @Option.Singular
+    List<RepartitionCentreResponsabiliteTitre> repartitionPortefeuilleCentreResponTitres();
 
 
 
@@ -62,5 +66,11 @@ interface FichePortefeuilleBlueprint extends Writable {
         ViewRepartitionProgrammesTitre viewRepartitionProgrammesTitre =
                 ViewRepartitionProgrammesTitre.of(repartitionProgrammesTitres(), context.direction());
         context.addRenderedContent(viewRepartitionProgrammesTitre);
+
+        //todo fix this
+        context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_7_TABLE_5_TEXT);
+        ViewProtefeuilleCentreResponsabiliteTitre repartitionPortefeuilleCentreRespTitresView =
+                ViewProtefeuilleCentreResponsabiliteTitre.of(repartitionPortefeuilleCentreResponTitres(), context);
+        context.addRenderedContent(repartitionPortefeuilleCentreRespTitresView);
     }
 }

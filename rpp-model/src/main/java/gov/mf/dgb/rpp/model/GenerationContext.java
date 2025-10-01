@@ -147,7 +147,6 @@ public final class GenerationContext {
         Objects.requireNonNull(image, "image cannot be null!");
 
         try {
-            // Get image dimensions efficiently without loading full BufferedImage
             int imgWidthPx, imgHeightPx;
             try (ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(image))) {
                 Iterator<ImageReader> readers = ImageIO.getImageReaders(iis);
@@ -241,14 +240,14 @@ public final class GenerationContext {
         document.getMainDocumentPart().addObject(p);
     }
     void addRenderedContent(Object view){
-        String s = null;
+        String outputException = null;
         try {
             String xmlPart = JSTACHIO.execute(view);
-            s = xmlPart;
+            outputException = xmlPart;
             Object tableObject = XmlUtils.unmarshalString(xmlPart);
             document.getMainDocumentPart().addObject(tableObject);
         } catch (JAXBException e) {
-            System.out.println("generated table: \n" + s);
+            System.out.println("generated table: \n" + outputException);
             throw new RuntimeException(e);
         }
 
