@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
+//todo make enum formatters
 class NumberFormatter {
     private static final DecimalFormat SPACE_GROUPING;
 

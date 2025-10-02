@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 //todo refactor all views should start with ViewXXX
-interface RepartitionProgrammesCentreResponsabiliteView {
+interface ViewRepartitionProgrammesCentreResponsabilite {
 
     List<RepartitionCentreResponsabilite> delegates();
 
@@ -17,21 +17,21 @@ interface RepartitionProgrammesCentreResponsabiliteView {
     }
 
     @JStache(path = "templates/repartitionProgrammesCentreResponsabilite.fr.mustache")
-    interface RepartitionProgrammesCentreResponsabiliteViewFR extends RepartitionProgrammesCentreResponsabiliteView {
-        static RepartitionProgrammesCentreResponsabiliteViewFR of(List<RepartitionCentreResponsabilite> repartitions) {
+    interface ViewRepartitionProgrammesCentreResponsabiliteFR extends ViewRepartitionProgrammesCentreResponsabilite {
+        static ViewRepartitionProgrammesCentreResponsabiliteFR of(List<RepartitionCentreResponsabilite> repartitions) {
             return () -> repartitions;
         }
     }
 
     @JStache(path = "templates/repartitionProgrammesCentreResponsabilite.ar.mustache")
-    interface RepartitionProgrammesCentreResponsabiliteViewAR extends RepartitionProgrammesCentreResponsabiliteView {
-        static RepartitionProgrammesCentreResponsabiliteViewAR of(List<RepartitionCentreResponsabilite> repartitions) {
+    interface ViewRepartitionProgrammesCentreResponsabiliteAR extends ViewRepartitionProgrammesCentreResponsabilite {
+        static ViewRepartitionProgrammesCentreResponsabiliteAR of(List<RepartitionCentreResponsabilite> repartitions) {
             return () -> repartitions;
         }
     }
 
 
-    static RepartitionProgrammesCentreResponsabiliteView of(
+    static ViewRepartitionProgrammesCentreResponsabilite of(
             List<RepartitionCentreResponsabilite> repartitions,
             LanguageDirection direction) {
 
@@ -39,10 +39,8 @@ interface RepartitionProgrammesCentreResponsabiliteView {
         Objects.requireNonNull(direction);
 
         return switch (direction) {
-            case LTR -> RepartitionProgrammesCentreResponsabiliteView
-                    .RepartitionProgrammesCentreResponsabiliteViewFR.of(repartitions);
-            case RTL -> RepartitionProgrammesCentreResponsabiliteView.
-                    RepartitionProgrammesCentreResponsabiliteViewAR.of(repartitions);
+            case LTR -> ViewRepartitionProgrammesCentreResponsabiliteFR.of(repartitions);
+            case RTL -> ViewRepartitionProgrammesCentreResponsabiliteAR.of(repartitions);
         };
     }
 

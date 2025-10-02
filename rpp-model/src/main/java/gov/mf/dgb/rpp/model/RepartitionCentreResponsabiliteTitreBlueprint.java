@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Prototype.Blueprint
+@Prototype.CustomMethods(RepartitionCentreResponsabiliteTitreBlueprint.CustomMethods.class)
 interface RepartitionCentreResponsabiliteTitreBlueprint {
     CentreResponsabilite serviceType();
 
@@ -45,6 +46,14 @@ interface RepartitionCentreResponsabiliteTitreBlueprint {
         return (titre5() + titre6() + titre7()) > 0;
     }
     final class CustomMethods{
+        @Prototype.FactoryMethod
+        static RepartitionCentreResponsabiliteTitre create(CentreResponsabilite centreResponsabilite, List<Long> repartitions){
+            return RepartitionCentreResponsabiliteTitre.builder()
+                    .serviceType(centreResponsabilite)
+                    .repartitions(repartitions)
+                    .build();
+        }
+        @Prototype.BuilderMethod
         static void repartitions(RepartitionCentreResponsabiliteTitre.BuilderBase<?, ?> builder, List<Long> repartitions){
             Objects.requireNonNull(repartitions);
 
@@ -93,6 +102,26 @@ interface RepartitionCentreResponsabiliteTitreBlueprint {
 
                 }
             }
+        }
+        @Prototype.FactoryMethod
+        static RepartitionCentreResponsabiliteTitre ofCentraux(List<Long> repartitions){
+            return RepartitionCentreResponsabiliteTitre.create(CentreResponsabilite.SERVICES_CENTRAUX, repartitions);
+        }
+        @Prototype.FactoryMethod
+        static RepartitionCentreResponsabiliteTitre ofDeconcentres(List<Long> repartitions){
+            return RepartitionCentreResponsabiliteTitre.create(CentreResponsabilite.SERVICES_DECONCENTRES, repartitions);
+        }
+        @Prototype.FactoryMethod
+        static RepartitionCentreResponsabiliteTitre ofOrganismesSousTutelle(List<Long> repartitions){
+            return RepartitionCentreResponsabiliteTitre.create(CentreResponsabilite.ORGANISMES_SOUS_TUTELLE, repartitions);
+        }
+        @Prototype.FactoryMethod
+        static RepartitionCentreResponsabiliteTitre ofOrganesTerritoriaux(List<Long> repartitions){
+            return RepartitionCentreResponsabiliteTitre.create(CentreResponsabilite.ORGANES_TERRITORIAUX, repartitions);
+        }
+        @Prototype.FactoryMethod
+        static RepartitionCentreResponsabiliteTitre ofAutreServiceSousTutelle(List<Long> repartitions){
+            return RepartitionCentreResponsabiliteTitre.create(CentreResponsabilite.AUTRE_SERVICES_SOUS_TUTELLE, repartitions);
         }
     }
 }

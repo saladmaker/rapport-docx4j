@@ -1,1 +1,5 @@
 i should consider give away mustache for more powerfull template engine
+
+//for none constant table header:
+    either you pass document wide variable with custom validation on containing object
+    or configure view model to extract them from the context

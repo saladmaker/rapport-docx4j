@@ -5,34 +5,33 @@ import io.jstach.jstache.JStache;
 import java.util.List;
 import java.util.Objects;
 
-//todo refactor all views should start with ViewXXX
-interface RepartitionProgrammesView {
+interface ViewRepartitionProgrammes {
 
     @JStache(path = "templates/repartitionProgrammes.fr.mustache")
-    interface RepartitionProgrammesViewFR extends RepartitionProgrammesView{
-        static RepartitionProgrammesViewFR of(List<RepartitionProgramme> repartitions){
+    interface ViewRepartitionProgrammesFR extends ViewRepartitionProgrammes {
+        static ViewRepartitionProgrammesFR of(List<RepartitionProgramme> repartitions){
             return () -> repartitions;
         }
     }
 
     @JStache(path = "templates/repartitionProgrammes.ar.mustache")
-    interface RepartitionProgrammesViewAR extends RepartitionProgrammesView{
-        static RepartitionProgrammesViewAR of(List<RepartitionProgramme> repartitions){
+    interface ViewRepartitionProgrammesAR extends ViewRepartitionProgrammes {
+        static ViewRepartitionProgrammesAR of(List<RepartitionProgramme> repartitions){
             return () -> repartitions;
         }
     }
 
     List<RepartitionProgramme> repartition();
 
-    static RepartitionProgrammesView of(
+    static ViewRepartitionProgrammes of(
             List<RepartitionProgramme> repartitionProgrammes,
             LanguageDirection direction){
         //invariants check
         Objects.requireNonNull(repartitionProgrammes);
         Objects.requireNonNull(direction);
         return switch (direction){
-            case LTR -> RepartitionProgrammesViewFR.of(repartitionProgrammes);
-            case RTL -> RepartitionProgrammesViewAR.of(repartitionProgrammes);
+            case LTR -> ViewRepartitionProgrammesFR.of(repartitionProgrammes);
+            case RTL -> ViewRepartitionProgrammesAR.of(repartitionProgrammes);
         };
     }
 
@@ -42,6 +41,7 @@ interface RepartitionProgrammesView {
                 .sum();
         return NumberFormatter.format(totalAE);
     }
+
     default String totalCP(){
         var totalCP = repartition().stream()
                 .mapToLong(RepartitionProgramme::cp)

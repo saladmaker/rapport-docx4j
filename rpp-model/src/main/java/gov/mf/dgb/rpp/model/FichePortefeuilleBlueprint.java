@@ -9,9 +9,11 @@ import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 
 //todo make validation before building the prototype
 //validate uniqueness of programmes in repartitions
+//augment prototypes instances with document wide variable like Annee(1,2,3,4,5)
 @Prototype.Blueprint
 @Prototype.CustomMethods(FichePortefeuilleSupport.class)
 interface FichePortefeuilleBlueprint extends Writable {
+
     String FCHPORT_1_TITLE_KEY = "section1.ficheportefeuille.title.text";
     String FCHPORT_2_GEST_KEY = "section1.ficheportefeuille.gestionnaire.text";
 
@@ -20,6 +22,7 @@ interface FichePortefeuilleBlueprint extends Writable {
     String FCHPORT_5_TABLE_3_TEXT = "section1.ficheportefeuille.table.3.title";
     String FCHPORT_6_TABLE_4_TEXT = "section1.ficheportefeuille.table.4.title";
     String FCHPORT_7_TABLE_5_TEXT = "section1.ficheportefeuille.table.5.title";
+    String FCHPORT_8_TABLE_6_TEXT = "section1.ficheportefeuille.table.6.title";
 
     @Option.Singular
     List<RepartitionProgramme> versionBRepartitionProgrammes();
@@ -36,7 +39,11 @@ interface FichePortefeuilleBlueprint extends Writable {
     @Option.Singular
     List<RepartitionCentreResponsabiliteTitre> repartitionPortefeuilleCentreResponTitres();
 
+    @Option.Singular
+    List<Evolution> evolutionDepensesProgrammes();
 
+    @Option.Access("")
+    List<Evolution> evolutionPostesServices();
 
     @Override
     default void write(WordprocessingMLPackage document, GenerationContext context) {
@@ -47,18 +54,18 @@ interface FichePortefeuilleBlueprint extends Writable {
         context.addStaticContent(BOLD_STYLE, FCHPORT_2_GEST_KEY);
 
         context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_3_TABLE_1_TEXT);
-        RepartitionProgrammesView versionBRepartitions =
-                RepartitionProgrammesView.of(repartitionProgrammes(), context.direction());
+        ViewRepartitionProgrammes versionBRepartitions =
+                ViewRepartitionProgrammes.of(repartitionProgrammes(), context.direction());
         context.addRenderedContent(versionBRepartitions);
 
         context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_4_TABLE_2_TEXT);
-        RepartitionProgrammesView repartitionProgrammesTable =
-                RepartitionProgrammesView.of(repartitionProgrammes(), context.direction());
+        ViewRepartitionProgrammes repartitionProgrammesTable =
+                ViewRepartitionProgrammes.of(repartitionProgrammes(), context.direction());
         context.addRenderedContent(repartitionProgrammesTable);
 
         context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_5_TABLE_3_TEXT);
-        RepartitionProgrammesCentreResponsabiliteView repartitionProgrammesCentreResponsabiliteTable =
-                RepartitionProgrammesCentreResponsabiliteView.of(repartitionProgrammeCentreResps(), context.direction());
+        ViewRepartitionProgrammesCentreResponsabilite repartitionProgrammesCentreResponsabiliteTable =
+                ViewRepartitionProgrammesCentreResponsabilite.of(repartitionProgrammeCentreResps(), context.direction());
         context.addRenderedContent(repartitionProgrammesCentreResponsabiliteTable);
 
         context.applyLayout(PageLayout.LANDSCAPE);
@@ -67,10 +74,15 @@ interface FichePortefeuilleBlueprint extends Writable {
                 ViewRepartitionProgrammesTitre.of(repartitionProgrammesTitres(), context.direction());
         context.addRenderedContent(viewRepartitionProgrammesTitre);
 
-        //todo fix this
         context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_7_TABLE_5_TEXT);
         ViewProtefeuilleCentreResponsabiliteTitre repartitionPortefeuilleCentreRespTitresView =
                 ViewProtefeuilleCentreResponsabiliteTitre.of(repartitionPortefeuilleCentreResponTitres(), context);
         context.addRenderedContent(repartitionPortefeuilleCentreRespTitresView);
+
+        context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_8_TABLE_6_TEXT);
+        ViewEvolutionDepensesProgrammes evolutionDepensesProgrammes =
+                ViewEvolutionDepensesProgrammes.of(context, evolutionDepensesProgrammes());
+        context.addRenderedContent(evolutionDepensesProgrammes);
+
     }
 }

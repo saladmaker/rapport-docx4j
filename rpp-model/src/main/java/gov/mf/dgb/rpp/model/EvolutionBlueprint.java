@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Prototype.Blueprint
-@Prototype.CustomMethods(EvolutionDepensesBlueprint.CustomMethods.class)
-interface EvolutionDepensesBlueprint {
+@Prototype.CustomMethods(EvolutionBlueprint.CustomMethods.class)
+interface EvolutionBlueprint {
 
     String name();
 
@@ -27,23 +27,16 @@ interface EvolutionDepensesBlueprint {
     @Option.DefaultLong(0L)
     Long anneePlus2();
 
-    default long total(){
-        return anneeMoins2() +
-                anneeMoins1() +
-                annee() +
-                anneePlus1() +
-                anneePlus2();
-    }
     final class CustomMethods{
         @Prototype.FactoryMethod
-        static EvolutionDepenses create(String name, List<Long> depenses){
-            return EvolutionDepenses.builder()
+        static Evolution create(String name, List<Long> depenses){
+            return Evolution.builder()
                     .name(name)
                     .evolution(depenses)
                     .build();
         }
         @Prototype.BuilderMethod
-        static void evolution(EvolutionDepenses.BuilderBase<?,?> builder, List<Long> depenses){
+        static void evolution(Evolution.BuilderBase<?,?> builder, List<Long> depenses){
             Objects.requireNonNull(depenses);
 
             var size = depenses.size();
