@@ -7,14 +7,14 @@ import java.util.Objects;
 
 interface ViewRepartitionProgrammes {
 
-    @JStache(path = "templates/repartitionProgrammes.fr.mustache")
+    @JStache(path = "templates/section1/repartitionProgrammes.fr.mustache")
     interface ViewRepartitionProgrammesFR extends ViewRepartitionProgrammes {
         static ViewRepartitionProgrammesFR of(List<RepartitionProgramme> repartitions){
             return () -> repartitions;
         }
     }
 
-    @JStache(path = "templates/repartitionProgrammes.ar.mustache")
+    @JStache(path = "templates/section1/repartitionProgrammes.ar.mustache")
     interface ViewRepartitionProgrammesAR extends ViewRepartitionProgrammes {
         static ViewRepartitionProgrammesAR of(List<RepartitionProgramme> repartitions){
             return () -> repartitions;

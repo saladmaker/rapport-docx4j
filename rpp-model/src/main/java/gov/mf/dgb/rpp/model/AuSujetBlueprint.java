@@ -1,6 +1,5 @@
 package gov.mf.dgb.rpp.model;
 
-import io.helidon.builder.api.Option;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 
 import io.helidon.builder.api.Prototype;
@@ -9,13 +8,10 @@ import io.helidon.builder.api.Prototype;
 interface AuSujetBlueprint extends Writable{
     String AUSJT_1_TITLE_KEY = "section1.ausujetprotefeuille.title.text";
 
-    @Option.Required
     LaMission laMission();
 
-    @Option.Required
     LeMinistere leMinistere();
 
-    @Option.Required
     FichePortefeuille fichePortefeuille();
 
     @Override

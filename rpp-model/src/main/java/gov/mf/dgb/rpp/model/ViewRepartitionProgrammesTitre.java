@@ -16,12 +16,12 @@ interface ViewRepartitionProgrammesTitre {
                 .toList();
     }
 
-    @JStache(path = "templates/repartitionProgrammesTitre.fr.mustache")
+    @JStache(path = "templates/section1/repartitionProgrammesTitre.fr.mustache")
     record ViewRepartitionProgrammesTitreFR(List<RepartitionTitre> delegates) implements ViewRepartitionProgrammesTitre {
 
     }
 
-    @JStache(path = "templates/repartitionProgrammesTitre.ar.mustache")
+    @JStache(path = "templates/section1/repartitionProgrammesTitre.ar.mustache")
     record ViewRepartitionProgrammesTitreAR(List<RepartitionTitre> delegates) implements ViewRepartitionProgrammesTitre {
 
     }

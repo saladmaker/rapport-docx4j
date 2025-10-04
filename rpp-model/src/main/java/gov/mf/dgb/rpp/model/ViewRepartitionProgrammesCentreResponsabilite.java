@@ -16,14 +16,14 @@ interface ViewRepartitionProgrammesCentreResponsabilite {
                 .toList();
     }
 
-    @JStache(path = "templates/repartitionProgrammesCentreResponsabilite.fr.mustache")
+    @JStache(path = "templates/section1/repartitionProgrammesCentreResponsabilite.fr.mustache")
     interface ViewRepartitionProgrammesCentreResponsabiliteFR extends ViewRepartitionProgrammesCentreResponsabilite {
         static ViewRepartitionProgrammesCentreResponsabiliteFR of(List<RepartitionCentreResponsabilite> repartitions) {
             return () -> repartitions;
         }
     }
 
-    @JStache(path = "templates/repartitionProgrammesCentreResponsabilite.ar.mustache")
+    @JStache(path = "templates/section1/repartitionProgrammesCentreResponsabilite.ar.mustache")
     interface ViewRepartitionProgrammesCentreResponsabiliteAR extends ViewRepartitionProgrammesCentreResponsabilite {
         static ViewRepartitionProgrammesCentreResponsabiliteAR of(List<RepartitionCentreResponsabilite> repartitions) {
             return () -> repartitions;

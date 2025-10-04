@@ -7,10 +7,9 @@ import java.util.List;
 
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 
-//todo make validation before building the prototype
-//validate uniqueness of programmes in repartitions
+//todo
 //augment prototypes instances with document wide variable like Annee(1,2,3,4,5)
-@Prototype.Blueprint
+@Prototype.Blueprint(decorator = FichePortefeuilleSupport.BuilderDecorator.class)
 @Prototype.CustomMethods(FichePortefeuilleSupport.class)
 interface FichePortefeuilleBlueprint extends Writable {
 
@@ -23,6 +22,7 @@ interface FichePortefeuilleBlueprint extends Writable {
     String FCHPORT_6_TABLE_4_TEXT = "section1.ficheportefeuille.table.4.title";
     String FCHPORT_7_TABLE_5_TEXT = "section1.ficheportefeuille.table.5.title";
     String FCHPORT_8_TABLE_6_TEXT = "section1.ficheportefeuille.table.6.title";
+    String FCHPORT_9_TABLE_7_TEXT = "section1.ficheportefeuille.table.7.title";
 
     @Option.Singular
     List<RepartitionProgramme> versionBRepartitionProgrammes();
@@ -76,7 +76,7 @@ interface FichePortefeuilleBlueprint extends Writable {
 
         context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_7_TABLE_5_TEXT);
         ViewProtefeuilleCentreResponsabiliteTitre repartitionPortefeuilleCentreRespTitresView =
-                ViewProtefeuilleCentreResponsabiliteTitre.of(repartitionPortefeuilleCentreResponTitres(), context);
+                ViewProtefeuilleCentreResponsabiliteTitre.of(context, repartitionPortefeuilleCentreResponTitres());
         context.addRenderedContent(repartitionPortefeuilleCentreRespTitresView);
 
         context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_8_TABLE_6_TEXT);
@@ -84,5 +84,9 @@ interface FichePortefeuilleBlueprint extends Writable {
                 ViewEvolutionDepensesProgrammes.of(context, evolutionDepensesProgrammes());
         context.addRenderedContent(evolutionDepensesProgrammes);
 
+        context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_9_TABLE_7_TEXT);
+        ViewEvolutionPostesCentreResponsabilite evolutionPostesCentreResponsabilite =
+                ViewEvolutionPostesCentreResponsabilite.of(context, evolutionPostesServices());
+        context.addRenderedContent(evolutionPostesCentreResponsabilite);
     }
 }

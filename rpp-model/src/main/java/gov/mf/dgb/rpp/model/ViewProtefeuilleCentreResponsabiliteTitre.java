@@ -1,6 +1,5 @@
 package gov.mf.dgb.rpp.model;
 
-import io.helidon.builder.api.Option;
 import io.jstach.jstache.JStache;
 
 import java.util.List;
@@ -12,24 +11,27 @@ interface ViewProtefeuilleCentreResponsabiliteTitre {
 
     GenerationContext context();
 
-    @JStache(path = "templates/repartitionPortefeuilleCentreResponsabiliteTitre.ar.mustache")
-    record ViewProtefeuilleCentreResponsabiliteTitreAR(List<RepartitionCentreResponsabiliteTitre> delegates,
-                                                       GenerationContext context)
-            implements ViewProtefeuilleCentreResponsabiliteTitre {
-
-    }
-
-    @JStache(path = "templates/repartitionPortefeuilleCentreResponsabiliteTitre.fr.mustache")
-    record ViewProtefeuilleCentreResponsabiliteTitreFR(List<RepartitionCentreResponsabiliteTitre> delegates,
-                                                       GenerationContext context)
+    @JStache(path = "templates/repartitionCentreResponsabiliteTitre.ar.mustache")
+    record ViewProtefeuilleCentreResponsabiliteTitreAR(GenerationContext context,
+                                                       List<RepartitionCentreResponsabiliteTitre> delegates)
             implements ViewProtefeuilleCentreResponsabiliteTitre {
     }
 
-    static ViewProtefeuilleCentreResponsabiliteTitre of(List<RepartitionCentreResponsabiliteTitre> delegates, GenerationContext context){
+    @JStache(path = "templates/repartitionCentreResponsabiliteTitre.fr.mustache")
+    record ViewProtefeuilleCentreResponsabiliteTitreFR(GenerationContext context,
+                                                       List<RepartitionCentreResponsabiliteTitre> delegates)
+            implements ViewProtefeuilleCentreResponsabiliteTitre {
+    }
+
+    static ViewProtefeuilleCentreResponsabiliteTitre of(GenerationContext context,
+                                                        List<RepartitionCentreResponsabiliteTitre> delegates){
         Objects.requireNonNull(delegates);
         Objects.requireNonNull(context);
 
-        return new ViewProtefeuilleCentreResponsabiliteTitreFR(delegates, context);
+        return switch (context.direction()){
+            case LTR -> new ViewProtefeuilleCentreResponsabiliteTitreFR(context, delegates);
+            case RTL -> new ViewProtefeuilleCentreResponsabiliteTitreAR(context, delegates);
+        };
     }
 
     default boolean hasAutreTitre() {
