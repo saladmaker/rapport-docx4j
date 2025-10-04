@@ -5,32 +5,32 @@ import io.jstach.jstache.JStache;
 import java.util.List;
 import java.util.Objects;
 
-interface ViewProtefeuilleCentreResponsabiliteTitre {
+interface ViewCentreResponsabiliteTitre {
 
     List<RepartitionCentreResponsabiliteTitre> delegates();
 
     GenerationContext context();
 
     @JStache(path = "templates/repartitionCentreResponsabiliteTitre.ar.mustache")
-    record ViewProtefeuilleCentreResponsabiliteTitreAR(GenerationContext context,
-                                                       List<RepartitionCentreResponsabiliteTitre> delegates)
-            implements ViewProtefeuilleCentreResponsabiliteTitre {
+    record ViewCentreResponsabiliteTitreAR(GenerationContext context,
+                                           List<RepartitionCentreResponsabiliteTitre> delegates)
+            implements ViewCentreResponsabiliteTitre {
     }
 
     @JStache(path = "templates/repartitionCentreResponsabiliteTitre.fr.mustache")
-    record ViewProtefeuilleCentreResponsabiliteTitreFR(GenerationContext context,
-                                                       List<RepartitionCentreResponsabiliteTitre> delegates)
-            implements ViewProtefeuilleCentreResponsabiliteTitre {
+    record ViewCentreResponsabiliteTitreFR(GenerationContext context,
+                                           List<RepartitionCentreResponsabiliteTitre> delegates)
+            implements ViewCentreResponsabiliteTitre {
     }
 
-    static ViewProtefeuilleCentreResponsabiliteTitre of(GenerationContext context,
-                                                        List<RepartitionCentreResponsabiliteTitre> delegates){
+    static ViewCentreResponsabiliteTitre of(GenerationContext context,
+                                            List<RepartitionCentreResponsabiliteTitre> delegates){
         Objects.requireNonNull(delegates);
         Objects.requireNonNull(context);
 
         return switch (context.direction()){
-            case LTR -> new ViewProtefeuilleCentreResponsabiliteTitreFR(context, delegates);
-            case RTL -> new ViewProtefeuilleCentreResponsabiliteTitreAR(context, delegates);
+            case LTR -> new ViewCentreResponsabiliteTitreFR(context, delegates);
+            case RTL -> new ViewCentreResponsabiliteTitreAR(context, delegates);
         };
     }
 

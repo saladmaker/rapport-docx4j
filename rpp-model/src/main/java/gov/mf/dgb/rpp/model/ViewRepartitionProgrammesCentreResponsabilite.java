@@ -5,7 +5,6 @@ import io.jstach.jstache.JStache;
 import java.util.List;
 import java.util.Objects;
 
-//todo refactor all views should start with ViewXXX
 interface ViewRepartitionProgrammesCentreResponsabilite {
 
     List<RepartitionCentreResponsabilite> delegates();

@@ -15,10 +15,21 @@ final class FichePortefeuilleSupport {
 
         @Override
         public void decorate(FichePortefeuille.BuilderBase<?, ?> target) {
+            if(target.repartitionProgrammes().isEmpty()){
+                throw new IllegalStateException("at least one programme should be present in #repartitionProgrammes!");
+            }
             uniqueNessCheck(target.repartitionProgrammes(), RepartitionProgramme::name,
                     "duplicate programme names in #repartitionProgrammes!");
+
+            if(target.versionBRepartitionProgrammes().isEmpty()){
+                throw new IllegalStateException("at least one programme should be present in #versionBRepartitionProgrammes!");
+            }
             uniqueNessCheck(target.versionBRepartitionProgrammes(), RepartitionProgramme::name,
                     "duplicate programme names in #versionBRepartitionProgrammes!");
+            if(target.repartitionProgrammes().size() != target.versionBRepartitionProgrammes().size()){
+                throw new IllegalStateException("size of #repartitionProgrammes != #versionBRepartitionProgrammes!");
+            }
+
             uniqueNessCheck(target.repartitionProgrammeCentreResps(), RepartitionCentreResponsabilite::name,
                     "duplicate programme names in #repartitionProgrammeCentreResps!");
             uniqueNessCheck(target.repartitionProgrammesTitres(), RepartitionTitre::name,

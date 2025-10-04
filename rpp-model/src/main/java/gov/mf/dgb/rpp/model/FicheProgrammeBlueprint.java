@@ -54,18 +54,25 @@ interface FicheProgrammeBlueprint extends Writable {
         String presentation = presentationFormat.formatted(counter(), name());
         context.addContent(HEADING_3_STYLE, presentation);
 
+        context.applyLayout(PageLayout.LANDSCAPE);
         //heading 2
         context.addStaticContent(HEADING_2_STYLE, FCHPROG_4_SUB_TITLE_3_KEY);
 
         //nom du programme
         String stickyNomProgrammeFormat = context.staticContent(FCHPROG_5_STICKY_TITLE_1_KEY);
-        var stickyNomProgramme = stickyNomProgrammeFormat.formatted(context, name());
+        var stickyNomProgramme = stickyNomProgrammeFormat.formatted(counter(), name());
         context.addContent(STICKY_TITLE_STYLE, stickyNomProgramme);
 
         //gestionnaire
         String stickyGestionnaireFromat = context.staticContent(FCHPROG_6_STICKY_TITLE_2_KEY);
         var stickyGestionaaire = stickyGestionnaireFromat.formatted(gestionnaire());
         context.addContent(STICKY_TITLE_STYLE, stickyGestionaaire);
+
+        //add repartition centre de responsabilite- titre
+        ViewCentreResponsabiliteTitre viewCentreResponsabiliteTitre =
+                ViewCentreResponsabiliteTitre.of(context, repartitionProgrammeCentreRespTitre());
+        context.addRenderedContent(viewCentreResponsabiliteTitre);
+
 
     }
 }

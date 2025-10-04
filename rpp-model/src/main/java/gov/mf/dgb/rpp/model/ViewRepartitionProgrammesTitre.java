@@ -5,8 +5,7 @@ import io.jstach.jstache.JStache;
 import java.util.List;
 import java.util.Objects;
 
-//todo add mf version neat solution for orientation switch
-//todo refactor all views should start with ViewXXX
+//todo make this generic for both (programmes, sous-programmes)
 interface ViewRepartitionProgrammesTitre {
     List<RepartitionTitre> delegates();
 
