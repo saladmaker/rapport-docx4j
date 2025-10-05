@@ -4,32 +4,39 @@ import io.jstach.jstache.JStache;
 
 import java.util.List;
 
-interface ViewEvolutionDepensesProgrammes {
+interface ViewEvolutionDepenses {
 
     List<Evolution> delegates();
 
-    static ViewEvolutionDepensesProgrammes of(GenerationContext context, List<Evolution> evolutions) {
+    GenerationContext context();
+
+    ViewType viewType();
+
+    static ViewEvolutionDepenses of(GenerationContext context, ViewType viewType, List<Evolution> evolutions) {
         return switch (context.direction()) {
-            case LTR -> new ViewEvolutionDepensesProgrammesFR(evolutions);
-            case RTL -> new ViewEvolutionDepensesProgrammesAR(evolutions);
+            case LTR -> new ViewEvolutionDepensesFR(context, viewType, evolutions);
+            case RTL -> new ViewEvolutionDepensesAR(context, viewType, evolutions);
         };
     }
 
+
+    @JStache(path = "templates/evolution.depenses.fr.mustache")
+    record ViewEvolutionDepensesFR(GenerationContext context, ViewType viewType, List<Evolution> delegates)
+            implements ViewEvolutionDepenses {
+    }
+
+    @JStache(path = "templates/evolution.depenses.ar.mustache")
+    record ViewEvolutionDepensesAR(GenerationContext context, ViewType viewType, List<Evolution> delegates)
+            implements ViewEvolutionDepenses {
+    }
 
     default List<ViewEvolutionDepense> evolutions() {
         return delegates().stream()
                 .map(ViewEvolutionDepense::new)
                 .toList();
     }
-
-    @JStache(path = "templates/section1/evolution.depenses.programmes.fr.mustache")
-    record ViewEvolutionDepensesProgrammesFR(List<Evolution> delegates)
-            implements ViewEvolutionDepensesProgrammes {
-    }
-
-    @JStache(path = "templates/section1/evolution.depenses.programmes.ar.mustache")
-    record ViewEvolutionDepensesProgrammesAR(List<Evolution> delegates)
-            implements ViewEvolutionDepensesProgrammes {
+    default String header(){
+        return context().staticContent(viewType().name());
     }
 
     default String totalAnneeMoins2() {

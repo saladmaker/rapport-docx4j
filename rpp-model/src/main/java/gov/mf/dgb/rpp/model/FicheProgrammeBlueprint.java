@@ -8,6 +8,7 @@ import java.util.List;
 
 @Prototype.Blueprint
 interface FicheProgrammeBlueprint extends Writable {
+
     String FCHPROG_1_TITLE_KEY = "section2.planification.title.1.text";
     String FCHPROG_2_SUB_TITLE_1_KEY = "section2.planification.title.2.text";
     String FCHPORG_3_SUB_TITLE_2_KEY = "section2.planification.title.3.text";
@@ -36,6 +37,9 @@ interface FicheProgrammeBlueprint extends Writable {
 
     @Option.Singular
     List<Projet> GPEEnCours();
+
+    @Option.Singular
+    List<PostesOuvertMassSalarial> evolutionPostOuvertMassSalarials();
 
     @Override
     default void write(WordprocessingMLPackage document, GenerationContext context) {
@@ -73,6 +77,13 @@ interface FicheProgrammeBlueprint extends Writable {
                 ViewCentreResponsabiliteTitre.of(context, repartitionProgrammeCentreRespTitre());
         context.addRenderedContent(viewCentreResponsabiliteTitre);
 
+        context.addContent(HEADING_3_STYLE, "hello");
+
+        ViewEvolutionPostesOuvertMassSalarial viewEvolutionPostesOuvertMassSalarial =
+                ViewEvolutionPostesOuvertMassSalarial.of(context, evolutionPostOuvertMassSalarials());
+        context.addRenderedContent(viewEvolutionPostesOuvertMassSalarial);
+        //0.15,0.10,0.10,0.10,0.08,0.08,0.13,0.13,0.13,0.10
+        //0.14, 0.09, 0.09, 0.09, 0.08, 0.08, 0.11, 0.11, 0.11, 0.1
 
     }
 }

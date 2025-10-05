@@ -6,36 +6,46 @@ import java.util.List;
 import java.util.Objects;
 
 //todo make this generic for both (programmes, sous-programmes)
-interface ViewRepartitionProgrammesTitre {
+interface ViewRepartitionTitre {
+
+
     List<RepartitionTitre> delegates();
 
-    default List<RepartitionTitreView> repartitions(){
-        return delegates().stream()
-                .map(RepartitionTitreView::new)
-                .toList();
-    }
+    GenerationContext context();
 
-    @JStache(path = "templates/section1/repartitionProgrammesTitre.fr.mustache")
-    record ViewRepartitionProgrammesTitreFR(List<RepartitionTitre> delegates) implements ViewRepartitionProgrammesTitre {
+    ViewType viewType();
 
-    }
-
-    @JStache(path = "templates/section1/repartitionProgrammesTitre.ar.mustache")
-    record ViewRepartitionProgrammesTitreAR(List<RepartitionTitre> delegates) implements ViewRepartitionProgrammesTitre {
-
-    }
-
-    static ViewRepartitionProgrammesTitre of(List<RepartitionTitre> delegates, LanguageDirection direction){
+    static ViewRepartitionTitre of(GenerationContext context, ViewType viewType, List<RepartitionTitre> delegates){
+        Objects.requireNonNull(context);
+        Objects.requireNonNull(viewType);
         Objects.requireNonNull(delegates);
-        Objects.requireNonNull(direction);
 
-        return switch (direction){
-            case LTR -> new ViewRepartitionProgrammesTitreFR(delegates);
-            case RTL -> new ViewRepartitionProgrammesTitreAR(delegates);
+        return switch (context.direction()){
+            case LTR -> new ViewRepartitionTitreFR(context, viewType, delegates);
+            case RTL -> new ViewRepartitionTitreAR(context, viewType, delegates);
         };
     }
 
-    record RepartitionTitreView(RepartitionTitre delegate){
+    default List<RepartitionTitreView> repartitions(){
+        return delegates().stream()
+                .map(e-> new RepartitionTitreView(context(), e))
+                .toList();
+    }
+
+    default String header(){
+        return context().staticContent(viewType().name());
+    }
+    @JStache(path = "templates/repartitionTitre.fr.mustache")
+    record ViewRepartitionTitreFR(GenerationContext context, ViewType viewType, List<RepartitionTitre> delegates) implements ViewRepartitionTitre {
+    }
+
+    @JStache(path = "templates/repartitionTitre.ar.mustache")
+    record ViewRepartitionTitreAR(GenerationContext context, ViewType viewType, List<RepartitionTitre> delegates) implements ViewRepartitionTitre {
+    }
+
+
+
+    record RepartitionTitreView(GenerationContext context, RepartitionTitre delegate){
 
         public String name() {
             return delegate.name();

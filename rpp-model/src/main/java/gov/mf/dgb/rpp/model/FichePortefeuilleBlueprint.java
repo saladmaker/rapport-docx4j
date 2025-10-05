@@ -70,9 +70,9 @@ interface FichePortefeuilleBlueprint extends Writable {
 
         context.applyLayout(PageLayout.LANDSCAPE);
         context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_6_TABLE_4_TEXT);
-        ViewRepartitionProgrammesTitre viewRepartitionProgrammesTitre =
-                ViewRepartitionProgrammesTitre.of(repartitionProgrammesTitres(), context.direction());
-        context.addRenderedContent(viewRepartitionProgrammesTitre);
+        ViewRepartitionTitre viewRepartitionTitre =
+                ViewRepartitionTitre.of(context, ViewType.PROGRAMME, repartitionProgrammesTitres());
+        context.addRenderedContent(viewRepartitionTitre);
 
         context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_7_TABLE_5_TEXT);
         ViewCentreResponsabiliteTitre repartitionPortefeuilleCentreRespTitresView =
@@ -80,8 +80,8 @@ interface FichePortefeuilleBlueprint extends Writable {
         context.addRenderedContent(repartitionPortefeuilleCentreRespTitresView);
 
         context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_8_TABLE_6_TEXT);
-        ViewEvolutionDepensesProgrammes evolutionDepensesProgrammes =
-                ViewEvolutionDepensesProgrammes.of(context, evolutionDepensesProgrammes());
+        ViewEvolutionDepenses evolutionDepensesProgrammes =
+                ViewEvolutionDepenses.of(context, ViewType.PROGRAMME, evolutionDepensesProgrammes());
         context.addRenderedContent(evolutionDepensesProgrammes);
 
         context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_9_TABLE_7_TEXT);
@@ -90,6 +90,5 @@ interface FichePortefeuilleBlueprint extends Writable {
         context.addRenderedContent(evolutionPostesCentreResponsabilite);
     }
     default void writeTable(){
-
     }
 }

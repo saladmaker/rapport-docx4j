@@ -15,7 +15,7 @@ interface ProjetBlueprint {
 
     Double tauxAvancement();
 
-    boolean respetÉchéanciers();
+    Boolean respetÉchéanciers();
 
     Long AEreevaluationDemandée();
 
