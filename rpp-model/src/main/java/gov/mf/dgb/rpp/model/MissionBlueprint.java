@@ -23,5 +23,12 @@ interface MissionBlueprint {
                     .mission(mission)
                     .build();
         }
+        @Prototype.FactoryMethod
+        static Mission create(String mission, List<String> subMission){
+            return Mission.builder()
+                    .mission(mission)
+                    .subMissions(subMission)
+                    .build();
+        }
     }
 }

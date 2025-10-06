@@ -334,4 +334,348 @@
             </w:p>
         </w:tc>
     </w:tr>
+    {{#evolutions}}
+        <w:tr>
+            <!-- Cell 1: Service Name-->
+            <w:tc>
+                <w:tcPr>
+                    <w:tcW w:w="1256" w:type="dxa"/>
+                    <w:vAlign w:val="center"/>
+                </w:tcPr>
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="TableCell"/>
+                        <w:jc w:val="center"/>
+                    </w:pPr>
+                    <w:r>
+                        <w:t>{{serviceType}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+
+            <!-- Cell 2: 2022 -->
+            <w:tc>
+                <w:tcPr>
+                    <w:tcW w:w="1256" w:type="dxa"/>
+                    <w:vAlign w:val="center"/>
+                </w:tcPr>
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="TableCell"/>
+                        <w:jc w:val="center"/>
+                    </w:pPr>
+                    <w:r>
+                        <w:t>{{postesAnneeMoins2}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+
+            <!-- Cell 3: 2023 -->
+            <w:tc>
+                <w:tcPr>
+                    <w:tcW w:w="1256" w:type="dxa"/>
+                    <w:vAlign w:val="center"/>
+                </w:tcPr>
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="TableCell"/>
+                        <w:jc w:val="center"/>
+                    </w:pPr>
+                    <w:r>
+                        <w:t>{{postesAnneeMoins1}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+
+            <!-- Cell 4: 2024 -->
+            <w:tc>
+                <w:tcPr>
+                    <w:tcW w:w="1256" w:type="dxa"/>
+                    <w:vAlign w:val="center"/>
+                </w:tcPr>
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="TableCell"/>
+                        <w:jc w:val="center"/>
+                    </w:pPr>
+                    <w:r>
+                        <w:t>{{postesAnnee}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+
+            <!-- Cell 5: Nombre -->
+            <w:tc>
+                <w:tcPr>
+                    <w:tcW w:w="1117" w:type="dxa"/>
+                    <w:vAlign w:val="center"/>
+                </w:tcPr>
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="TableCell"/>
+                        <w:jc w:val="center"/>
+                    </w:pPr>
+                    <w:r>
+                        <w:t>{{nombre}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+
+            <!-- Cell 6: % -->
+            <w:tc>
+                <w:tcPr>
+                    <w:tcW w:w="1117" w:type="dxa"/>
+                    <w:vAlign w:val="center"/>
+                </w:tcPr>
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="TableCell"/>
+                        <w:jc w:val="center"/>
+                    </w:pPr>
+                    <w:r>
+                        <w:t>{{variationPostes}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+
+            <!-- Cell 7: 2022 -->
+            <w:tc>
+                <w:tcPr>
+                    <w:tcW w:w="1535" w:type="dxa"/>
+                    <w:vAlign w:val="center"/>
+                </w:tcPr>
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="TableCell"/>
+                        <w:jc w:val="center"/>
+                    </w:pPr>
+                    <w:r>
+                        <w:t>{{massSalarialAnneeMoins2}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+
+            <!-- Cell 8: 2023 -->
+            <w:tc>
+                <w:tcPr>
+                    <w:tcW w:w="1535" w:type="dxa"/>
+                    <w:vAlign w:val="center"/>
+                </w:tcPr>
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="TableCell"/>
+                        <w:jc w:val="center"/>
+                    </w:pPr>
+                    <w:r>
+                        <w:t>{{massSalarialAnneeMoins1}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+
+            <!-- Cell 9: 2024 -->
+            <w:tc>
+                <w:tcPr>
+                    <w:tcW w:w="1535" w:type="dxa"/>
+                    <w:vAlign w:val="center"/>
+                </w:tcPr>
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="TableCell"/>
+                        <w:jc w:val="center"/>
+                    </w:pPr>
+                    <w:r>
+                        <w:t>{{massSalarialAnnee}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+
+            <!-- Cell 10: Montant -->
+            <w:tc>
+                <w:tcPr>
+                    <w:tcW w:w="1396" w:type="dxa"/>
+                    <w:vAlign w:val="center"/>
+                </w:tcPr>
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="TableCell"/>
+                        <w:jc w:val="center"/>
+                    </w:pPr>
+                    <w:r>
+                        <w:t>{{variationSalarial}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+        </w:tr>
+    {{/evolutions}}
+    <w:tr>
+        <!-- Cell 1: Service Name-->
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="1256" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="TableCell"/>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>Total</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+
+        <!-- Cell 2: 2022 -->
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="1256" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="TableCell"/>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>{{totalPostesAnneeMoins2}}</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+
+        <!-- Cell 3: 2023 -->
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="1256" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="TableCell"/>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>{{totalPostesAnneeMoins1}}</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+
+        <!-- Cell 4: 2024 -->
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="1256" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="TableCell"/>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>{{totalPostesAnnee}}</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+
+        <!-- Cell 5: Nombre -->
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="1117" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="TableCell"/>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>{{totalNombre}}</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+
+        <!-- Cell 6: % -->
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="1117" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="TableCell"/>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>{{averageVariation}}</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+
+        <!-- Cell 7: 2022 -->
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="1535" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="TableCell"/>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>{{totalMassSalarialAnneeMoins2}}</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+
+        <!-- Cell 8: 2023 -->
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="1535" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="TableCell"/>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>{{totalMassSalarialAnneeMoins1}}</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+
+        <!-- Cell 9: 2024 -->
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="1535" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="TableCell"/>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>{{totalMassSalarialAnnee}}</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+
+        <!-- Cell 10: Montant -->
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="1396" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="TableCell"/>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>{{totalVariationSalarial}}</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+    </w:tr>
 </w:tbl>

@@ -6,6 +6,7 @@ import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import rpp.test.DocumentGenerator;
 
 import java.io.IOException;
+import java.time.Year;
 import java.util.List;
 import java.util.Map;
 
@@ -87,6 +88,6 @@ public class FrenchModel implements DocumentGenerator {
                         .addEvolutionPostesOrganismesSousTutelle(List.of(71626L, 72716L, 72716L, 73526L, 74036L))
                         .build())
                 .build();
-        au.write(document, GenerationContext.of(LanguageDirection.LTR, document, Map.of()));
+        au.write(document, GenerationContext.of(LanguageDirection.LTR, document, Map.of(), Year.of(2025)));
     }
 }

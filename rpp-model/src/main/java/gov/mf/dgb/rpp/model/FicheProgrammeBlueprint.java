@@ -82,8 +82,7 @@ interface FicheProgrammeBlueprint extends Writable {
         ViewEvolutionPostesOuvertMassSalarial viewEvolutionPostesOuvertMassSalarial =
                 ViewEvolutionPostesOuvertMassSalarial.of(context, evolutionPostOuvertMassSalarials());
         context.addRenderedContent(viewEvolutionPostesOuvertMassSalarial);
-        //0.15,0.10,0.10,0.10,0.08,0.08,0.13,0.13,0.13,0.10
-        //0.14, 0.09, 0.09, 0.09, 0.08, 0.08, 0.11, 0.11, 0.11, 0.1
+
 
     }
 }

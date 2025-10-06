@@ -5,6 +5,7 @@ import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import rpp.test.DocumentGenerator;
 
 import java.io.IOException;
+import java.time.Year;
 import java.util.List;
 import java.util.Map;
 
@@ -89,7 +90,7 @@ public class ArabicModel implements DocumentGenerator {
                 .addEvolutionPostesOrganismesSousTutelle(List.of(71626L, 72716L, 72716L, 73526L, 74036L))
                 .build())
                 .build();
-        au.write(document, GenerationContext.of(LanguageDirection.RTL, document, Map.of()));
+        au.write(document, GenerationContext.of(LanguageDirection.RTL, document, Map.of(), Year.of(2025)));
 
     }
 }

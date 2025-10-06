@@ -4,7 +4,7 @@ import io.jstach.jstache.JStache;
 
 import java.util.List;
 
-interface ViewEvolutionDepenses {
+interface ViewEvolution {
 
     List<Evolution> delegates();
 
@@ -12,27 +12,27 @@ interface ViewEvolutionDepenses {
 
     ViewType viewType();
 
-    static ViewEvolutionDepenses of(GenerationContext context, ViewType viewType, List<Evolution> evolutions) {
+    static gov.mf.dgb.rpp.model.ViewEvolution of(GenerationContext context, ViewType viewType, List<Evolution> evolutions) {
         return switch (context.direction()) {
-            case LTR -> new ViewEvolutionDepensesFR(context, viewType, evolutions);
-            case RTL -> new ViewEvolutionDepensesAR(context, viewType, evolutions);
+            case LTR -> new ViewEvolutionFR(context, viewType, evolutions);
+            case RTL -> new ViewEvolutionAR(context, viewType, evolutions);
         };
     }
 
 
     @JStache(path = "templates/evolution.depenses.fr.mustache")
-    record ViewEvolutionDepensesFR(GenerationContext context, ViewType viewType, List<Evolution> delegates)
-            implements ViewEvolutionDepenses {
+    record ViewEvolutionFR(GenerationContext context, ViewType viewType, List<Evolution> delegates)
+            implements gov.mf.dgb.rpp.model.ViewEvolution {
     }
 
     @JStache(path = "templates/evolution.depenses.ar.mustache")
-    record ViewEvolutionDepensesAR(GenerationContext context, ViewType viewType, List<Evolution> delegates)
-            implements ViewEvolutionDepenses {
+    record ViewEvolutionAR(GenerationContext context, ViewType viewType, List<Evolution> delegates)
+            implements gov.mf.dgb.rpp.model.ViewEvolution {
     }
 
-    default List<ViewEvolutionDepense> evolutions() {
+    default List<EvolutionView> evolutions() {
         return delegates().stream()
-                .map(ViewEvolutionDepense::new)
+                .map(EvolutionView::new)
                 .toList();
     }
     default String header(){
@@ -75,7 +75,7 @@ interface ViewEvolutionDepenses {
     }
 
 
-    record ViewEvolutionDepense(Evolution delegate) {
+    record EvolutionView(Evolution delegate) {
         String name() {
             return delegate.name();
         }
@@ -99,6 +99,5 @@ interface ViewEvolutionDepenses {
         String anneePlus2() {
             return NumberFormatter.format(delegate.anneePlus2());
         }
-
     }
 }

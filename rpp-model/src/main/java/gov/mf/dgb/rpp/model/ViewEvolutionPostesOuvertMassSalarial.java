@@ -23,6 +23,7 @@ public interface ViewEvolutionPostesOuvertMassSalarial {
             implements ViewEvolutionPostesOuvertMassSalarial {
     }
 
+    @JStache(path = "templates/section2/evolution.postes.ouvert.mass.salarial.ar.mustache")
     record ViewEvolutionPostesOuvertMassSalarialAR(GenerationContext context, List<PostesOuvertMassSalarial> delegates)
             implements ViewEvolutionPostesOuvertMassSalarial {
     }

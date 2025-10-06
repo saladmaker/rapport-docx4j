@@ -39,6 +39,7 @@ interface PostesOuvertMassSalarialBlueprint {
     default Long variationSalarial(){
         return massSalarialAnnee() - massSalarialAnneeMoins1();
     }
+
     final class CustomMethods {
         @Prototype.BuilderMethod
         static void evolutionPostes(PostesOuvertMassSalarial.BuilderBase<?, ?> builderBase, List<Long> postes) {
@@ -54,7 +55,6 @@ interface PostesOuvertMassSalarialBlueprint {
                     builderBase.postesAnneeMoins2(postes.get(0));
                     builderBase.postesAnneeMoins1(postes.get(1));
                     builderBase.postesAnnee(postes.get(2));
-
                 }
                 case 2 -> {
                     builderBase.postesAnneeMoins1(postes.get(0));
@@ -80,7 +80,6 @@ interface PostesOuvertMassSalarialBlueprint {
                     builderBase.massSalarialAnneeMoins2(salaires.get(0));
                     builderBase.massSalarialAnneeMoins1(salaires.get(1));
                     builderBase.massSalarialAnnee(salaires.get(2));
-
                 }
                 case 2 -> {
                     builderBase.massSalarialAnneeMoins1(salaires.get(0));
@@ -94,6 +93,7 @@ interface PostesOuvertMassSalarialBlueprint {
 
         @Prototype.FactoryMethod
         static PostesOuvertMassSalarial create(CentreResponsabilite centreResponsabilite, List<Long> postes, List<Long> salaires) {
+            Objects.requireNonNull(centreResponsabilite);
 
             return PostesOuvertMassSalarial.builder()
                     .serviceType(centreResponsabilite)

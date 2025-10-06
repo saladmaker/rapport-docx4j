@@ -80,8 +80,8 @@ interface FichePortefeuilleBlueprint extends Writable {
         context.addRenderedContent(repartitionPortefeuilleCentreRespTitresView);
 
         context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_8_TABLE_6_TEXT);
-        ViewEvolutionDepenses evolutionDepensesProgrammes =
-                ViewEvolutionDepenses.of(context, ViewType.PROGRAMME, evolutionDepensesProgrammes());
+        ViewEvolution evolutionDepensesProgrammes =
+                ViewEvolution.of(context, ViewType.PROGRAMME, evolutionDepensesProgrammes());
         context.addRenderedContent(evolutionDepensesProgrammes);
 
         context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_9_TABLE_7_TEXT);

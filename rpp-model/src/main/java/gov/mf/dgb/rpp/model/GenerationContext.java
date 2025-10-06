@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
+import java.time.Year;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -59,8 +60,9 @@ public final class GenerationContext {
     private final LanguageDirection direction;
     private final WordprocessingMLPackage document;
     private final Map<String, String> config;
+    private final Year target;
     public static GenerationContext of(LanguageDirection direction, WordprocessingMLPackage doc,
-            Map<String, String> mappers) {
+            Map<String, String> mappers, Year target) {
         String configResourceName = (direction == LanguageDirection.LTR)
                 ? FRENCH_CONFIG
                 : ARAB_CONFIG;
@@ -74,7 +76,7 @@ public final class GenerationContext {
                             name -> name,
                             name -> mapVariable(properties.getProperty(name), mappers)));
 
-            var context = new GenerationContext(direction, doc, config);
+            var context = new GenerationContext(direction, doc, config, target);
             context.applyFooterFromConfig(Writable.FOOTER_STYLE, FOOTER_TEXT);
             return context;
 
@@ -85,15 +87,19 @@ public final class GenerationContext {
     }
 
     private GenerationContext(LanguageDirection direction, WordprocessingMLPackage document,
-            Map<String, String> config) {
+            Map<String, String> config, Year target) {
         this.direction = direction;
         this.document = document;
         this.config = config;
         this.layout = PageLayout.PORTRAIT;
+        this.target = target;
 
     }
     LanguageDirection direction(){
         return direction;
+    }
+    Year target(){
+        return target;
     }
     void applyLayout(PageLayout layout) {
         if (this.layout == layout) return;
@@ -240,14 +246,13 @@ public final class GenerationContext {
         document.getMainDocumentPart().addObject(p);
     }
     void addRenderedContent(Object view){
-        String outputException = null;
+        String viewContent = null;
         try {
-            String xmlPart = JSTACHIO.execute(view);
-            outputException = xmlPart;
-            Object tableObject = XmlUtils.unmarshalString(xmlPart);
+            viewContent = JSTACHIO.execute(view);
+            Object tableObject = XmlUtils.unmarshalString(viewContent);
             document.getMainDocumentPart().addObject(tableObject);
         } catch (JAXBException e) {
-            System.out.println("generated table: \n" + outputException);
+            System.out.println("generated view: \n" + viewContent);
             throw new RuntimeException(e);
         }
 
