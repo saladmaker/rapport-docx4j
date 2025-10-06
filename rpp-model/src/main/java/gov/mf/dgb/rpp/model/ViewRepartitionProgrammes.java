@@ -5,7 +5,7 @@ import io.jstach.jstache.JStache;
 import java.util.List;
 import java.util.Objects;
 
-interface ViewRepartitionProgrammes {
+interface ViewRepartitionProgrammes{
 
     @JStache(path = "templates/section1/repartitionProgrammes.fr.mustache")
     interface ViewRepartitionProgrammesFR extends ViewRepartitionProgrammes {

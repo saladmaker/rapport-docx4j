@@ -5,8 +5,15 @@ import io.jstach.jstache.JStache;
 import java.util.List;
 
 interface ViewEvolutionPostes extends ViewEvolutionBase{
-    String HEADERS = "section1.ficheportefeuille.table.6.";
+    String TABLE_PREFIX = "section1.ficheportefeuille.table.7.";
+    String HEADERS = TABLE_PREFIX + "headers.";
 
+    @Override
+    default List<? extends ViewEvolutionBase.EvolutionView> evolutions(){
+        return delegates().stream()
+                .map(e-> new EvolutionPostesView(context(), e))
+                .toList();
+    }
     static ViewEvolutionPostes of(GenerationContext context, List<Evolution> delegates){
         return switch (context.direction()){
             case LTR -> new ViewEvolutionPostesFR(context, delegates);
@@ -28,7 +35,10 @@ interface ViewEvolutionPostes extends ViewEvolutionBase{
     default String headerTitle(){
         return context().staticContent(HEADERS + "0");
     }
-
+    @Override
+    default String totalTitle(){
+        return context().staticContent(TABLE_PREFIX + "total");
+    }
     @Override
     default String headerAnneeMoins2Format(){
         return context().staticContent(HEADERS + "1");
@@ -37,9 +47,7 @@ interface ViewEvolutionPostes extends ViewEvolutionBase{
     @Override
     default String headerAnneeMoins1Format(){
         return context().staticContent(HEADERS + "2");
-
     }
-
     @Override
     default String headerAnneeFormat(){
         return context().staticContent(HEADERS + "3");
@@ -53,5 +61,17 @@ interface ViewEvolutionPostes extends ViewEvolutionBase{
     @Override
     default String headerAnneePlus2Format(){
         return context().staticContent(HEADERS + "5");
+    }
+    class EvolutionPostesView extends EvolutionView{
+        private final GenerationContext context;
+        private EvolutionPostesView(GenerationContext context, Evolution delegate){
+            super(delegate);
+            this.context = context;
+        }
+
+        @Override
+        String name() {
+            return context.staticContent(super.name());
+        }
     }
 }
