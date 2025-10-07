@@ -4,34 +4,35 @@ import io.jstach.jstache.JStache;
 
 import java.util.List;
 
-interface ViewEvolutionDepensesProgrammes extends ViewEvolutionBase {
-    String TOTAL_TITLE = "section1.ficheportefeuille.table.6.total.title";
-    String HEADER_TITLE = "section1.ficheportefeuille.table.6.header.title";
-    String HEADERS_PREFIX ="section1.ficheportefeuille.table.6.headers.";
+interface ViewEvolutionDepensesSousprogrammes extends ViewEvolutionBase {
+    String TOTAL_TITLE = "section2.ficheprogramme.table.5.total.title";
+    String HEADER_TITLE = "section2.ficheprogramme.table.5.header.title";
+    String HEADERS_PREFIX = "section2.ficheprogramme.table.5.headers.";
 
     @Override
-    default List<? extends EvolutionViewBase> evolutions() {
+    default List<EvolutionDepenseSousprogrammeView> evolutions() {
         return delegates().stream()
-                .map(e -> new EvolutionDepenseProgrammeView(context(), e))
+                .map(e -> new EvolutionDepenseSousprogrammeView(context(), e))
                 .toList();
     }
 
-    static ViewEvolutionDepensesProgrammes of(GenerationContext context, List<Evolution> delegates) {
-        return switch (context.direction()) {
-            case LTR -> new ViewEvolutionDepensesProgrammesFR(context, delegates);
-            case RTL -> new ViewEvolutionDepensesProgrammesAR(context, delegates);
+    static ViewEvolutionDepensesSousprogrammes of(GenerationContext context, List<Evolution> evolutions) {
+        return switch (context.direction()){
+            case LTR -> new ViewEvolutionDepensesSousprogrammesFR(context, evolutions);
+            case RTL -> new ViewEvolutionDepensesSousprogrammesAR(context, evolutions);
         };
     }
 
     @JStache(path = "templates/evolution.fr.mustache")
-    record ViewEvolutionDepensesProgrammesFR(GenerationContext context, List<Evolution> delegates)
-            implements ViewEvolutionDepensesProgrammes {
+    record ViewEvolutionDepensesSousprogrammesFR(GenerationContext context, List<Evolution> delegates)
+            implements ViewEvolutionDepensesSousprogrammes {
     }
 
     @JStache(path = "templates/evolution.ar.mustache")
-    record ViewEvolutionDepensesProgrammesAR(GenerationContext context, List<Evolution> delegates)
-            implements ViewEvolutionDepensesProgrammes {
+    record ViewEvolutionDepensesSousprogrammesAR(GenerationContext context, List<Evolution> delegates)
+            implements ViewEvolutionDepensesSousprogrammes {
     }
+
 
     @Override
     default String headerTitle() {
@@ -51,13 +52,11 @@ interface ViewEvolutionDepensesProgrammes extends ViewEvolutionBase {
     @Override
     default String headerAnneeMoins1Format() {
         return context().staticContent(HEADERS_PREFIX + "2");
-
     }
 
     @Override
     default String headerAnneeFormat() {
         return context().staticContent(HEADERS_PREFIX + "3");
-
     }
 
     @Override
@@ -70,8 +69,8 @@ interface ViewEvolutionDepensesProgrammes extends ViewEvolutionBase {
         return context().staticContent(HEADERS_PREFIX + "5");
     }
 
-    final class EvolutionDepenseProgrammeView extends EvolutionViewBase {
-        private EvolutionDepenseProgrammeView(GenerationContext context, Evolution delegate) {
+    final class EvolutionDepenseSousprogrammeView extends EvolutionViewBase {
+        private EvolutionDepenseSousprogrammeView(GenerationContext context, Evolution delegate) {
             super(context, delegate);
         }
 

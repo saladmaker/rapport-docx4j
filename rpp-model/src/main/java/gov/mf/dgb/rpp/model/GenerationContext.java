@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.time.Year;
+import java.time.temporal.ChronoField;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -226,6 +227,12 @@ public final class GenerationContext {
         }
         return direction.escape(content);
     }
+    String formattedStaticContent(String key, Object...variables){
+        var format = staticContent(key);
+        var result = format.formatted(variables);
+        return direction.escape(result);
+    }
+
 
     void addStaticContent(String styleId, String key){
         String text = staticContent(key);
@@ -233,6 +240,12 @@ public final class GenerationContext {
             addContentWithManualBreak(styleId, text);
         }
         addContent(styleId, text);
+    }
+    void addFormattedStaticContent(String styleId, String key, Object...variables){
+        Objects.requireNonNull(variables);
+        var format = staticContent(key);
+        var result = format.formatted(variables);
+        addContent(styleId, result);
     }
     void addContent(String styleId, String text){
         Objects.requireNonNull(text, "text can not be null!");
@@ -255,9 +268,29 @@ public final class GenerationContext {
             System.out.println("generated view: \n" + viewContent);
             throw new RuntimeException(e);
         }
-
+    }
+    String formatContent(String format, Object ...objects){
+        Objects.requireNonNull(format);
+        Objects.requireNonNull(objects);
+        var formatted =  format.formatted(objects);
+        return direction.escape(formatted);
     }
 
+    int annee(){
+        return target().get(ChronoField.YEAR);
+    }
+    int anneePlus1(){
+        return target.get(ChronoField.YEAR) + 1;
+    }
+    int anneePlus2(){
+        return target.get(ChronoField.YEAR) + 2;
+    }
+    int anneeMoins2(){
+        return target.get(ChronoField.YEAR) - 2;
+    }
+    int anneeMoins1(){
+        return target.get(ChronoField.YEAR) -1;
+    }
     private static P createStyledParagraph(String styleId) {
         Objects.requireNonNull(styleId, "style id can not be null!");
         if(styleId.isBlank()){

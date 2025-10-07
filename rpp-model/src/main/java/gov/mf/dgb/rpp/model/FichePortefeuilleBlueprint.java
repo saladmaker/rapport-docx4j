@@ -55,7 +55,7 @@ interface FichePortefeuilleBlueprint extends Writable {
 
         context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_3_TABLE_1_TEXT);
         ViewRepartitionProgrammes versionBRepartitions =
-                ViewRepartitionProgrammes.of(repartitionProgrammes(), context.direction());
+                ViewRepartitionProgrammes.of(versionBRepartitionProgrammes(), context.direction());
         context.addRenderedContent(versionBRepartitions);
 
         context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_4_TABLE_2_TEXT);
@@ -69,12 +69,12 @@ interface FichePortefeuilleBlueprint extends Writable {
         context.addRenderedContent(repartitionProgrammesCentreResponsabiliteTable);
 
         context.applyLayout(PageLayout.LANDSCAPE);
-        context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_6_TABLE_4_TEXT);
+        context.addFormattedStaticContent(STICKY_TITLE_STYLE, FCHPORT_6_TABLE_4_TEXT, context.annee());
         ViewRepartitionProgrammesTitre viewRepartitionTitre =
                 ViewRepartitionProgrammesTitre.of(context, repartitionProgrammesTitres());
         context.addRenderedContent(viewRepartitionTitre);
 
-        context.addStaticContent(STICKY_TITLE_STYLE, FCHPORT_7_TABLE_5_TEXT);
+        context.addFormattedStaticContent(STICKY_TITLE_STYLE, FCHPORT_7_TABLE_5_TEXT, context.annee());
         ViewCentreResponsabiliteTitre repartitionPortefeuilleCentreRespTitresView =
                 ViewCentreResponsabiliteTitre.of(context, repartitionPortefeuilleCentreResponTitres());
         context.addRenderedContent(repartitionPortefeuilleCentreRespTitresView);

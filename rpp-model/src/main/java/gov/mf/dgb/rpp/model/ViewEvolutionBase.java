@@ -10,6 +10,8 @@ interface ViewEvolutionBase extends Viewable {
 
     GenerationContext context();
 
+    List<? extends EvolutionViewBase> evolutions();
+
     String headerTitle();
 
     String totalTitle();
@@ -24,55 +26,24 @@ interface ViewEvolutionBase extends Viewable {
 
     String headerAnneePlus2Format();
 
-    default List<? extends EvolutionView> evolutions() {
-        return delegates().stream()
-                .map(EvolutionView::new)
-                .toList();
-    }
     default String headerAnneeMoins2() {
-        var text = headerAnneeMoins2Format().formatted(anneeMoins2());
-        return escaped(text);
+        return context().formatContent(headerAnneeMoins2Format(), context().anneeMoins2());
     }
 
     default String headerAnneeMoins1() {
-        var text = headerAnneeMoins1Format().formatted(anneeMoins1());
-        return escaped(text);
+        return context().formatContent(headerAnneeMoins1Format(), context().anneeMoins1());
     }
 
     default String headerAnnee() {
-        var text = headerAnneeFormat().formatted(annee());
-        return escaped(text);
+        return context().formatContent(headerAnneeFormat(), context().annee());
     }
 
     default String headerAnneePlus1() {
-        var text = headerAnneePlus1Format().formatted(anneePlus1());
-        return escaped(text);
+        return context().formatContent(headerAnneePlus1Format(), context().anneePlus1());
     }
 
     default String headerAnneePlus2() {
-        var text = headerAnneePlus2Format().formatted(anneePlus2());
-        return escaped(text);
-    }
-
-
-    default int anneeMoins2() {
-        return context().target().get(ChronoField.YEAR) - 2;
-    }
-
-    default int anneeMoins1() {
-        return context().target().get(ChronoField.YEAR) - 1;
-    }
-
-    default int annee() {
-        return context().target().get(ChronoField.YEAR);
-    }
-
-    default int anneePlus1() {
-        return context().target().get(ChronoField.YEAR) + 1;
-    }
-
-    default int anneePlus2() {
-        return context().target().get(ChronoField.YEAR) + 2;
+        return context().formatContent(headerAnneePlus2Format(), context().anneePlus2());
     }
 
 
@@ -112,58 +83,36 @@ interface ViewEvolutionBase extends Viewable {
         return NumberFormatter.format(total);
     }
 
-    static class EvolutionView {
-        private final Evolution delegate;
+    public static abstract class EvolutionViewBase {
+        protected final Evolution delegate;
+        protected final GenerationContext context;
 
-        public EvolutionView(Evolution delegate) {
+        EvolutionViewBase(GenerationContext context,
+                                 Evolution delegate) {
             this.delegate = delegate;
+            this.context = context;
         }
 
-        String name() {
-            return delegate.name();
-        }
+        public abstract String name();
 
-        String anneeMoins2() {
+        public String anneeMoins2() {
             return NumberFormatter.format(delegate.anneeMoins2());
         }
 
-        String anneeMoins1() {
+        public String anneeMoins1() {
             return NumberFormatter.format(delegate.anneeMoins1());
         }
 
-        String annee() {
+        public String annee() {
             return NumberFormatter.format(delegate.annee());
         }
 
-        String anneePlus1() {
+        public String anneePlus1() {
             return NumberFormatter.format(delegate.anneePlus1());
         }
 
-        String anneePlus2() {
+        public String anneePlus2() {
             return NumberFormatter.format(delegate.anneePlus2());
-        }
-
-        public Evolution delegate() {
-            return delegate;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (obj == this) return true;
-            if (obj == null || obj.getClass() != this.getClass()) return false;
-            var that = (EvolutionView) obj;
-            return Objects.equals(this.delegate, that.delegate);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(delegate);
-        }
-
-        @Override
-        public String toString() {
-            return "EvolutionView[" +
-                    "delegate=" + delegate + ']';
         }
 
     }

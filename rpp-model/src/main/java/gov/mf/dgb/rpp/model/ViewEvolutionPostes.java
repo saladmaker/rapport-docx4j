@@ -5,15 +5,17 @@ import io.jstach.jstache.JStache;
 import java.util.List;
 
 interface ViewEvolutionPostes extends ViewEvolutionBase{
-    String TABLE_PREFIX = "section1.ficheportefeuille.table.7.";
-    String HEADERS = TABLE_PREFIX + "headers.";
+    String TOTAL_TITLE = "section1.ficheportefeuille.table.7.total.title";
+    String HEADER_TITLE = "section1.ficheportefeuille.table.7.header.title";
+    String HEADERS_PREFIX ="section1.ficheportefeuille.table.7.headers.";
 
     @Override
-    default List<? extends ViewEvolutionBase.EvolutionView> evolutions(){
+    default List<? extends EvolutionPostesView> evolutions(){
         return delegates().stream()
                 .map(e-> new EvolutionPostesView(context(), e))
                 .toList();
     }
+
     static ViewEvolutionPostes of(GenerationContext context, List<Evolution> delegates){
         return switch (context.direction()){
             case LTR -> new ViewEvolutionPostesFR(context, delegates);
@@ -33,45 +35,45 @@ interface ViewEvolutionPostes extends ViewEvolutionBase{
 
     @Override
     default String headerTitle(){
-        return context().staticContent(HEADERS + "0");
+        return context().staticContent(HEADER_TITLE);
     }
     @Override
     default String totalTitle(){
-        return context().staticContent(TABLE_PREFIX + "total");
+        return context().staticContent(TOTAL_TITLE);
     }
     @Override
     default String headerAnneeMoins2Format(){
-        return context().staticContent(HEADERS + "1");
+        return context().staticContent(HEADERS_PREFIX + "1");
     }
 
     @Override
     default String headerAnneeMoins1Format(){
-        return context().staticContent(HEADERS + "2");
+        return context().staticContent(HEADERS_PREFIX + "2");
     }
     @Override
     default String headerAnneeFormat(){
-        return context().staticContent(HEADERS + "3");
+        return context().staticContent(HEADERS_PREFIX + "3");
     }
 
     @Override
     default String headerAnneePlus1Format(){
-        return context().staticContent(HEADERS + "4");
+        return context().staticContent(HEADERS_PREFIX + "4");
     }
 
     @Override
     default String headerAnneePlus2Format(){
-        return context().staticContent(HEADERS + "5");
+        return context().staticContent(HEADERS_PREFIX + "5");
     }
-    class EvolutionPostesView extends EvolutionView{
-        private final GenerationContext context;
+    final class EvolutionPostesView extends EvolutionViewBase{
         private EvolutionPostesView(GenerationContext context, Evolution delegate){
-            super(delegate);
-            this.context = context;
+            super(context, delegate);
         }
 
         @Override
-        String name() {
-            return context.staticContent(super.name());
+        public String name() {
+            return context.staticContent(delegate.name());
         }
+
+
     }
 }

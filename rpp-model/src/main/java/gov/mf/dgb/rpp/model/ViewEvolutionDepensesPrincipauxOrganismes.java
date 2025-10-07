@@ -4,35 +4,26 @@ import io.jstach.jstache.JStache;
 
 import java.util.List;
 
-interface ViewEvolutionDepensesProgrammes extends ViewEvolutionBase {
-    String TOTAL_TITLE = "section1.ficheportefeuille.table.6.total.title";
-    String HEADER_TITLE = "section1.ficheportefeuille.table.6.header.title";
-    String HEADERS_PREFIX ="section1.ficheportefeuille.table.6.headers.";
+interface ViewEvolutionDepensesPrincipauxOrganismes extends ViewEvolutionBase{
+    String TOTAL_TITLE = "section2.ficheprogramme.table.12.total.title";
+    String HEADER_TITLE = "section2.ficheprogramme.table.12.header.title";
+    String HEADERS_PREFIX ="section2.ficheprogramme.table.12.headers.";
 
     @Override
-    default List<? extends EvolutionViewBase> evolutions() {
+    default List<EvolutionDepensesPrincipauxOrganismesView> evolutions() {
         return delegates().stream()
-                .map(e -> new EvolutionDepenseProgrammeView(context(), e))
+                .map(e -> new EvolutionDepensesPrincipauxOrganismesView(context(), e))
                 .toList();
     }
 
-    static ViewEvolutionDepensesProgrammes of(GenerationContext context, List<Evolution> delegates) {
-        return switch (context.direction()) {
-            case LTR -> new ViewEvolutionDepensesProgrammesFR(context, delegates);
-            case RTL -> new ViewEvolutionDepensesProgrammesAR(context, delegates);
-        };
-    }
-
     @JStache(path = "templates/evolution.fr.mustache")
-    record ViewEvolutionDepensesProgrammesFR(GenerationContext context, List<Evolution> delegates)
-            implements ViewEvolutionDepensesProgrammes {
+    record ViewEvolutionDepensesPrincipauxOrganismesFR(GenerationContext context, List<Evolution> delegates)
+            implements ViewEvolutionDepensesPrincipauxOrganismes{
     }
-
     @JStache(path = "templates/evolution.ar.mustache")
-    record ViewEvolutionDepensesProgrammesAR(GenerationContext context, List<Evolution> delegates)
-            implements ViewEvolutionDepensesProgrammes {
+    record ViewEvolutionDepensesPrincipauxOrganismesAR(GenerationContext context, List<Evolution> delegates)
+            implements ViewEvolutionDepensesPrincipauxOrganismes{
     }
-
     @Override
     default String headerTitle() {
         return context().staticContent(HEADER_TITLE);
@@ -51,13 +42,11 @@ interface ViewEvolutionDepensesProgrammes extends ViewEvolutionBase {
     @Override
     default String headerAnneeMoins1Format() {
         return context().staticContent(HEADERS_PREFIX + "2");
-
     }
 
     @Override
     default String headerAnneeFormat() {
         return context().staticContent(HEADERS_PREFIX + "3");
-
     }
 
     @Override
@@ -69,9 +58,8 @@ interface ViewEvolutionDepensesProgrammes extends ViewEvolutionBase {
     default String headerAnneePlus2Format() {
         return context().staticContent(HEADERS_PREFIX + "5");
     }
-
-    final class EvolutionDepenseProgrammeView extends EvolutionViewBase {
-        private EvolutionDepenseProgrammeView(GenerationContext context, Evolution delegate) {
+    final class EvolutionDepensesPrincipauxOrganismesView extends EvolutionViewBase {
+        private EvolutionDepensesPrincipauxOrganismesView(GenerationContext context, Evolution delegate) {
             super(context, delegate);
         }
 
