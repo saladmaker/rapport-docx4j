@@ -5,9 +5,9 @@ import io.jstach.jstache.JStache;
 import java.util.List;
 
 interface ViewEvolutionDepensesPrincipauxOrganismes extends ViewEvolutionBase{
-    String TOTAL_TITLE = "section2.ficheprogramme.table.12.total.title";
-    String HEADER_TITLE = "section2.ficheprogramme.table.12.header.title";
-    String HEADERS_PREFIX ="section2.ficheprogramme.table.12.headers.";
+    String TOTAL_TITLE = "etat.complementaire.evolution.depenses.pricipaux.ost.total.title";
+    String HEADER_TITLE = "etat.complementaire.evolution.depenses.pricipaux.ost.header.title";
+    String HEADERS_PREFIX ="etat.complementaire.evolution.depenses.pricipaux.ost.headers.";
 
     @Override
     default List<EvolutionDepensesPrincipauxOrganismesView> evolutions() {
@@ -15,12 +15,18 @@ interface ViewEvolutionDepensesPrincipauxOrganismes extends ViewEvolutionBase{
                 .map(e -> new EvolutionDepensesPrincipauxOrganismesView(context(), e))
                 .toList();
     }
+    static ViewEvolutionDepensesPrincipauxOrganismes of(GenerationContext context, List<Evolution> delegates){
+        return switch (context.direction()){
+            case LTR -> new ViewEvolutionDepensesPrincipauxOrganismesFR(context, delegates);
+            case RTL -> new ViewEvolutionDepensesPrincipauxOrganismesAR(context, delegates);
+        };
+    }
 
-    @JStache(path = "templates/evolution.fr.mustache")
+    @JStache(path = "templates/section2/evolution.principe.ost.fr.mustache")
     record ViewEvolutionDepensesPrincipauxOrganismesFR(GenerationContext context, List<Evolution> delegates)
             implements ViewEvolutionDepensesPrincipauxOrganismes{
     }
-    @JStache(path = "templates/evolution.ar.mustache")
+    @JStache(path = "templates/section2/evolution.principe.ost.ar.mustache")
     record ViewEvolutionDepensesPrincipauxOrganismesAR(GenerationContext context, List<Evolution> delegates)
             implements ViewEvolutionDepensesPrincipauxOrganismes{
     }

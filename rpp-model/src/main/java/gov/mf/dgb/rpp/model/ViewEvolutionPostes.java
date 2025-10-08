@@ -74,6 +74,5 @@ interface ViewEvolutionPostes extends ViewEvolutionBase{
             return context.staticContent(delegate.name());
         }
 
-
     }
 }

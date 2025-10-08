@@ -8,8 +8,6 @@ interface ViewRepartitionTitreBase extends Viewable{
 
     String headerTitle();
 
-    String totalTitle();
-
     default List<RepartitionTitreView> repartitions(){
         return delegates().stream()
                 .map(e-> new RepartitionTitreView(context(), e))

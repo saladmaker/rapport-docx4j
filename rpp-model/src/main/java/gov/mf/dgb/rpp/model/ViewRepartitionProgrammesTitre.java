@@ -7,7 +7,6 @@ import java.util.List;
 interface ViewRepartitionProgrammesTitre extends ViewRepartitionTitreBase {
 
     String HEADER_TITLE = "section1.ficheportefeuille.table.4.header.title";
-    String TOTAL_TITLE = "section1.ficheportefeuille.table.4.total.title";
 
     static ViewRepartitionProgrammesTitre of(GenerationContext context, List<RepartitionTitre> delegates){
         return switch (context.direction()){
@@ -29,8 +28,4 @@ interface ViewRepartitionProgrammesTitre extends ViewRepartitionTitreBase {
         return context().staticContent(HEADER_TITLE);
     }
 
-    @Override
-    default String totalTitle() {
-        return context().staticContent(TOTAL_TITLE);
-    }
 }

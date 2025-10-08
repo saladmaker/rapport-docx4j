@@ -4,7 +4,6 @@ import io.helidon.builder.api.Option;
 import io.helidon.builder.api.Prototype;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 
-import java.time.temporal.ChronoField;
 import java.util.List;
 
 @Prototype.Blueprint
@@ -19,6 +18,11 @@ interface FicheProgrammeBlueprint extends Writable {
     String FCHPROG_7_TABLE_3_TEXT = "section2.ficheprogramme.table.3.title";
     String FCHPROG_8_TABLE_4_TEXT = "section2.ficheprogramme.table.4.title";
     String FCHPROG_9_TABLE_5_TEXT = "section2.ficheprogramme.table.5.title";
+
+    String ETAT_COMPLEMETAIRE_HEADING = "etat.complementaire.title";
+    String ETAT_COMPLEMENTAIRE_POSTES_SALAIRE = "etat.complementaire.evolution.postes.salariale.table.title";
+    String ETAT_COMPLEMANTAIRE_EVOLUTION_DEPENSES_POST = "etat.complementaire.evolution.depenses.pricipaux.ost.title";
+    String ETAT_COMPLEMENTAIRE_EVOLUTION_DEPENSES_TYPE_OST = "etat.complementaire.evolution.depenses.type.ost.title";
 
     //make it augmented by builder decorator
     @Option.Required
@@ -45,6 +49,12 @@ interface FicheProgrammeBlueprint extends Writable {
 
     @Option.Singular
     List<PostesOuvertMassSalarial> evolutionPostOuvertMassSalarials();
+
+    @Option.Singular
+    List<Evolution> evolutionDepensesOrganismesSousTutelle();
+
+    @Option.Singular
+    List<Evolution> evolutionDepenseOSTPartType();
 
     @Override
     default void write(WordprocessingMLPackage document, GenerationContext context) {
@@ -76,16 +86,43 @@ interface FicheProgrammeBlueprint extends Writable {
         context.addRenderedContent(viewCentreResponsabiliteTitre);
 
         //add repartition sous-programme titre
+        context.addFormattedStaticContent(HEADING_3_STYLE, FCHPROG_8_TABLE_4_TEXT, counter(), context.annee());
+        ViewRepartitionSousprogrammesTitre viewRepartitionSousprogrammesTitre =
+                ViewRepartitionSousprogrammesTitre.of(context, repartitionSousProgrammeTitre());
+        context.addRenderedContent(viewRepartitionSousprogrammesTitre);
+
+        //add evolution depenses par sous-programme
         context.addStaticContent(HEADING_3_STYLE, FCHPROG_9_TABLE_5_TEXT);
         ViewEvolutionDepensesSousprogrammes viewEvolutionDepensesSousprogrammes =
                 ViewEvolutionDepensesSousprogrammes.of(context, evolutionDepenseSousProgramme());
         context.addRenderedContent(viewEvolutionDepensesSousprogrammes);
+        System.out.println(evolutionDepenseSousProgramme());
 
-        context.addFormattedStaticContent(HEADING_3_STYLE, FCHPROG_8_TABLE_4_TEXT,counter(), context.annee());
+
+
+
+        /*===== États complémentaires ====*/
+        context.addStaticContent(HEADING_2_STYLE, ETAT_COMPLEMETAIRE_HEADING);
+
+        //postes ouverts et mass salariale
+        context.addStaticContent(HEADING_3_STYLE, ETAT_COMPLEMENTAIRE_POSTES_SALAIRE);
         ViewEvolutionPostesOuvertMassSalarial viewEvolutionPostesOuvertMassSalarial =
                 ViewEvolutionPostesOuvertMassSalarial.of(context, evolutionPostOuvertMassSalarials());
         context.addRenderedContent(viewEvolutionPostesOuvertMassSalarial);
 
+        //repartition titre sous programme
+
+
+        //principaux organismes sous tutelle
+        context.addStaticContent(STICKY_TITLE_STYLE, ETAT_COMPLEMANTAIRE_EVOLUTION_DEPENSES_POST);
+        ViewEvolutionDepensesPrincipauxOrganismes viewEvolutionDepensesPrincipauxOrganismes =
+                ViewEvolutionDepensesPrincipauxOrganismes.of(context, evolutionDepensesOrganismesSousTutelle());
+        context.addRenderedContent(viewEvolutionDepensesPrincipauxOrganismes);
+
+        context.addStaticContent(STICKY_TITLE_STYLE, ETAT_COMPLEMENTAIRE_EVOLUTION_DEPENSES_TYPE_OST);
+        ViewEvolutionDepensesOrganismesSTParType viewEvolutionDepensesOrganismesSTParType =
+                ViewEvolutionDepensesOrganismesSTParType.of(context, evolutionDepenseOSTPartType());
+        context.addRenderedContent(viewEvolutionDepensesOrganismesSTParType);
 
 
     }

@@ -60,8 +60,8 @@ interface EvolutionBlueprint {
 
                 }
                 case 5 -> {
-                    builder.anneeMoins1(depenses.get(0));
-                    builder.anneeMoins2(depenses.get(1));
+                    builder.anneeMoins2(depenses.get(0));
+                    builder.anneeMoins1(depenses.get(1));
                     builder.annee(depenses.get(2));
                     builder.anneePlus1(depenses.get(3));
                     builder.anneePlus2(depenses.get(4));

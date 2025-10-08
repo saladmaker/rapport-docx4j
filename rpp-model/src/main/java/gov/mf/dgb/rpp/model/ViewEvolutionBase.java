@@ -1,8 +1,6 @@
 package gov.mf.dgb.rpp.model;
 
-import java.time.temporal.ChronoField;
 import java.util.List;
-import java.util.Objects;
 
 interface ViewEvolutionBase extends Viewable {
 

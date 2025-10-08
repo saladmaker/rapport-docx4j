@@ -5,7 +5,8 @@ import io.jstach.jstache.JStache;
 import java.util.List;
 import java.util.function.ToLongFunction;
 
-public interface ViewEvolutionPostesOuvertMassSalarial {
+public interface ViewEvolutionPostesOuvertMassSalarial extends Viewable{
+    String HEADERS_ANNEE_MOINS_2 = "d";
 
     List<PostesOuvertMassSalarial> delegates();
 
