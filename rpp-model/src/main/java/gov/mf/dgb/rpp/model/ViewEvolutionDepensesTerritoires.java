@@ -4,33 +4,32 @@ import io.jstach.jstache.JStache;
 
 import java.util.List;
 
-sealed interface ViewEvolutionDepensesOrganismesSTParType extends ViewEvolutionBase {
-    String TOTAL_TITLE = "etat.complementaire.evolution.depenses.type.ost.total.title";
-    String HEADER_TITLE = "etat.complementaire.evolution.depenses.type.ost.header.title";
-    String HEADERS_PREFIX = "etat.complementaire.evolution.depenses.type.ost.headers.";
+sealed interface ViewEvolutionDepensesTerritoires extends ViewEvolutionBase{
+
+    String HEADER_TITLE = "etat.complementaire.evolution.depenses.territoire.header.title";
+    String TOTAL_TITLE = "etat.complementaire.evolution.depenses.territoire.total.title";
+    String HEADERS_PREFIX = "etat.complementaire.evolution.depenses.territoire.headers.";
 
     @Override
     default List<? extends EvolutionViewBase> evolutions() {
         return delegates().stream()
-                .map(e -> new EvolutionDepenseOrganismesSTParTypeView(context(), e))
+                .map(e-> new EvolutionTerritoireView(context(), e))
                 .toList();
     }
-
-    static ViewEvolutionDepensesOrganismesSTParType of(GenerationContext context, List<Evolution> delegates) {
+    static ViewEvolutionDepensesTerritoires of(GenerationContext context, List<Evolution> evolutions){
         return switch (context.direction()){
-            case LTR -> new ViewEvolutionDepensesOrganismesSTParTypeFR(context, delegates);
-            case RTL -> new ViewEvolutionDepensesOrganismesSTParTypeAR(context, delegates);
+            case LTR -> new ViewEvolutionDepensesTerritoiresFR(context, evolutions);
+            case RTL -> new ViewEvolutionDepensesTerritoiresAR(context, evolutions);
         };
     }
 
     @JStache(path = "templates/evolution.fr.mustache")
-    record ViewEvolutionDepensesOrganismesSTParTypeFR(GenerationContext context, List<Evolution> delegates)
-            implements ViewEvolutionDepensesOrganismesSTParType {
+    record ViewEvolutionDepensesTerritoiresFR(GenerationContext context, List<Evolution> delegates)
+            implements ViewEvolutionDepensesTerritoires{
     }
-
     @JStache(path = "templates/evolution.ar.mustache")
-    record ViewEvolutionDepensesOrganismesSTParTypeAR(GenerationContext context, List<Evolution> delegates)
-            implements ViewEvolutionDepensesOrganismesSTParType {
+    record ViewEvolutionDepensesTerritoiresAR(GenerationContext context, List<Evolution> delegates)
+            implements ViewEvolutionDepensesTerritoires{
     }
 
     @Override
@@ -68,8 +67,8 @@ sealed interface ViewEvolutionDepensesOrganismesSTParType extends ViewEvolutionB
         return context().staticContent(HEADERS_PREFIX + "5");
     }
 
-    final class EvolutionDepenseOrganismesSTParTypeView extends EvolutionViewBase {
-        private EvolutionDepenseOrganismesSTParTypeView(GenerationContext context, Evolution delegate) {
+    final class EvolutionTerritoireView extends EvolutionViewBase{
+        private EvolutionTerritoireView(GenerationContext context, Evolution delegate){
             super(context, delegate);
         }
 
@@ -77,5 +76,6 @@ sealed interface ViewEvolutionDepensesOrganismesSTParType extends ViewEvolutionB
         public String name() {
             return delegate.name();
         }
+
     }
 }

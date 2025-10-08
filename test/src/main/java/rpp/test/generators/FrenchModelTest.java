@@ -55,8 +55,16 @@ public class FrenchModelTest implements DocumentGenerator {
                         List.of(3_040L, 3_040L, 3_040L, 3_040L, 3_040L)))
                 .addEvolutionDepensesOrganismesSousTutelle(Evolution.create("Centre National Enseignement Professionnel à Distance",
                         List.of(6_840L, 6_840L, 6_840L, 6_840L, 6_840L)))
+                //par type
                 .addEvolutionDepenseOSTPartType(Evolution.create("EPA", List.of(64_864_290L, 71_749_995L, 89_737_369L, 90_911_500L, 91_921_264L)))
                 .addEvolutionDepenseOSTPartType(Evolution.create("EPIC", List.of(9880L, 9880L, 9880L, 9880L, 9880L)))
+                //terroire
+                .addEvolutionDepenseTerritoire(Evolution.create("Tiaret", List.of(123L, 2334L, 2323L, 3434L, 3434L)))
+                .addEvolutionDepenseTerritoire(Evolution.create("Algiers", List.of(123L, 2334L, 2323L, 3434L, 3434L)))
+                .addEvolutionDepenseTerritoire(Evolution.create("Oran", List.of(123L, 3434L, 2323L, 3434L, 3434L)))
+                .addEvolutionDepenseTerritoire(Evolution.create("Blida", List.of(664L, 2334L, 2323L, 3434L, 3434L)))
+                .addEvolutionDepenseTerritoire(Evolution.create("Djelfa", List.of(664L, 2334L, 2323L, 3434L, 3434L)))
+                .addEvolutionDepenseTerritoire(Evolution.create("Batna", List.of(505L, 1293L, 2323L, 666L, 3434L)))
                 .build();
         ficheProgramme.write(document, GenerationContext.of(LanguageDirection.LTR, document, Map.of(), Year.of(2025)));
 

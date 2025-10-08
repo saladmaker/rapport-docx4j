@@ -4,7 +4,7 @@ import io.jstach.jstache.JStache;
 
 import java.util.List;
 
-interface ViewEvolutionDepensesProgrammes extends ViewEvolutionBase {
+sealed interface ViewEvolutionDepensesProgrammes extends ViewEvolutionBase {
     String TOTAL_TITLE = "section1.ficheportefeuille.table.6.total.title";
     String HEADER_TITLE = "section1.ficheportefeuille.table.6.header.title";
     String HEADERS_PREFIX ="section1.ficheportefeuille.table.6.headers.";

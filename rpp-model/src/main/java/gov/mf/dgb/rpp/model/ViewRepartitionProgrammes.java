@@ -5,23 +5,21 @@ import io.jstach.jstache.JStache;
 import java.util.List;
 import java.util.Objects;
 
-interface ViewRepartitionProgrammes{
+sealed interface ViewRepartitionProgrammes{
+    List<RepartitionProgramme> repartition();
 
     @JStache(path = "templates/section1/repartitionProgrammes.fr.mustache")
-    interface ViewRepartitionProgrammesFR extends ViewRepartitionProgrammes {
-        static ViewRepartitionProgrammesFR of(List<RepartitionProgramme> repartitions){
-            return () -> repartitions;
-        }
+    record ViewRepartitionProgrammesFR(List<RepartitionProgramme> repartition)
+            implements ViewRepartitionProgrammes {
+
     }
 
     @JStache(path = "templates/section1/repartitionProgrammes.ar.mustache")
-    interface ViewRepartitionProgrammesAR extends ViewRepartitionProgrammes {
-        static ViewRepartitionProgrammesAR of(List<RepartitionProgramme> repartitions){
-            return () -> repartitions;
-        }
+    record ViewRepartitionProgrammesAR(List<RepartitionProgramme> repartition)
+            implements ViewRepartitionProgrammes {
     }
 
-    List<RepartitionProgramme> repartition();
+
 
     static ViewRepartitionProgrammes of(
             List<RepartitionProgramme> repartitionProgrammes,
@@ -30,8 +28,8 @@ interface ViewRepartitionProgrammes{
         Objects.requireNonNull(repartitionProgrammes);
         Objects.requireNonNull(direction);
         return switch (direction){
-            case LTR -> ViewRepartitionProgrammesFR.of(repartitionProgrammes);
-            case RTL -> ViewRepartitionProgrammesAR.of(repartitionProgrammes);
+            case LTR -> new ViewRepartitionProgrammesFR(repartitionProgrammes);
+            case RTL -> new ViewRepartitionProgrammesAR(repartitionProgrammes);
         };
     }
 

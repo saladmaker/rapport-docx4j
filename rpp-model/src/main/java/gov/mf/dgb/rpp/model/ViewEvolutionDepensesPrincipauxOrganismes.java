@@ -4,7 +4,7 @@ import io.jstach.jstache.JStache;
 
 import java.util.List;
 
-interface ViewEvolutionDepensesPrincipauxOrganismes extends ViewEvolutionBase{
+sealed interface ViewEvolutionDepensesPrincipauxOrganismes extends ViewEvolutionBase{
     String TOTAL_TITLE = "etat.complementaire.evolution.depenses.pricipaux.ost.total.title";
     String HEADER_TITLE = "etat.complementaire.evolution.depenses.pricipaux.ost.header.title";
     String HEADERS_PREFIX ="etat.complementaire.evolution.depenses.pricipaux.ost.headers.";

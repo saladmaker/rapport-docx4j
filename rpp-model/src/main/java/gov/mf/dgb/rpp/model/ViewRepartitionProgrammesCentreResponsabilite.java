@@ -9,27 +9,6 @@ interface ViewRepartitionProgrammesCentreResponsabilite {
 
     List<RepartitionCentreResponsabilite> delegates();
 
-    default List<RepartitionCentreResponsabiliteView> repartitions(){
-        return delegates().stream()
-                .map(RepartitionCentreResponsabiliteView::new)
-                .toList();
-    }
-
-    @JStache(path = "templates/section1/repartitionProgrammesCentreResponsabilite.fr.mustache")
-    interface ViewRepartitionProgrammesCentreResponsabiliteFR extends ViewRepartitionProgrammesCentreResponsabilite {
-        static ViewRepartitionProgrammesCentreResponsabiliteFR of(List<RepartitionCentreResponsabilite> repartitions) {
-            return () -> repartitions;
-        }
-    }
-
-    @JStache(path = "templates/section1/repartitionProgrammesCentreResponsabilite.ar.mustache")
-    interface ViewRepartitionProgrammesCentreResponsabiliteAR extends ViewRepartitionProgrammesCentreResponsabilite {
-        static ViewRepartitionProgrammesCentreResponsabiliteAR of(List<RepartitionCentreResponsabilite> repartitions) {
-            return () -> repartitions;
-        }
-    }
-
-
     static ViewRepartitionProgrammesCentreResponsabilite of(
             List<RepartitionCentreResponsabilite> repartitions,
             LanguageDirection direction) {
@@ -38,10 +17,26 @@ interface ViewRepartitionProgrammesCentreResponsabilite {
         Objects.requireNonNull(direction);
 
         return switch (direction) {
-            case LTR -> ViewRepartitionProgrammesCentreResponsabiliteFR.of(repartitions);
-            case RTL -> ViewRepartitionProgrammesCentreResponsabiliteAR.of(repartitions);
+            case LTR -> new ViewRepartitionProgrammesCentreResponsabiliteFR(repartitions);
+            case RTL -> new ViewRepartitionProgrammesCentreResponsabiliteAR(repartitions);
         };
     }
+    @JStache(path = "templates/section1/repartitionProgrammesCentreResponsabilite.fr.mustache")
+    record ViewRepartitionProgrammesCentreResponsabiliteFR(List<RepartitionCentreResponsabilite> delegates)
+            implements ViewRepartitionProgrammesCentreResponsabilite {
+    }
+
+    @JStache(path = "templates/section1/repartitionProgrammesCentreResponsabilite.ar.mustache")
+    record ViewRepartitionProgrammesCentreResponsabiliteAR(List<RepartitionCentreResponsabilite> delegates)
+            implements ViewRepartitionProgrammesCentreResponsabilite {
+    }
+    default List<RepartitionCentreResponsabiliteView> repartitions(){
+        return delegates().stream()
+                .map(RepartitionCentreResponsabiliteView::new)
+                .toList();
+    }
+
+
 
     default String totalServicesCentraux() {
         var total = delegates().stream()

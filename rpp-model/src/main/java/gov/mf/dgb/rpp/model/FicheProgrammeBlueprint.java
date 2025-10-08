@@ -23,6 +23,8 @@ interface FicheProgrammeBlueprint extends Writable {
     String ETAT_COMPLEMENTAIRE_POSTES_SALAIRE = "etat.complementaire.evolution.postes.salariale.table.title";
     String ETAT_COMPLEMANTAIRE_EVOLUTION_DEPENSES_POST = "etat.complementaire.evolution.depenses.pricipaux.ost.title";
     String ETAT_COMPLEMENTAIRE_EVOLUTION_DEPENSES_TYPE_OST = "etat.complementaire.evolution.depenses.type.ost.title";
+    String ETAT_COMPLEMENTAIRE_EVOLUTION_DEPENSES_TERRITOITRE = "etat.complementaire.evolution.depenses.territoire.title";
+    String ETAT_COMPLEMENTAIRE_EVOLUTION_DEPENSES_FINANCEMENT = "etat.complementaire.evolution.depenses.source.financement.title";
 
     //make it augmented by builder decorator
     @Option.Required
@@ -55,6 +57,13 @@ interface FicheProgrammeBlueprint extends Writable {
 
     @Option.Singular
     List<Evolution> evolutionDepenseOSTPartType();
+
+    @Option.Singular
+    List<Evolution> evolutionDepenseTerritoire();
+
+    @Option.Singular
+    List<Evolution> evolutionDepensesSousrceFinanacement();
+
 
     @Override
     default void write(WordprocessingMLPackage document, GenerationContext context) {
@@ -96,7 +105,6 @@ interface FicheProgrammeBlueprint extends Writable {
         ViewEvolutionDepensesSousprogrammes viewEvolutionDepensesSousprogrammes =
                 ViewEvolutionDepensesSousprogrammes.of(context, evolutionDepenseSousProgramme());
         context.addRenderedContent(viewEvolutionDepensesSousprogrammes);
-        System.out.println(evolutionDepenseSousProgramme());
 
 
 
@@ -110,20 +118,29 @@ interface FicheProgrammeBlueprint extends Writable {
                 ViewEvolutionPostesOuvertMassSalarial.of(context, evolutionPostOuvertMassSalarials());
         context.addRenderedContent(viewEvolutionPostesOuvertMassSalarial);
 
-        //repartition titre sous programme
-
-
         //principaux organismes sous tutelle
         context.addStaticContent(STICKY_TITLE_STYLE, ETAT_COMPLEMANTAIRE_EVOLUTION_DEPENSES_POST);
         ViewEvolutionDepensesPrincipauxOrganismes viewEvolutionDepensesPrincipauxOrganismes =
                 ViewEvolutionDepensesPrincipauxOrganismes.of(context, evolutionDepensesOrganismesSousTutelle());
         context.addRenderedContent(viewEvolutionDepensesPrincipauxOrganismes);
 
+        //depense par type OST
         context.addStaticContent(STICKY_TITLE_STYLE, ETAT_COMPLEMENTAIRE_EVOLUTION_DEPENSES_TYPE_OST);
         ViewEvolutionDepensesOrganismesSTParType viewEvolutionDepensesOrganismesSTParType =
                 ViewEvolutionDepensesOrganismesSTParType.of(context, evolutionDepenseOSTPartType());
         context.addRenderedContent(viewEvolutionDepensesOrganismesSTParType);
 
+        //depense par territoire
+        context.addStaticContent(HEADING_3_STYLE, ETAT_COMPLEMENTAIRE_EVOLUTION_DEPENSES_TERRITOITRE);
+        ViewEvolutionDepensesTerritoires viewEvolutionDepensesTerritoires =
+                ViewEvolutionDepensesTerritoires.of(context, evolutionDepenseTerritoire());
+        context.addRenderedContent(viewEvolutionDepensesTerritoires);
+
+        //source de financement
+        context.addStaticContent(HEADING_3_STYLE, ETAT_COMPLEMENTAIRE_EVOLUTION_DEPENSES_FINANCEMENT);
+        ViewEvolutionDepenseSourceFinancement viewEvolutionDepenseSourceFinancement =
+                ViewEvolutionDepenseSourceFinancement.of(context, evolutionDepensesSousrceFinanacement());
+        context.addRenderedContent(viewEvolutionDepenseSourceFinancement);
 
     }
 }
