@@ -6,7 +6,7 @@ import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 
 import java.util.List;
 
-@Prototype.Blueprint
+@Prototype.Blueprint(createEmptyPublic = false)
 interface FicheProgrammeBlueprint extends Writable {
 
     String FCHPROG_1_TITLE_KEY = "section2.planification.title.1.text";
@@ -19,20 +19,36 @@ interface FicheProgrammeBlueprint extends Writable {
     String FCHPROG_8_TABLE_4_TEXT = "section2.ficheprogramme.table.4.title";
     String FCHPROG_9_TABLE_5_TEXT = "section2.ficheprogramme.table.5.title";
 
-    String ETAT_COMPLEMETAIRE_HEADING = "etat.complementaire.title";
+    String PRINCIP_PROJET_HEADING = "princip.projet";
+    String PRINCIP_PROJET_EN_COURS = "princip.projet.en.cours.title";
+
+
+    String ETAT_COMPLEMENTAIRE_HEADING = "etat.complementaire.title";
     String ETAT_COMPLEMENTAIRE_POSTES_SALAIRE = "etat.complementaire.evolution.postes.salariale.table.title";
     String ETAT_COMPLEMANTAIRE_EVOLUTION_DEPENSES_POST = "etat.complementaire.evolution.depenses.pricipaux.ost.title";
     String ETAT_COMPLEMENTAIRE_EVOLUTION_DEPENSES_TYPE_OST = "etat.complementaire.evolution.depenses.type.ost.title";
     String ETAT_COMPLEMENTAIRE_EVOLUTION_DEPENSES_TERRITOITRE = "etat.complementaire.evolution.depenses.territoire.title";
     String ETAT_COMPLEMENTAIRE_EVOLUTION_DEPENSES_FINANCEMENT = "etat.complementaire.evolution.depenses.source.financement.title";
 
-    //make it augmented by builder decorator
+    //todo make it augmented by builder decorator
     @Option.Required
     int counter();
 
     String name();
 
     String gestionnaire();
+
+    @Option.Singular
+    List<String> AxesStratiques();
+
+    @Option.Singular
+    List<String> ObjectivesStratigiques();
+
+    @Option.Singular
+    List<String> initiativesImportantes();
+
+    //todo uncomment this it's commmented just to skip validation, resolve conflict with #gestionnaire()
+//    String responsable();
 
     @Option.Singular
     List<RepartitionCentreResponsabiliteTitre> repartitionProgrammeCentreRespTitre();
@@ -62,7 +78,7 @@ interface FicheProgrammeBlueprint extends Writable {
     List<Evolution> evolutionDepenseTerritoire();
 
     @Option.Singular
-    List<Evolution> evolutionDepensesSousrceFinanacement();
+    List<Evolution> evolutionDepenseSourceFinancement();
 
 
     @Override
@@ -106,11 +122,8 @@ interface FicheProgrammeBlueprint extends Writable {
                 ViewEvolutionDepensesSousprogrammes.of(context, evolutionDepenseSousProgramme());
         context.addRenderedContent(viewEvolutionDepensesSousprogrammes);
 
-
-
-
         /*===== États complémentaires ====*/
-        context.addStaticContent(HEADING_2_STYLE, ETAT_COMPLEMETAIRE_HEADING);
+        context.addStaticContent(HEADING_2_STYLE, ETAT_COMPLEMENTAIRE_HEADING);
 
         //postes ouverts et mass salariale
         context.addStaticContent(HEADING_3_STYLE, ETAT_COMPLEMENTAIRE_POSTES_SALAIRE);
@@ -139,8 +152,12 @@ interface FicheProgrammeBlueprint extends Writable {
         //source de financement
         context.addStaticContent(HEADING_3_STYLE, ETAT_COMPLEMENTAIRE_EVOLUTION_DEPENSES_FINANCEMENT);
         ViewEvolutionDepenseSourceFinancement viewEvolutionDepenseSourceFinancement =
-                ViewEvolutionDepenseSourceFinancement.of(context, evolutionDepensesSousrceFinanacement());
+                ViewEvolutionDepenseSourceFinancement.of(context, evolutionDepenseSourceFinancement());
         context.addRenderedContent(viewEvolutionDepenseSourceFinancement);
 
+        context.addFormattedStaticContent(HEADING_2_STYLE, PRINCIP_PROJET_HEADING, counter());
+        context.addStaticContent(HEADING_3_STYLE, PRINCIP_PROJET_EN_COURS);
+        ViewProjetEnCours viewProjetEnCours = ViewProjetEnCours.of(context, projetEnCours());
+        context.addRenderedContent(viewProjetEnCours);
     }
 }

@@ -6,7 +6,7 @@ import io.helidon.builder.api.Prototype;
 import java.util.List;
 import java.util.Objects;
 
-@Prototype.Blueprint
+@Prototype.Blueprint(createEmptyPublic = false)
 @Prototype.CustomMethods(EvolutionBlueprint.CustomMethods.class)
 interface EvolutionBlueprint {
 

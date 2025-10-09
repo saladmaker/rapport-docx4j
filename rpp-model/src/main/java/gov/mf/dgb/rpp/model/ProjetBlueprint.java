@@ -6,24 +6,24 @@ import java.time.LocalDate;
 
 @Prototype.Blueprint
 interface ProjetBlueprint {
-
+    String name();
     LocalDate dateDebut();
 
     LocalDate dateFin();
 
-    Long CouteEstGlobal();
+    Long couteEstGlobal();
 
     Double tauxAvancement();
 
-    Boolean respetÉchéanciers();
+    Boolean respetEcheanciers();
 
-    Long AEreevaluationDemandée();
+    Long AEreevaluationDemandee();
 
     Long CPAnnee();
 
     Long CPAnneePlus1();
 
-    Long CPAnee();
+    Long CPAnneePlus2();
 
     Long chargesRecurAnnuellMoyennesPrevus();
 
