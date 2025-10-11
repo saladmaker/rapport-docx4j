@@ -3,7 +3,7 @@ package gov.mf.dgb.rpp.model;
 import io.helidon.builder.api.Prototype;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 
-@Prototype.Blueprint
+@Prototype.Blueprint(createEmptyPublic = false)
 @Prototype.CustomMethods(LeMinistereBlueprint.CustomMethods.class)
 interface LeMinistereBlueprint extends Writable{
 

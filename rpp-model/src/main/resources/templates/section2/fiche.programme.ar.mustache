@@ -1,0 +1,108 @@
+<w:tr>
+    <w:tc>
+        <w:tcPr>
+            <w:tcW w:w="9026" w:type="dxa"/>
+        </w:tcPr>
+
+        <w:p>
+            <w:pPr>
+                <w:pStyle w:val="NormalTitle"/>
+            </w:pPr>
+            <w:r>
+                <w:t>1. Les axes stratégiques du programme</w:t>
+            </w:r>
+        </w:p>
+
+        {{#exesStrategiques}}
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="Text"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>- {{.}}</w:t>
+                </w:r>
+            </w:p>
+        {{/exesStrategiques}}
+    </w:tc>
+</w:tr>
+
+<w:tr>
+    <w:tc>
+        <w:tcPr>
+            <w:tcW w:w="9026" w:type="dxa"/>
+        </w:tcPr>
+
+        <w:p>
+            <w:pPr>
+                <w:pStyle w:val="NormalTitle"/>
+            </w:pPr>
+            <w:r>
+                <w:t>2. Les objectives stratégiques du programme</w:t>
+            </w:r>
+        </w:p>
+
+        {{#objectivesStrategiques}}
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="Text"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>- {{.}}</w:t>
+                </w:r>
+            </w:p>
+        {{/objectivesStrategiques}}
+    </w:tc>
+</w:tr>
+
+<w:tr>
+    <w:tc>
+        <w:tcPr>
+            <w:tcW w:w="9026" w:type="dxa"/>
+        </w:tcPr>
+
+        <w:p>
+            <w:pPr>
+                <w:pStyle w:val="NormalTitle"/>
+            </w:pPr>
+            <w:r>
+                <w:t>3. Les initiatives importantes du programme</w:t>
+            </w:r>
+        </w:p>
+
+        {{#initiativesImportantes}}
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="Text"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>{{.}}</w:t>
+                </w:r>
+            </w:p>
+        {{/initiativesImportantes}}
+    </w:tc>
+</w:tr>
+
+<w:tr>
+    <w:tc>
+        <w:tcPr>
+            <w:tcW w:w="9026" w:type="dxa"/>
+        </w:tcPr>
+
+        <w:p>
+            <w:pPr>
+                <w:pStyle w:val="NormalTitle"/>
+            </w:pPr>
+            <w:r>
+                <w:t>4. Le responsable du programme</w:t>
+            </w:r>
+        </w:p>
+        <w:p>
+            <w:pPr>
+                <w:pStyle w:val="Text"/>
+            </w:pPr>
+            <w:r>
+                <w:t>{{gestionnaire}}</w:t>
+            </w:r>
+        </w:p>
+    </w:tc>
+</w:tr>

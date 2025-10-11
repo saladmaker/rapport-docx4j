@@ -25,7 +25,7 @@ interface ViewProjetEnCours extends ViewProjetEnCoursBase{
     @JStache(path = "templates/section2/projet.en.cours.fr.mustache")
     record ViewProjetEnCoursFR(GenerationContext context, List<Projet> delegates)
             implements ViewProjetEnCours{}
-
+    @JStache(path = "templates/section2/projet.en.cours.ar.mustache")
     record ViewProjetEnCoursAR(GenerationContext context, List<Projet> delegates)
             implements ViewProjetEnCours{}
 

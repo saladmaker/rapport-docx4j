@@ -11,7 +11,8 @@ import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 //augment prototypes instances with document wide variable like Annee(1,2,3,4,5)
 @Prototype.Blueprint(
         createEmptyPublic = false,
-        decorator = FichePortefeuilleSupport.BuilderDecorator.class)
+        decorator = FichePortefeuilleSupport.BuilderDecorator.class
+)
 @Prototype.CustomMethods(FichePortefeuilleSupport.class)
 interface FichePortefeuilleBlueprint extends Writable {
 

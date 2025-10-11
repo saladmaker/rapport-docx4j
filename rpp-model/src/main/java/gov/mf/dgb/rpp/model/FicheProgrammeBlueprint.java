@@ -12,6 +12,8 @@ interface FicheProgrammeBlueprint extends Writable {
     String FCHPROG_1_TITLE_KEY = "section2.planification.title.1.text";
     String FCHPROG_2_SUB_TITLE_1_KEY = "section2.planification.title.2.text";
     String FCHPORG_3_SUB_TITLE_2_KEY = "section2.planification.title.3.text";
+    String FCHROG_PLANIFICATION_JUSTIFICATION_TITLE = "section2.planification.justification.title";
+
     String FCHPROG_4_SUB_TITLE_3_KEY = "section2.ficheprogramme.title.1.text";
     String FCHPROG_5_STICKY_TITLE_1_KEY = "section2.ficheprogramme.title.2.text";
     String FCHPROG_6_STICKY_TITLE_2_KEY = "section2.ficheprogramme.title.3.text";
@@ -39,16 +41,26 @@ interface FicheProgrammeBlueprint extends Writable {
     String gestionnaire();
 
     @Option.Singular
-    List<String> AxesStratiques();
+    List<String> axesStrategiques();
+               //exesStrategiques
 
     @Option.Singular
-    List<String> ObjectivesStratigiques();
+    List<String> objectivesStrategiques();
 
     @Option.Singular
     List<String> initiativesImportantes();
 
-    //todo uncomment this it's commmented just to skip validation, resolve conflict with #gestionnaire()
-//    String responsable();
+    @Option.Singular
+    List<String> justificationDepensePersonnel();
+
+    @Option.Singular
+    List<String> justificationDepenseFonctionnementServices();
+
+    @Option.Singular
+    List<String> justificationDepenseInvestissements();
+
+    @Option.Singular
+    List<String> justificationDepenseTransferts();
 
     @Option.Singular
     List<RepartitionCentreResponsabiliteTitre> repartitionProgrammeCentreRespTitre();
@@ -93,6 +105,12 @@ interface FicheProgrammeBlueprint extends Writable {
 
         //heading 3 formatted
         context.addFormattedStaticContent(HEADING_3_STYLE, FCHPORG_3_SUB_TITLE_2_KEY, counter(), name());
+        ViewFicheProgramme viewFicheProgramme = ViewFicheProgramme.of(context, this);
+        context.addRenderedContent(viewFicheProgramme);
+
+        context.addFormattedStaticContent(HEADING_2_STYLE, FCHROG_PLANIFICATION_JUSTIFICATION_TITLE, context.annee());
+        ViewJustificationDepense viewJustificationDepense = ViewJustificationDepense.of(context, this);
+        context.addRenderedContent(viewJustificationDepense);
 
         context.applyLayout(PageLayout.LANDSCAPE);
         //heading 2

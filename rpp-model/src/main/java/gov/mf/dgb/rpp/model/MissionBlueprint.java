@@ -5,7 +5,7 @@ import io.helidon.builder.api.Prototype;
 
 import java.util.List;
 
-@Prototype.Blueprint
+@Prototype.Blueprint(createEmptyPublic = false)
 @Prototype.CustomMethods(MissionBlueprint.CustomMethods.class)
 interface MissionBlueprint {
 

@@ -7,7 +7,7 @@ import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import java.math.BigInteger;
 import java.util.List;
 
-@Prototype.Blueprint
+@Prototype.Blueprint(createEmptyPublic = false)
 interface LaMissionBlueprint extends Writable {
 
     String MISSION_1_TITLE_KEY = "section1.lamission.title.text";

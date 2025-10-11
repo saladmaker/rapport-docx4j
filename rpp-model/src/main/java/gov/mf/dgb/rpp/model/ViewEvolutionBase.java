@@ -85,8 +85,7 @@ interface ViewEvolutionBase extends Viewable {
         protected final Evolution delegate;
         protected final GenerationContext context;
 
-        EvolutionViewBase(GenerationContext context,
-                                 Evolution delegate) {
+        EvolutionViewBase(GenerationContext context, Evolution delegate) {
             this.delegate = delegate;
             this.context = context;
         }

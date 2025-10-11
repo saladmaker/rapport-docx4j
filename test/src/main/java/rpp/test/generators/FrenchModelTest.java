@@ -14,38 +14,56 @@ public class FrenchModelTest implements DocumentGenerator {
     public void generate(WordprocessingMLPackage document) {
         FicheProgramme ficheProgramme = FicheProgramme.builder()
                 .counter(1)
-                .name("Impots")
-                .gestionnaire("Directeur de " +
-                        "l’organisation et du suivi de la formation " +
-                        "professionnelle")
+                .name("Formation professionnelle")
+                .gestionnaire("""
+                        Directeur de l’Organisation et du Suivi de la Formation
+                        Professionnelle."""
+                        .replaceAll("\\r?\\n", " "))
+                .addInitiativesImportante("""
+                        La revalorisation de la ressource humaine à travers le recrutement pour les
+                        nouveaux métiers et le perfectionnement des formateurs"""
+                        .replaceAll("\\r?\\n", " "))
+                .addInitiativesImportante("""
+                        La réalisation de nouveaux établissements et la réhabilitation du patrimoine
+                        existant"""
+                        .replaceAll("\\r?\\n", " "))
+                .addInitiativesImportante("""
+                        La confection de nouveaux programmes de formation par le biais du réseau
+                        d’ingénierie pédagogique"""
+                        .replaceAll("\\r?\\n", " "))
+
+
                 //repartition programme titre-centre responsabilite
                 .addRepartitionProgrammeCentreRespTitre(RepartitionCentreResponsabiliteTitre
-                        .ofCentraux(List.of(600L, 550L, 330L, 222L)))
+                        .ofCentraux(List.of(81_000L, 279_311L, 0L, 0L)))
                 .addRepartitionProgrammeCentreRespTitre(RepartitionCentreResponsabiliteTitre
-                        .ofDeconcentres(List.of(321L, 333L, 555L, 655L)))
+                        .ofOrganismesSousTutelle(List.of(74_841_862L, 5_708_969L, 0L, 9_186_420L)))
                 .addRepartitionProgrammeCentreRespTitre(RepartitionCentreResponsabiliteTitre
-                        .ofOrganismesSousTutelle(List.of(0L, 0L, 333L, 3332L)))
+                        .ofDeconcentres(List.of(0L, 0L, 10_655_000L, 0L)))
+                .addRepartitionProgrammeCentreRespTitre(RepartitionCentreResponsabiliteTitre
+                        .ofOrganesTerritoriaux(List.of(0L, 0L, 8_614_000L, 0L)))
                 //repartition sous-programme titre
                 .addRepartitionSousProgrammeTitre(RepartitionTitre.create("Formation professionnelle initiale",
-                        List.of(74046542L, 5869433L, 19150000L, 9176540L)))
+                        List.of(74_046_542L, 5_869_433L, 19_150_000L, 9_176_540L)))
                 .addRepartitionSousProgrammeTitre(RepartitionTitre.create("Formation continue et à distance",
-                        List.of(0L, 8000L, 0L, 9880L)))
+                        List.of(0L, 8_000L, 0L, 9_880L)))
                 .addRepartitionSousProgrammeTitre(RepartitionTitre.create("Ingénierie pédagogique de la formation professionnelle",
                         List.of(876_320L, 110_847L, 119_000L, 0L)))
                 //evolution depenses
                 .addEvolutionDepenseSousProgramme(Evolution.create("Formation professionnelle initiale",
                         List.of(75_540_668L, 89_044_586L, 108_242_515L, 109_566_169L, 111_779_553L)))
                 .addEvolutionDepenseSousProgramme(Evolution.create("Formation continue et à distance",
-                        List.of(12995L, 37_889L, 17880L, 18140L, 18_342L)))
+                        List.of(12_995L, 37_889L, 17_880L, 18_140L, 18_342L)))
                 .addEvolutionDepenseSousProgramme(Evolution.create("Ingénierie pédagogique de la formation professionnelle",
                         List.of(874_000L, 930_031L, 1_106_167L, 1_506_892L, 1_529_151L)))
                 // evolution postes ouvert mass salariale
                 .addEvolutionPostOuvertMassSalarial(PostesOuvertMassSalarial
                         .create(CentreResponsabilite.SERVICES_CENTRAUX,
-                                List.of(500L, 600L, 700L), List.of(100000L, 120000L, 140000L)))
+                                List.of(67L, 71L, 71L), List.of(51_120L, 68_160L, 70_384L)))
                 .addEvolutionPostOuvertMassSalarial(PostesOuvertMassSalarial
-                        .create(CentreResponsabilite.SERVICES_DECONCENTRES,
-                                List.of(430L, 650L, 888L), List.of(130000L, 129333L, 126000L)))
+                        .create(CentreResponsabilite.ORGANISMES_SOUS_TUTELLE,
+                                List.of(69_960L, 71_005L, 71_005L),
+                                List.of(49_186_110L, 64_356_373L, 73_295_330L)))
                 //evolution depenses OST
                 .addEvolutionDepensesOrganismesSousTutelle(Evolution.create("Centres de formation professionnelle et d'apprentissage",
                         List.of(48_386_156L, 52_909_464L, 66_773_595L, 67_500_000L, 68_100_092L)))

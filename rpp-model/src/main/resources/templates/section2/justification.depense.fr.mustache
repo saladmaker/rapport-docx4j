@@ -1,0 +1,122 @@
+<w:tbl xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+    <w:tblPr>
+        <w:tblStyle w:val="TableGrid"/>
+        <w:tblW w:w="9026" w:type="dxa"/>
+        <w:tblLook w:val="04A0" w:firstRow="1" w:lastRow="0" w:firstColumn="1"
+                   w:lastColumn="0" w:noHBand="0" w:noVBand="1"/>
+    </w:tblPr>
+    <w:tblGrid>
+        <w:gridCol w:w="9026"/>
+    </w:tblGrid>
+    <w:tr>
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="9026" w:type="dxa"/>
+            </w:tcPr>
+
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="NormalTitle"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>Personnel</w:t>
+                </w:r>
+            </w:p>
+
+            {{#programme.justificationDepensePersonnel}}
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="Text"/>
+                    </w:pPr>
+                    <w:r>
+                        <w:t>- {{.}}</w:t>
+                    </w:r>
+                </w:p>
+            {{/programme.justificationDepensePersonnel}}
+        </w:tc>
+    </w:tr>
+
+    <w:tr>
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="9026" w:type="dxa"/>
+            </w:tcPr>
+
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="NormalTitle"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>Fonctionnement des services</w:t>
+                </w:r>
+            </w:p>
+
+            {{#programme.justificationDepenseFonctionnementServices}}
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="Text"/>
+                    </w:pPr>
+                    <w:r>
+                        <w:t>- {{.}}</w:t>
+                    </w:r>
+                </w:p>
+            {{/programme.justificationDepenseFonctionnementServices}}
+        </w:tc>
+    </w:tr>
+
+    <w:tr>
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="9026" w:type="dxa"/>
+            </w:tcPr>
+
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="NormalTitle"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>Investissements</w:t>
+                </w:r>
+            </w:p>
+
+            {{#programme.justificationDepenseInvestissements}}
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="Text"/>
+                    </w:pPr>
+                    <w:r>
+                        <w:t>-{{.}}</w:t>
+                    </w:r>
+                </w:p>
+            {{/programme.justificationDepenseInvestissements}}
+        </w:tc>
+    </w:tr>
+    <w:tr>
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="9026" w:type="dxa"/>
+            </w:tcPr>
+
+            <w:p>
+                <w:pPr>
+                    <w:pStyle w:val="NormalTitle"/>
+                </w:pPr>
+                <w:r>
+                    <w:t>Transferts</w:t>
+                </w:r>
+            </w:p>
+
+            {{#programme.justificationDepenseInvestissements}}
+                <w:p>
+                    <w:pPr>
+                        <w:pStyle w:val="Text"/>
+                    </w:pPr>
+                    <w:r>
+                        <w:t>-{{.}}</w:t>
+                    </w:r>
+                </w:p>
+            {{/programme.justificationDepenseInvestissements}}
+        </w:tc>
+    </w:tr>
+
+</w:tbl>

@@ -4,7 +4,7 @@ import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 
 import io.helidon.builder.api.Prototype;
 
-@Prototype.Blueprint
+@Prototype.Blueprint(createEmptyPublic = false)
 interface AuSujetBlueprint extends Writable{
     String AUSJT_1_TITLE_KEY = "section1.ausujetprotefeuille.title.text";
 
