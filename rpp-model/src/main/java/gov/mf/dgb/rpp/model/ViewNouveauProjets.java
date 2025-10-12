@@ -43,6 +43,7 @@ sealed interface ViewNouveauProjets {
             return context().staticContent(HEADER_TITLE);
         }
 
+        @JStache(path = "templates/section2/projet.nouveau.ar.mustache")
         record PlainNouveauProjetViewAR(GenerationContext context, List<NouveauProjet> delegates) implements PlainNouveauProjetView {
         }
         @JStache(path = "templates/section2/projet.nouveau.fr.mustache")
@@ -56,7 +57,7 @@ sealed interface ViewNouveauProjets {
         default String headerTitle(){
             return context().staticContent(HEADER_TITLE);
         }
-
+        @JStache(path = "templates/section2/projet.nouveau.ar.mustache")
         record NouveauGPEViewAR(GenerationContext context, List<NouveauProjet> delegates) implements NouveauGPEView {
         }
         @JStache(path = "templates/section2/projet.nouveau.fr.mustache")
