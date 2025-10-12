@@ -22,7 +22,10 @@ interface FicheProgrammeBlueprint extends Writable {
     String FCHPROG_9_TABLE_5_TEXT = "section2.ficheprogramme.table.5.title";
 
     String PRINCIP_PROJET_HEADING = "princip.projet";
-    String PRINCIP_PROJET_EN_COURS = "princip.projet.en.cours.title";
+    String PRINCIP_PROJET_GPE_EN_COURS_TITLE = "princip.projet.en.cours.gpe.title";
+    String PRINCIP_PROJET_EN_COURS_TITLE = "princip.projet.en.cours.projet.title";
+    String PRINCIP_PROJET_GPE_TITLE = "princip.projet.nouveau.projet.gpe.title";
+    String PRINCIP_PROJET_PROJET_TITLE = "princip.projet.nouveau.projet.projet.title";
 
 
     String ETAT_COMPLEMENTAIRE_HEADING = "etat.complementaire.title";
@@ -78,6 +81,12 @@ interface FicheProgrammeBlueprint extends Writable {
     List<Projet> GPEEnCours();
 
     @Option.Singular
+    List<NouveauProjet> nouveauProjet();
+
+    @Option.Singular
+    List<NouveauProjet> nouveauGPE();
+
+    @Option.Singular
     List<PostesOuvertMassSalarial> evolutionPostOuvertMassSalarials();
 
     @Option.Singular
@@ -97,17 +106,16 @@ interface FicheProgrammeBlueprint extends Writable {
     default void write(WordprocessingMLPackage document, GenerationContext context) {
         context.applyLayout(PageLayout.PORTRAIT);
 
-        //heading 1 formatted
+        //static headings
         context.addFormattedStaticContent(HEADING_1_STYLE, FCHPROG_1_TITLE_KEY, counter());
-
-        //heading 2
         context.addStaticContent(HEADING_2_STYLE, FCHPROG_2_SUB_TITLE_1_KEY);
 
-        //heading 3 formatted
+        //fiche programme(les axes, objectives, initiatives , responsable
         context.addFormattedStaticContent(HEADING_3_STYLE, FCHPORG_3_SUB_TITLE_2_KEY, counter(), name());
         ViewFicheProgramme viewFicheProgramme = ViewFicheProgramme.of(context, this);
         context.addRenderedContent(viewFicheProgramme);
 
+        //justification depenses (personnel, fonctionnement des services, investissement, transferts)
         context.addFormattedStaticContent(HEADING_2_STYLE, FCHROG_PLANIFICATION_JUSTIFICATION_TITLE, context.annee());
         ViewJustificationDepense viewJustificationDepense = ViewJustificationDepense.of(context, this);
         context.addRenderedContent(viewJustificationDepense);
@@ -139,6 +147,31 @@ interface FicheProgrammeBlueprint extends Writable {
         ViewEvolutionDepensesSousprogrammes viewEvolutionDepensesSousprogrammes =
                 ViewEvolutionDepensesSousprogrammes.of(context, evolutionDepenseSousProgramme());
         context.addRenderedContent(viewEvolutionDepensesSousprogrammes);
+
+        /*========= principaux projet du programme======*/
+        context.addFormattedStaticContent(HEADING_2_STYLE, PRINCIP_PROJET_HEADING, counter());
+
+        // GPE en cours
+        context.addStaticContent(HEADING_3_STYLE, PRINCIP_PROJET_GPE_EN_COURS_TITLE);
+        ViewProjetEnCours GPEView = ViewProjetEnCours.ofGPE(context,GPEEnCours());
+        context.addRenderedContent(GPEView);
+
+        //projet en cours
+        context.addStaticContent(HEADING_3_STYLE, PRINCIP_PROJET_EN_COURS_TITLE);
+        ViewProjetEnCours projetEnCours = ViewProjetEnCours.ofProjet(context, projetEnCours());
+        context.addRenderedContent(projetEnCours);
+
+        //nouveau GPE
+        context.addStaticContent(HEADING_3_STYLE, PRINCIP_PROJET_GPE_TITLE);
+        ViewNouveauProjets nouveauGPE = ViewNouveauProjets.ofGPE(context, nouveauGPE());
+        context.addRenderedContent(nouveauGPE);
+
+        //nouveau projet
+        context.addStaticContent(HEADING_3_STYLE, PRINCIP_PROJET_PROJET_TITLE);
+        ViewNouveauProjets nouveauProjets = ViewNouveauProjets.ofProjet(context, nouveauProjet());
+        context.addRenderedContent(nouveauProjets);
+
+
 
         /*===== États complémentaires ====*/
         context.addStaticContent(HEADING_2_STYLE, ETAT_COMPLEMENTAIRE_HEADING);
@@ -173,9 +206,8 @@ interface FicheProgrammeBlueprint extends Writable {
                 ViewEvolutionDepenseSourceFinancement.of(context, evolutionDepenseSourceFinancement());
         context.addRenderedContent(viewEvolutionDepenseSourceFinancement);
 
-        context.addFormattedStaticContent(HEADING_2_STYLE, PRINCIP_PROJET_HEADING, counter());
-        context.addStaticContent(HEADING_3_STYLE, PRINCIP_PROJET_EN_COURS);
-        ViewProjetEnCours viewProjetEnCours = ViewProjetEnCours.of(context, projetEnCours());
-        context.addRenderedContent(viewProjetEnCours);
+
+
+
     }
 }

@@ -31,7 +31,30 @@ public class FrenchModelTest implements DocumentGenerator {
                         La confection de nouveaux programmes de formation par le biais du réseau
                         d’ingénierie pédagogique"""
                         .replaceAll("\\r?\\n", " "))
-
+                .addJustificationDepensePersonnel("""
+                        Les traitements, salaires, indemnités et charges sociales du personnel intervenant dans le cadre du
+                        programme « Patrimoine culturel »"""
+                        .replaceAll("\\r?\\n", " "))
+                .addJustificationDepensePersonnel("""
+                        L’incidence financière induite par la révision de la grille indiciaire du personnel relevant du
+                        programme « Patrimoine culturel »"""
+                        .replaceAll("\\r?\\n", " "))
+                .addJustificationDepensePersonnel("""
+                        L’avancement et la promotion du personnel, en activité, chargé du programme en question""")
+                .addJustificationDepensePersonnel("""
+                        L’incidence financière induite par la révision de la grille indiciaire du personnel relevant des
+                        établissements sous tutelle du Ministère de la Culture et des Arts (EPA et EPST relevant du
+                        programme « Patrimoine culturel »)"""
+                        .replaceAll("\\r?\\n", " "))
+                .addJustificationDepenseFonctionnementService("""
+                        De l'opération d'inventaire au profit des offices nationaux (Atlas Saharien, Ahaggar, Tassili, Touat
+                        gourara et Tindouf), suite aux conclusions de la réunion du Gouvernement tenue le 15/02/2023 et en
+                        application des instructions de Monsieur le Premier Ministre)"""
+                        .replaceAll("\\r?\\n", " "))
+                .addJustificationDepenseFonctionnementService("""
+                        Des frais liés à l’organisation d’une manifestation culturelle internationale sur la valorisation du
+                        patrimoine culturel"""
+                        .replaceAll("\\r?\\n", " "))
 
                 //repartition programme titre-centre responsabilite
                 .addRepartitionProgrammeCentreRespTitre(RepartitionCentreResponsabiliteTitre
@@ -104,6 +127,19 @@ public class FrenchModelTest implements DocumentGenerator {
                         .CPAnneePlus1(34333L)
                         .CPAnneePlus2(44333L)
                         .chargesRecurAnnuellMoyennesPrevus(23433L)
+                        .build())
+                .addGPEEnCour(Projet.builder()
+                        .name("GPE 1")
+                        .dateDebut(LocalDate.of(2016, 1, 23))
+                        .dateFin(LocalDate.of(2028, 2, 24))
+                        .couteEstGlobal(134_223L)
+                        .tauxAvancement(85.6)
+                        .respetEcheanciers(true)
+                        .AEreevaluationDemandee(345_243L)
+                        .CPAnnee(1_433_343L)
+                        .CPAnneePlus1(3_343_342L)
+                        .CPAnneePlus2(4_434_343L)
+                        .chargesRecurAnnuellMoyennesPrevus(2_343_434L)
                         .build())
                 .build();
         ficheProgramme.write(document, GenerationContext.of(LanguageDirection.LTR, document, Map.of(), Year.of(2025)));

@@ -5,7 +5,7 @@ import io.helidon.builder.api.Prototype;
 import java.time.LocalDate;
 
 @Prototype.Blueprint(createEmptyPublic = false)
-interface ProjetBlueprint {
+interface NouveauProjetBlueprint {
     String name();
     LocalDate dateDebut();
 
@@ -13,18 +13,13 @@ interface ProjetBlueprint {
 
     Long couteEstGlobal();
 
-    Double tauxAvancement();
-
-    Boolean respetEcheanciers();
-
-    Long AEreevaluationDemandee();
+    Long AEDemande();
 
     Long CPAnnee();
 
     Long CPAnneePlus1();
 
-    Long CPAnneePlus2();
+    Long CPAnneePlus2Suivante();
 
     Long chargesRecurAnnuellMoyennesPrevus();
-
 }
