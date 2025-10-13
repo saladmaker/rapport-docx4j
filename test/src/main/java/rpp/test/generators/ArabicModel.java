@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.time.Year;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class ArabicModel implements DocumentGenerator {
     static String intro = """
@@ -51,6 +52,22 @@ public class ArabicModel implements DocumentGenerator {
                 )
                 .leMinistere(LeMinistere.builder()
                         .image(image)
+                        .build())
+                .cartographie(CartographieProgrammesPortefeuille.builder()
+                        .addProgrammeStructure(ProgrammeStructure.builder()
+                                .name("البرنامج 001 - تحديث الإدارة")
+                                .addServicesCentraux(Set.of("الأمانة العامة", "المفتشية العامة"))
+                                .addServicesDeconcentres(Set.of("المديرية الجهوية الجزائر", "المديرية الجهوية وهران"))
+                                .addOrganismesSousTutelles(Set.of("الوكالة الوطنية للرقمنة", "المعهد العالي للإدارة العمومية"))
+                                .addOrganesTerritoriaux(Set.of("مديرية ولاية الجزائر", "مديرية ولاية وهران"))
+                                .build())
+                        .addProgrammeStructure(ProgrammeStructure.builder()
+                                .name("البرنامج 002 - التنمية المستدامة")
+                                .addServicesCentraux("المديرية العامة للبيئة")
+                                .addServicesDeconcentres(Set.of("المديرية الجهوية عنابة", "المديرية الجهوية تلمسان"))
+                                .addOrganismesSousTutelle("المكتب الوطني للغابات")
+                                .addOrganesTerritoriaux("المحافظة على المناطق الرطبة")
+                                .build())
                         .build())
                 .fichePortefeuille(FichePortefeuille.builder()
                 .addRepartitionProgramme(new RepartitionProgramme("التكوين المهني", 19506191000L, 20143691000L))

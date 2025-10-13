@@ -1,0 +1,133 @@
+<w:tbl xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+    <w:tblPr>
+        <w:tblStyle w:val="TableGrid"/>
+        <w:tblW w:w="9026" w:type="dxa"/>
+        <w:tblLayout w:type="fixed"/>
+        <w:tblLook w:val="04A0" w:firstRow="1" w:lastRow="0"
+                   w:firstColumn="1" w:lastColumn="0"
+                   w:noHBand="0" w:noVBand="1"/>
+    </w:tblPr>
+
+    <w:tblGrid>
+        <w:gridCol w:w="3026"/>
+        <w:gridCol w:w="6000"/>
+    </w:tblGrid>
+
+    <!-- Header -->
+    <w:tr>
+        <w:tc>
+            <w:tcPr><w:tcW w:w="3026" w:type="dxa"/></w:tcPr>
+            <w:p>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                        <w:sz w:val="24"/>
+                        <w:b/>
+                    </w:rPr>
+                    <w:t>Structure de programme</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+        <w:tc>
+            <w:tcPr><w:tcW w:w="6000" w:type="dxa"/></w:tcPr>
+            <w:p>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                        <w:sz w:val="24"/>
+                        <w:b/>
+                    </w:rPr>
+                    <w:t>Structure organisationnelle</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+    </w:tr>
+
+    <!-- Data -->
+    {{#programmes}}
+        <!-- Row 1 -->
+        <w:tr>
+            <w:tc>
+                <w:tcPr>
+                    <w:tcW w:w="3026" w:type="dxa"/>
+                    <w:vMerge w:val="restart"/>
+                </w:tcPr>
+                <w:p>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                            <w:sz w:val="24"/>
+                            <w:b/>
+                        </w:rPr>
+                        <w:t>{{name}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+            <w:tc>
+                <w:tcPr><w:tcW w:w="6000" w:type="dxa"/></w:tcPr>
+                <w:p>
+                    <w:r>
+                        <w:t>{{#servicesCentraux}}{{.}}{{^@last}}, {{/@last}}{{/servicesCentraux}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+        </w:tr>
+
+        <!-- Row 2 -->
+        <w:tr>
+            <w:tc>
+                <w:tcPr>
+                    <w:tcW w:w="3026" w:type="dxa"/>
+                    <w:vMerge/>
+                </w:tcPr>
+                <w:p/>
+            </w:tc>
+            <w:tc>
+                <w:tcPr><w:tcW w:w="6000" w:type="dxa"/></w:tcPr>
+                <w:p>
+                    <w:r>
+                        <w:t>{{#servicesDeconcentres}}{{.}}{{^@last}}, {{/@last}}{{/servicesDeconcentres}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+        </w:tr>
+
+        <!-- Row 3 -->
+        <w:tr>
+            <w:tc>
+                <w:tcPr>
+                    <w:tcW w:w="3026" w:type="dxa"/>
+                    <w:vMerge/>
+                </w:tcPr>
+                <w:p/>
+            </w:tc>
+            <w:tc>
+                <w:tcPr><w:tcW w:w="6000" w:type="dxa"/></w:tcPr>
+                <w:p>
+                    <w:r>
+                        <w:t>{{#organismeSousTutelles}}{{.}}{{^@last}}, {{/@last}}{{/organismeSousTutelles}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+        </w:tr>
+
+        <!-- Row 4 -->
+        <w:tr>
+            <w:tc>
+                <w:tcPr>
+                    <w:tcW w:w="3026" w:type="dxa"/>
+                    <w:vMerge/>
+                </w:tcPr>
+                <w:p/>
+            </w:tc>
+            <w:tc>
+                <w:tcPr><w:tcW w:w="6000" w:type="dxa"/></w:tcPr>
+                <w:p>
+                    <w:r>
+                        <w:t>{{#organesTerritoriaux}}{{.}}{{^@last}}, {{/@last}}{{/organesTerritoriaux}}</w:t>
+                    </w:r>
+                </w:p>
+            </w:tc>
+        </w:tr>
+    {{/programmes}}
+</w:tbl>

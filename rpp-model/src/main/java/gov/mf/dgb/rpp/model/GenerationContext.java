@@ -47,11 +47,11 @@ import javax.imageio.stream.ImageInputStream;
 
 public final class GenerationContext {
 
-    static final String ARAB_CONFIG = "arab.properties";
+    private static final String ARAB_CONFIG = "arab.properties";
 
-    static final String FRENCH_CONFIG = "french.properties";
+    private static final String FRENCH_CONFIG = "french.properties";
 
-    static final String FOOTER_TEXT = "footer.text";
+    private static final String FOOTER_TEXT = "footer.text";
 
     private static final ObjectFactory F = Context.getWmlObjectFactory();
 

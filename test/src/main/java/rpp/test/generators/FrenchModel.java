@@ -50,42 +50,68 @@ public class FrenchModel implements DocumentGenerator {
                 .leMinistere(LeMinistere.builder()
                         .image(image)
                         .build())
+                .cartographie(CartographieProgrammesPortefeuille.builder()
+                        .addProgrammeStructure(
+                                ProgrammeStructure.builder()
+                                        .name("Programme 001 - Modernisation de l'administration")
+                                        .addServicesCentraux("Secrétariat Général")
+                                        .addServicesCentraux("Inspection Générale")
+                                        .addServicesDeconcentre("Direction Régionale Alger")
+                                        .addServicesDeconcentre("Direction Régionale Oran")
+                                        .addOrganismesSousTutelle(
+                                                "Agence Nationale du Numérique")
+                                        .addOrganismesSousTutelle(
+                                                "Institut Supérieur d’Administration Publique")
+                                        .addOrganesTerritoriaux("Direction Wilaya Alger")
+                                        .addOrganesTerritoriaux("Direction Wilaya Oran")
+                                        .build())
+                        .addProgrammeStructure(
+                                ProgrammeStructure.builder()
+                                        .name("Programme 002 - Développement durable")
+                                        .addServicesCentraux(
+                                                "Direction Générale de l’Environnement")
+                                        .addServicesDeconcentre("Direction Régionale Annaba")
+                                        .addServicesDeconcentre("Direction Régionale Tlemcen")
+                                        .addOrganismesSousTutelle("Office National des Forêts")
+                                        .addOrganesTerritoriaux("Conservatoire des Zones Humides")
+                                        .build())
+                        .build())
                 .fichePortefeuille(FichePortefeuille.builder()
-                        .addRepartitionProgramme(new RepartitionProgramme("Formation professionnelle", 19506191000L, 20143691000L))
-                        .addRepartitionProgramme(new RepartitionProgramme("Enseignement professionnel", 540000000L, 622000000L))
-                        .addRepartitionProgramme(new RepartitionProgramme("Administration générale", 98536426000L, 97250926000L))
+                        .addRepartitionProgramme(new RepartitionProgramme("Formation professionnelle", 19_506_191_000L, 20_143_691_000L))
+                        .addRepartitionProgramme(new RepartitionProgramme("Enseignement professionnel", 540_000_000L, 622_000_000L))
+                        .addRepartitionProgramme(new RepartitionProgramme("Administration générale", 98_536_426_000L, 97_250_926_000L))
                         .addVersionBRepartitionProgramme(
-                                new RepartitionProgramme("Formation professionnelle", 109366562L, 110004062L))
+                                new RepartitionProgramme("Formation professionnelle", 109_366_562L, 110_004_062L))
                         .addVersionBRepartitionProgramme(
-                                new RepartitionProgramme("Enseignement professionnel", 2436520L, 2518520L))
+                                new RepartitionProgramme("Enseignement professionnel", 2_436_520L, 2_518_520L))
                         .addVersionBRepartitionProgramme(
-                                new RepartitionProgramme("Administration générale", 6779535L, 5494035L))
+                                new RepartitionProgramme("Administration générale", 6_779_535L, 5_494_035L))
                         .addRepartitionProgrammeCentreResp(
                                 RepartitionCentreResponsabilite.create("Formation professionnelle",
-                                        List.of(360311L, 10655000L, 89737251L, 8614000L)))
+                                        List.of(360_311L, 10_655_000L, 89_737_251L, 8_614_000L)))
                         .addRepartitionProgrammeCentreResp(
                                 RepartitionCentreResponsabilite.create("Enseignement professionnel",
-                                        List.of(64000L, 228000L, 1856520L, 288000L)))
+                                        List.of(64_000L, 228_000L, 1_856_520L, 288_000L)))
                         .addRepartitionProgrammeCentreResp(
                                 RepartitionCentreResponsabilite.create("Administration générale",
-                                        List.of(1723123L, 4863195L, 138717L, 54500L)))
+                                        List.of(1_723_123L, 4_863_195L, 138_717L, 54_500L)))
 
                         .addRepartitionProgrammesTitre(RepartitionTitre.create("Arts et lettres",
-                                List.of(11076119L, 2683352L, 3217628L, 2962406L)))
+                                List.of(11_076_119L, 2_683_352L, 3_217_628L, 2_962_406L)))
                         .addRepartitionProgrammesTitre(RepartitionTitre.create("Patrimoine culturel",
-                                List.of(4573433L, 427752L, 2816372L, 1024000L)))
+                                List.of(45_734_33L, 427_752L, 2_816_372L, 1_024_000L)))
                         .addRepartitionProgrammesTitre(RepartitionTitre.create("Administration générale",
-                                List.of(4497238L, 558043L, 466000L, 79326L)))
-                        .addRepartitionPortefeuilleCentreResponTitre(RepartitionCentreResponsabiliteTitre.ofCentraux(List.of(553000L, 415_934L, 1_178_500L, 0L)))
+                                List.of(4_497_238L, 558_043L, 466_000L, 79_326L)))
+                        .addRepartitionPortefeuilleCentreResponTitre(RepartitionCentreResponsabiliteTitre.ofCentraux(List.of(553_000L, 415_934L, 1_178_500L, 0L)))
                         .addRepartitionPortefeuilleCentreResponTitre(RepartitionCentreResponsabiliteTitre.ofDeconcentres(List.of(3_881_195L, 380_000L, 11_485_000L, 0L)))
                         .addRepartitionPortefeuilleCentreResponTitre(RepartitionCentreResponsabiliteTitre.ofOrganismesSousTutelle(List.of(76_606_938L, 5_875_098L, 0L, 9_250_452L)))
                         .addRepartitionPortefeuilleCentreResponTitre(RepartitionCentreResponsabiliteTitre.ofOrganesTerritoriaux(List.of(0L, 0L, 8_956_500L, 0L)))
-                        .addEvolutionDepensesProgramme(Evolution.create("Formation professionnelle", List.of(76427663L, 90012506L, 109366562L, 111091201L, 113327046L)))
-                        .addEvolutionDepensesProgramme(Evolution.create("Enseignement professionnel", List.of(1545505L, 2023610L, 2436520L, 2460022L, 2504707L)))
-                        .addEvolutionDepensesProgramme(Evolution.create("Administration générale", List.of(5118443L, 7674181L, 6779535L, 7542716L, 7154077L)))
+                        .addEvolutionDepensesProgramme(Evolution.create("Formation professionnelle", List.of(76_427_663L, 90_012_506L, 109_366_562L, 11_1091_201L, 113_327_046L)))
+                        .addEvolutionDepensesProgramme(Evolution.create("Enseignement professionnel", List.of(1_545_505L, 2_023_610L, 2_436_520L, 2_460_022L, 2_504_707L)))
+                        .addEvolutionDepensesProgramme(Evolution.create("Administration générale", List.of(5_118_443L, 7_674_181L, 6_779_535L, 7_542_716L, 7_154_077L)))
                         .addEvolutionPostesServicesCentraux(List.of(394L,394L,394L, 394L, 394L))
-                        .addEvolutionPostesServicesDeconcentres(List.of(2829L, 2979L, 2979L, 2979L, 2979L))
-                        .addEvolutionPostesOrganismesSousTutelle(List.of(71626L, 72716L, 72716L, 73526L, 74036L))
+                        .addEvolutionPostesServicesDeconcentres(List.of(2_829L, 2_979L, 2_979L, 2_979L, 2_979L))
+                        .addEvolutionPostesOrganismesSousTutelle(List.of(71_626L, 72_716L, 72_716L, 73_526L, 74_036L))
                         .build())
                 .build();
         au.write(document, GenerationContext.of(LanguageDirection.LTR, document, Map.of(), Year.of(2025)));

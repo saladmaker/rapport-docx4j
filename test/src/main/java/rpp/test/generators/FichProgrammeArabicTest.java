@@ -8,13 +8,21 @@ import java.time.Year;
 import java.util.List;
 import java.util.Map;
 
-public class ArabicModelTest implements DocumentGenerator {
+public class FichProgrammeArabicTest implements DocumentGenerator {
     @Override
     public void generate(WordprocessingMLPackage document) {
         FicheProgramme ficheProgramme = FicheProgramme.builder()
                 .counter(1)
                 .name("التكوين المهني")
                 .gestionnaire("مدير تنظيم التكوين المهني ومتابعته")
+                .addObjectivesStrategique("تطوير سياسة ثقافية طموحة لمصلحة الجميع، في قلب اراضينا")
+                .addObjectivesStrategique("تكييف وزارة الثقافة والفنون مع المتغيرات الاجتماعية ومع توقعات الجزائريين")
+                .addInitiativesImportante("امتيازات وتسهيلات للفنانين والمبدعين")
+                .addJustificationDepensePersonnel("راتب النشاط، التعويضات والتكاليف الاجتماعية لمستخدمي الثقافة في إطار برنامج \"الفنون والآداب\"")
+                .addJustificationDepensePersonnel("الأثر المالي الناجم عن تعيل الشبكة الاستدلالية لأجور الموظفين التابعين لبرنامج \"الفنون والآداب\"")
+                .addJustificationDepensePersonnel("""
+                        ترقية مستخدمي الادارة المركزية والمصالح اللامركزية لوزارة الثقافة والفنون، في حالة النشاط، المكلفين بهذا البرنامج""")
+
                 .addRepartitionProgrammeCentreRespTitre(RepartitionCentreResponsabiliteTitre
                         .ofCentraux(List.of(600L, 550L, 330L, 222L)))
                 .addRepartitionProgrammeCentreRespTitre(RepartitionCentreResponsabiliteTitre

@@ -12,6 +12,8 @@ interface AuSujetBlueprint extends Writable{
 
     LeMinistere leMinistere();
 
+    CartographieProgrammesPortefeuille cartographie();
+
     FichePortefeuille fichePortefeuille();
 
     @Override
@@ -20,6 +22,7 @@ interface AuSujetBlueprint extends Writable{
         context.addStaticContent(HEADING_1_STYLE, AUSJT_1_TITLE_KEY);
         laMission().write(document, context);
         leMinistere().write(document, context);
+        cartographie().write(document, context);
         fichePortefeuille().write(document, context);
     }
     

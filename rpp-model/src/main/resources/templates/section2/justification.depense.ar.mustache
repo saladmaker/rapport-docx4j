@@ -3,12 +3,17 @@
         <w:tblStyle w:val="TableGrid"/>
         <w:tblW w:w="9026" w:type="dxa"/>
         <w:tblLayout w:type="fixed"/>
-        <w:tblLook w:val="04A0" w:firstRow="1" w:lastRow="0" w:firstColumn="1"
-                   w:lastColumn="0" w:noHBand="0" w:noVBand="1"/>
+        <w:tblLook w:val="04A0" w:firstRow="1" w:lastRow="0"
+                   w:firstColumn="1" w:lastColumn="0"
+                   w:noHBand="0" w:noVBand="1"/>
+        <w:bidiVisual/>
     </w:tblPr>
+
     <w:tblGrid>
         <w:gridCol w:w="9026"/>
     </w:tblGrid>
+
+    <!-- 1 -->
     <w:tr>
         <w:tc>
             <w:tcPr>
@@ -18,9 +23,13 @@
             <w:p>
                 <w:pPr>
                     <w:pStyle w:val="NormalTitle"/>
+                    <w:bidi/>
                 </w:pPr>
                 <w:r>
-                    <w:t>Personnel</w:t>
+                    <w:rPr>
+                        <w:rtl/>
+                    </w:rPr>
+                    <w:t>المستخدمين</w:t>
                 </w:r>
             </w:p>
 
@@ -28,8 +37,12 @@
                 <w:p>
                     <w:pPr>
                         <w:pStyle w:val="Text"/>
+                        <w:bidi/>
                     </w:pPr>
                     <w:r>
+                        <w:rPr>
+                            <w:rtl/>
+                        </w:rPr>
                         <w:t>- {{.}}</w:t>
                     </w:r>
                 </w:p>
@@ -37,6 +50,7 @@
         </w:tc>
     </w:tr>
 
+    <!-- 2 -->
     <w:tr>
         <w:tc>
             <w:tcPr>
@@ -46,9 +60,13 @@
             <w:p>
                 <w:pPr>
                     <w:pStyle w:val="NormalTitle"/>
+                    <w:bidi/>
                 </w:pPr>
                 <w:r>
-                    <w:t>Fonctionnement des services</w:t>
+                    <w:rPr>
+                        <w:rtl/>
+                    </w:rPr>
+                    <w:t>تسيير المصالح</w:t>
                 </w:r>
             </w:p>
 
@@ -56,8 +74,12 @@
                 <w:p>
                     <w:pPr>
                         <w:pStyle w:val="Text"/>
+                        <w:bidi/>
                     </w:pPr>
                     <w:r>
+                        <w:rPr>
+                            <w:rtl/>
+                        </w:rPr>
                         <w:t>- {{.}}</w:t>
                     </w:r>
                 </w:p>
@@ -65,6 +87,7 @@
         </w:tc>
     </w:tr>
 
+    <!-- 3 -->
     <w:tr>
         <w:tc>
             <w:tcPr>
@@ -74,9 +97,13 @@
             <w:p>
                 <w:pPr>
                     <w:pStyle w:val="NormalTitle"/>
+                    <w:bidi/>
                 </w:pPr>
                 <w:r>
-                    <w:t>Investissements</w:t>
+                    <w:rPr>
+                        <w:rtl/>
+                    </w:rPr>
+                    <w:t>الإستثمارات</w:t>
                 </w:r>
             </w:p>
 
@@ -84,14 +111,20 @@
                 <w:p>
                     <w:pPr>
                         <w:pStyle w:val="Text"/>
+                        <w:bidi/>
                     </w:pPr>
                     <w:r>
-                        <w:t>-{{.}}</w:t>
+                        <w:rPr>
+                            <w:rtl/>
+                        </w:rPr>
+                        <w:t>- {{.}}</w:t>
                     </w:r>
                 </w:p>
             {{/programme.justificationDepenseInvestissements}}
         </w:tc>
     </w:tr>
+
+    <!-- 4 -->
     <w:tr>
         <w:tc>
             <w:tcPr>
@@ -101,23 +134,29 @@
             <w:p>
                 <w:pPr>
                     <w:pStyle w:val="NormalTitle"/>
+                    <w:bidi/>
                 </w:pPr>
                 <w:r>
-                    <w:t>Transferts</w:t>
+                    <w:rPr>
+                        <w:rtl/>
+                    </w:rPr>
+                    <w:t>التحويلات</w:t>
                 </w:r>
             </w:p>
-
             {{#programme.justificationDepenseTransferts}}
                 <w:p>
                     <w:pPr>
                         <w:pStyle w:val="Text"/>
+                        <w:bidi/>
                     </w:pPr>
                     <w:r>
+                        <w:rPr>
+                            <w:rtl/>
+                        </w:rPr>
                         <w:t>-{{.}}</w:t>
                     </w:r>
                 </w:p>
             {{/programme.justificationDepenseTransferts}}
         </w:tc>
     </w:tr>
-
 </w:tbl>

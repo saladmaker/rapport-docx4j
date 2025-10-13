@@ -10,11 +10,18 @@ interface ViewJustificationDepense {
     default JustificationDepenseView programme(){
         return new JustificationDepenseView(delegate());
     }
+
     static ViewJustificationDepense of(GenerationContext context, FicheProgrammeBlueprint delegate){
-        return new ViewJustificationDepenseFR(delegate);
+        return switch (context.direction()){
+            case LTR -> new ViewJustificationDepenseFR(delegate);
+            case RTL -> new ViewJustificationDepenseAR(delegate);
+        };
     }
     @JStache(path = "templates/section2/justification.depense.fr.mustache")
     record ViewJustificationDepenseFR(FicheProgrammeBlueprint delegate)
+            implements ViewJustificationDepense{}
+    @JStache(path = "templates/section2/justification.depense.ar.mustache")
+    record ViewJustificationDepenseAR(FicheProgrammeBlueprint delegate)
             implements ViewJustificationDepense{}
 
     record JustificationDepenseView(FicheProgrammeBlueprint delegate){

@@ -9,7 +9,7 @@ import java.time.Year;
 import java.util.List;
 import java.util.Map;
 
-public class FrenchModelTest implements DocumentGenerator {
+public class FicheProgrammeFrenchTest implements DocumentGenerator {
     @Override
     public void generate(WordprocessingMLPackage document) {
         FicheProgramme ficheProgramme = FicheProgramme.builder()

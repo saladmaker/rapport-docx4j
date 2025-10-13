@@ -14,12 +14,20 @@ sealed interface ViewFicheProgramme {
     }
 
     static ViewFicheProgramme of(GenerationContext context, FicheProgrammeBlueprint delegate){
-        return new ViewFicheProgrammeFR(delegate);
+        return switch (context.direction()){
+            case LTR -> new ViewFicheProgrammeFR(delegate);
+            case RTL -> new ViewFicheProgrammeAR(delegate);
+        };
     }
 
+    @JStache(path = "templates/section2/fiche.programme.ar.mustache")
+    record ViewFicheProgrammeAR(FicheProgrammeBlueprint delegate) implements ViewFicheProgramme{
+
+    }
     @JStache(path = "templates/section2/fiche.programme.fr.mustache")
     record ViewFicheProgrammeFR(FicheProgrammeBlueprint delegate) implements ViewFicheProgramme {
     }
+
 
     record FicheProgrammeView(FicheProgrammeBlueprint delegate) {
         public FicheProgrammeView {
