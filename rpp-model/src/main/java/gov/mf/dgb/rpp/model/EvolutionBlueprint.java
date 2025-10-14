@@ -28,6 +28,7 @@ interface EvolutionBlueprint {
     Long anneePlus2();
 
     final class CustomMethods{
+
         @Prototype.FactoryMethod
         static Evolution create(String name, List<Long> depenses){
             return Evolution.builder()
@@ -35,6 +36,7 @@ interface EvolutionBlueprint {
                     .evolution(depenses)
                     .build();
         }
+
         @Prototype.BuilderMethod
         static void evolution(Evolution.BuilderBase<?,?> builder, List<Long> depenses){
             Objects.requireNonNull(depenses);

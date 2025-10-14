@@ -8,6 +8,7 @@ import java.util.List;
 
 @Prototype.Blueprint(createEmptyPublic = false)
 interface CartographieProgrammesPortefeuilleBlueprint extends Writable{
+
     String CARTOGRAPHIE_TITLE = "section1.cartographie.title.text";
 
     @Option.Singular
@@ -15,6 +16,7 @@ interface CartographieProgrammesPortefeuilleBlueprint extends Writable{
 
     @Override
     default void write(WordprocessingMLPackage document, GenerationContext context) {
+        context.applyLayout(PageLayout.PORTRAIT);
         context.addStaticContent(HEADING_2_STYLE, CARTOGRAPHIE_TITLE);
         ViewCartographie viewCartographie = ViewCartographie.of(context, this);
         context.addRenderedContent(viewCartographie);

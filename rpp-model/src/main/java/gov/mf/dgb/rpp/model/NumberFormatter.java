@@ -7,7 +7,7 @@ import java.util.Locale;
 //todo make enum formatters
 class NumberFormatter {
     private static final DecimalFormat SPACE_GROUPING;
-
+    private static final String ZERO_FORMAT = "-";
     static {
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
         symbols.setGroupingSeparator(' ');
@@ -15,6 +15,7 @@ class NumberFormatter {
     }
 
     public static String format(long number) {
+        if(0 == number) return ZERO_FORMAT;
         return SPACE_GROUPING.format(number);
     }
 }

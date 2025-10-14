@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.time.Year;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class ArabModelFullTest implements DocumentGenerator {
     @Override
@@ -20,7 +21,8 @@ public class ArabModelFullTest implements DocumentGenerator {
                 
                 يستند تنظيم وعمل القطاع إلى القانون الإطار رقم 08-07 المؤرخ في 23 فبراير 2008،
                 والمتعلق بالقانون التوجيهي للتكوين والتعليم المهنيين.
-                """;
+                """
+                .replaceAll("\\r?\\n", " ");
 
         byte[] image;
         try {
@@ -52,39 +54,105 @@ public class ArabModelFullTest implements DocumentGenerator {
                 .leMinistere(LeMinistere.builder()
                         .image(image)
                         .build())
+                .cartographie(CartographieProgrammesPortefeuille.builder()
+                        .addProgrammeStructure(ProgrammeStructure.builder()
+                                .name("البرنامج 001 - تحديث الإدارة")
+                                .addServicesCentraux(Set.of("الأمانة العامة", "المفتشية العامة"))
+                                .addServicesDeconcentres(Set.of("المديرية الجهوية الجزائر", "المديرية الجهوية وهران"))
+                                .addOrganismesSousTutelles(Set.of("الوكالة الوطنية للرقمنة", "المعهد العالي للإدارة العمومية"))
+                                .addOrganesTerritoriaux(Set.of("مديرية ولاية الجزائر", "مديرية ولاية وهران"))
+                                .build())
+                        .addProgrammeStructure(ProgrammeStructure.builder()
+                                .name("البرنامج 002 - التنمية المستدامة")
+                                .addServicesCentraux("المديرية العامة للبيئة")
+                                .addServicesDeconcentres(Set.of("المديرية الجهوية عنابة", "المديرية الجهوية تلمسان"))
+                                .addOrganismesSousTutelle("المكتب الوطني للغابات")
+                                .addOrganesTerritoriaux("المحافظة على المناطق الرطبة")
+                                .build())
+                        .build())
                 .fichePortefeuille(FichePortefeuille.builder()
-                        .addRepartitionProgramme(new RepartitionProgramme("التكوين المهني", 1950_6191_000L, 20143691000L))
-                        .addRepartitionProgramme(new RepartitionProgramme("التعليم المهني", 540000000L, 622000000L))
-                        .addRepartitionProgramme(new RepartitionProgramme("الادارة العامة", 98536426000L, 97250926000L))
-                        .addVersionBRepartitionProgramme(
-                                new RepartitionProgramme("التكوين المهني", 109366562L, 110004062L))
-                        .addVersionBRepartitionProgramme(
-                                new RepartitionProgramme("التعليم المهني", 2436520L, 2518520L))
-                        .addVersionBRepartitionProgramme(
-                                new RepartitionProgramme("الادارة العامة", 6779535L, 5494035L))
+                        .addRepartitionProgramme(new RepartitionProgramme("التدخلات الاقتصادية للدولة", 323_931_555L, 194_970_000L))
+                        .addRepartitionProgramme(new RepartitionProgramme("الضرائب", 27_918_492L, 25_217_992L))
+                        .addRepartitionProgramme(new RepartitionProgramme("الميزانية", 661_494_700L, 665_764_155L))
+                        .addRepartitionProgramme(new RepartitionProgramme("املاك الدولة", 12_282_568L, 12_122_568L))
+                        .addRepartitionProgramme(new RepartitionProgramme("المحاسبة", 17_649_681L, 16_315_181L))
+                        .addRepartitionProgramme(new RepartitionProgramme("الجمارك", 22_851_220L, 19_948_220L))
+                        .addRepartitionProgramme(new RepartitionProgramme("التفتيش المالي", 967_574L, 902_574L))
+                        .addRepartitionProgramme(new RepartitionProgramme("الادارة العامة", 3_794_600L, 3_614_600L))
+                        //
+                        .addVersionBRepartitionProgramme(new RepartitionProgramme("التدخلات الاقتصادية للدولة", 323_931_555L, 194_970_000L))
+                        .addVersionBRepartitionProgramme(new RepartitionProgramme("الضرائب", 27_918_492L, 25_217_992L))
+                        .addVersionBRepartitionProgramme(new RepartitionProgramme("الميزانية", 661_494_700L, 665_764_155L))
+                        .addVersionBRepartitionProgramme(new RepartitionProgramme("املاك الدولة", 12_282_568L, 12_122_568L))
+                        .addVersionBRepartitionProgramme(new RepartitionProgramme("المحاسبة", 17_649_681L, 16_315_181L))
+                        .addVersionBRepartitionProgramme(new RepartitionProgramme("الجمارك", 22_851_220L, 19_948_220L))
+                        .addVersionBRepartitionProgramme(new RepartitionProgramme("التفتيش المالي", 967_574L, 902_574L))
+                        .addVersionBRepartitionProgramme(new RepartitionProgramme("الادارة العامة", 3_794_600L, 3_614_600L))
+                        //programme-centre de responsabilite
                         .addRepartitionProgrammeCentreResp(
-                                RepartitionCentreResponsabilite.create("التكوين المهني",
-                                        List.of(360_311L, 10_655_000L, 89_737_251L, 8_614_000L, 243_323L)))
+                                RepartitionCentreResponsabilite.create("التدخلات الاقتصادية للدولة",
+                                        List.of(323_931_555L, 0L, 0L, 0L)))
                         .addRepartitionProgrammeCentreResp(
-                                RepartitionCentreResponsabilite.create("التعليم المهني",
-                                        List.of(64_000L, 228_000L, 1_856_520L, 288_000L)))
+                                RepartitionCentreResponsabilite.create("الضرائب",
+                                        List.of(3_731_524L, 22_177_968L, 0L, 2_009_000L)))
                         .addRepartitionProgrammeCentreResp(
-                                RepartitionCentreResponsabilite.create("الادارة العامة",
-                                        List.of(1_723_123L, 4_863_195L, 138_717L, 54_500L)))
+                                RepartitionCentreResponsabilite.create("الميزانية",
+                                        List.of(651_448_619L, 9_508_081L, 0L, 538_000L)))
+                        .addRepartitionProgrammeCentreResp(
+                                RepartitionCentreResponsabilite.create("املاك الدولة",
+                                        List.of(277_035L, 11_475_033L, 0L, 530_500L)))
+                        .addRepartitionProgrammeCentreResp(
+                                RepartitionCentreResponsabilite.create("المحاسبة",
+                                        List.of(2_021_943L, 14_961_238L, 0L, 666_500L)))
+                        //programme-titre
+                        .addRepartitionProgrammesTitre(RepartitionTitre.create("التدخلات الاقتصادية للدولة",
+                                List.of(0L, 0L, 0L, 128_961_555L, 194_970_000L, 0L, 0L)))
+                        .addRepartitionProgrammesTitre(RepartitionTitre.create("الضرائب",
+                                List.of(22_589_586L, 1_200_906L, 4_127_000L, 1_000L, 0L, 0L, 0L)))
+                        .addRepartitionProgrammesTitre(RepartitionTitre.create("الميزانية",
+                                List.of(10_103_106L, 424_174L, 1_259_000L, 0L, 0L, 0L, 649_708_420L)))
+                        .addRepartitionProgrammesTitre(RepartitionTitre.create("أملاك الدولة",
+                                List.of(11_201_682L, 550_386L, 530_500L, 0L, 0L, 0L, 0L)))
+                        .addRepartitionProgrammesTitre(RepartitionTitre.create("المسح العقاري",
+                                List.of(3_315_334L, 34_666L, 362_500L, 0L, 0L, 0L, 0L)))
+                        .addRepartitionProgrammesTitre(RepartitionTitre.create("المحاسبة",
+                                List.of(14_751_153L, 964_028L, 1_881_500L, 53_000L, 0L, 0L, 0L)))
+                        .addRepartitionProgrammesTitre(RepartitionTitre.create("الجمارك",
+                                List.of(17_808_465L, 1_333_755L, 3_709_000L, 0L, 0L, 0L, 0L)))
+                        .addRepartitionProgrammesTitre(RepartitionTitre.create("مفتشية المالية",
+                                List.of(834_440L, 64_634L, 68_500L, 0L, 0L, 0L, 0L)))
+                        .addRepartitionProgrammesTitre(RepartitionTitre.create("الإدارة العامة",
+                                List.of(3_105_190L, 506_410L, 180_000L, 3_000L, 0L, 0L, 0L)))
 
-                        .addRepartitionProgrammesTitre(RepartitionTitre.create("التكوين المهني",
-                                List.of(11_076_119L, 2_683_352L, 3_217_628L, 2_962_406L)))
-                        .addRepartitionProgrammesTitre(RepartitionTitre.create("التعليم المهني",
-                                List.of(4_573_433L, 427_752L, 2_816_372L, 1_024_000L)))
-                        .addRepartitionProgrammesTitre(RepartitionTitre.create("الادارة العامة",
-                                List.of(4_497_238L, 558_043L, 466_000L, 79_326L)))
-                        .addRepartitionPortefeuilleCentreResponTitre(RepartitionCentreResponsabiliteTitre.ofCentraux(List.of(553000L, 415_934L, 1_178_500L, 0L)))
-                        .addRepartitionPortefeuilleCentreResponTitre(RepartitionCentreResponsabiliteTitre.ofDeconcentres(List.of(3_881_195L, 380_000L, 11_485_000L, 0L)))
-                        .addRepartitionPortefeuilleCentreResponTitre(RepartitionCentreResponsabiliteTitre.ofOrganismesSousTutelle(List.of(76_606_938L, 5_875_098L, 0L, 9_250_452L)))
-                        .addRepartitionPortefeuilleCentreResponTitre(RepartitionCentreResponsabiliteTitre.ofOrganesTerritoriaux(List.of(0L, 0L, 8_956_500L, 0L)))
-                        .addEvolutionDepensesProgramme(Evolution.create("التكوين المهني", List.of(76_427_663L, 90_012_506L, 109_366_562L, 111_091_201L, 113_327_046L)))
-                        .addEvolutionDepensesProgramme(Evolution.create("التعليم المهني", List.of(1_545_505L, 2023_610L, 2_436_520L, 2_460_022L, 2_504_707L)))
-                        .addEvolutionDepensesProgramme(Evolution.create("الادارة العامة", List.of(5_118_443L, 7_674_181L, 6_779_535L, 7_542_716L, 7_154_077L)))
+                        // titre-centre de responsabilite
+                        .addRepartitionPortefeuilleCentreResponTitre(RepartitionCentreResponsabiliteTitre.ofCentraux(
+                                List.of(27_319_682L, 1_610_353L, 6_962_500L, 129_018_555L, 194_970_000L, 0L, 649_708_420L)))
+                        .addRepartitionPortefeuilleCentreResponTitre(RepartitionCentreResponsabiliteTitre.ofDeconcentres(
+                                List.of(55_604_294L, 3_381_386L, 55_000L, 0L, 0L, 0L, 0L)))
+                        .addRepartitionPortefeuilleCentreResponTitre(RepartitionCentreResponsabiliteTitre.ofOrganismesSousTutelle(
+                                List.of(784_980L, 87_220L, 0L, 0L, 0L, 0L, 0L)))
+                        .addRepartitionPortefeuilleCentreResponTitre(RepartitionCentreResponsabiliteTitre.ofOrganesTerritoriaux(
+                                List.of(0L, 0L, 5_100_500L, 0L, 0L, 0L, 0L)))
+
+                        .addEvolutionDepensesProgramme(Evolution.create("التدخلات الاقتصادية للدولة",
+                                List.of(0L, 323_931_555L, 400_314_615L, 409_361_725L)))
+                        .addEvolutionDepensesProgramme(Evolution.create("الضرائب",
+                                List.of(0L, 27_918_492L, 34_501_672L, 35_281_410L)))
+                        .addEvolutionDepensesProgramme(Evolution.create("الميزانية",
+                                List.of(0L, 661_494_700L, 793_413_811L, 811_761_854L)))
+                        .addEvolutionDepensesProgramme(Evolution.create("الأملاك الوطنية",
+                                List.of(0L, 12_282_568L, 15_178_797L, 15_521_838L)))
+                        .addEvolutionDepensesProgramme(Evolution.create("المسح العقاري",
+                                List.of(0L, 3_712_500L, 4_587_907L, 4_691_594L)))
+                        .addEvolutionDepensesProgramme(Evolution.create("المحاسبة",
+                                List.of(0L, 17_649_681L, 21_811_475L, 22_304_415L)))
+                        .addEvolutionDepensesProgramme(Evolution.create("الجمارك",
+                                List.of(0L, 22_851_220L, 28_239_537L, 28_877_751L)))
+                        .addEvolutionDepensesProgramme(Evolution.create("مفتشية المالية",
+                                List.of(0L, 967_574L, 1_195_727L, 1_222_751L)))
+                        .addEvolutionDepensesProgramme(Evolution.create("الإدارة العامة",
+                                List.of(0L, 3_794_600L, 4_689_366L, 4_795_346L)))
+
                         .addEvolutionPostesServicesCentraux(List.of(394L, 394L, 394L, 394L, 394L))
                         .addEvolutionPostesServicesDeconcentres(List.of(2_829L, 2_979L, 2_979L, 2_979L, 2_979L))
                         .addEvolutionPostesOrganismesSousTutelle(List.of(71_626L, 72_716L, 72_716L, 73_526L, 74_036L))

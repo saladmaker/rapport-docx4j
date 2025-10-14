@@ -67,11 +67,16 @@ interface RepartitionCentreResponsabiliteTitreBlueprint {
             if (builder.serviceType().isPresent()) {
                 var serviceType = builder.serviceType().get();
                 if (!(CentreResponsabilite.SERVICES_CENTRAUX == serviceType) && repartitionsSize > 4) {
-                    throw new IllegalArgumentException(
-                            "repartitions size for non service centraux should be 4, found: service type " + serviceType
-                                    + " size:"
-                                    + repartitionsSize + " repartitions:" + repartitions.toString());
-
+                    var totalAutreTitres = repartitions.stream()
+                            .skip(4)
+                            .mapToLong(Long::longValue)
+                            .sum();
+                    if(totalAutreTitres > 0L) {
+                        throw new IllegalArgumentException(
+                                "repartitions size for non service centraux should be 4, found: service type " + serviceType
+                                        + " size:"
+                                        + repartitionsSize + " repartitions:" + repartitions.toString());
+                    }
                 }
             }
             for (int i = 0; i < repartitionsSize; i++) {

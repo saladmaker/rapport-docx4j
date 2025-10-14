@@ -99,12 +99,12 @@ public class ArabicModel implements DocumentGenerator {
                 .addRepartitionPortefeuilleCentreResponTitre(RepartitionCentreResponsabiliteTitre.ofDeconcentres(List.of(3_881_195L, 380_000L, 11_485_000L, 0L)))
                 .addRepartitionPortefeuilleCentreResponTitre(RepartitionCentreResponsabiliteTitre.ofOrganismesSousTutelle(List.of(76_606_938L, 5_875_098L, 0L, 9_250_452L)))
                 .addRepartitionPortefeuilleCentreResponTitre(RepartitionCentreResponsabiliteTitre.ofOrganesTerritoriaux(List.of(0L, 0L, 8_956_500L, 0L)))
-                .addEvolutionDepensesProgramme(Evolution.create("التكوين المهني", List.of(76427663L, 90012506L, 109366562L, 111091201L, 113327046L)))
-                .addEvolutionDepensesProgramme(Evolution.create("التعليم المهني", List.of(1545505L, 2023610L, 2436520L, 2460022L, 2504707L)))
-                .addEvolutionDepensesProgramme(Evolution.create("الادارة العامة", List.of(5118443L, 7674181L, 6779535L, 7542716L, 7154077L)))
-                .addEvolutionPostesServicesCentraux(List.of(394L,394L,394L, 394L, 394L))
-                .addEvolutionPostesServicesDeconcentres(List.of(2829L, 2979L, 2979L, 2979L, 2979L))
-                .addEvolutionPostesOrganismesSousTutelle(List.of(71626L, 72716L, 72716L, 73526L, 74036L))
+                .addEvolutionDepensesProgramme(Evolution.create("التكوين المهني", List.of(76_427_663L, 90_012_506L, 109_366_562L, 111_091_201L, 113_327_046L)))
+                .addEvolutionDepensesProgramme(Evolution.create("التعليم المهني", List.of(1_545_505L, 2023_610L, 2_436_520L, 2_460_022L, 2_504_707L)))
+                .addEvolutionDepensesProgramme(Evolution.create("الادارة العامة", List.of(5_118_443L, 7_674_181L, 6_779_535L, 7_542_716L, 7_154_077L)))
+                .addEvolutionPostesServicesCentraux(List.of(394L, 394L, 394L, 394L, 394L))
+                .addEvolutionPostesServicesDeconcentres(List.of(2_829L, 2_979L, 2_979L, 2_979L, 2_979L))
+                .addEvolutionPostesOrganismesSousTutelle(List.of(71_626L, 72_716L, 72_716L, 73_526L, 74_036L))
                 .build())
                 .build();
         au.write(document, GenerationContext.of(LanguageDirection.RTL, document, Map.of(), Year.of(2025)));
