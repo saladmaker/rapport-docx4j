@@ -36,8 +36,12 @@ interface ViewRepartitionProgrammesCentreResponsabilite {
                 .toList();
     }
 
-
-
+    default boolean require10Csz(){
+        return globalTotal().length() > 11;
+    }
+    default boolean require8Csz(){
+        return globalTotal().length() > 12;
+    }
     default String totalServicesCentraux() {
         var total = delegates().stream()
                 .mapToLong(RepartitionCentreResponsabilite::servicesCentraux)
