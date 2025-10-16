@@ -1,0 +1,200 @@
+<w:tbl xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+    <w:tblPr>
+        <w:tblStyle w:val="TableGrid"/>
+        <w:tblW w:w="9026" w:type="dxa"/>
+        <w:tblLayout w:type="fixed"/>
+        <w:tblLook w:val="04A0" w:firstRow="1" w:lastRow="0" w:firstColumn="1"
+                   w:lastColumn="0" w:noHBand="0" w:noVBand="1"/>
+    </w:tblPr>
+    <w:tblGrid>
+        <w:gridCol w:w="3026"/>
+        <w:gridCol w:w="3000"/>
+        <w:gridCol w:w="3000"/>
+    </w:tblGrid>
+
+    <!-- Header row -->
+    <w:tr>
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="3026" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                        <w:sz w:val="24"/>
+                        <w:b/>
+                    </w:rPr>
+                    <w:t>Programmes</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="3000" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                        <w:sz w:val="24"/>
+                        <w:b/>
+                    </w:rPr>
+                    <w:t>Autorisations d’engagement</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="3000" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                        <w:sz w:val="24"/>
+                        <w:b/>
+                    </w:rPr>
+                    <w:t>Crédits de paiement</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+    </w:tr>
+
+    <!-- Data rows -->
+    {#for r in view.repartitions}
+    <w:tr>
+        <!-- Programme name -->
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="3000" w:type="dxa"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:jc w:val="left"/>
+                </w:pPr>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                        <w:sz w:val="24"/>
+                        <w:b/>
+                    </w:rPr>
+                    <w:t>{r.name}</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+
+        <!-- AE -->
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="3000" w:type="dxa"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                        <w:sz w:val="24"/>
+                    </w:rPr>
+                    <w:t>{r.aeFormatted}</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+
+        <!-- CP -->
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="3000" w:type="dxa"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                        <w:sz w:val="24"/>
+                        <w:b/>
+                    </w:rPr>
+                    <w:t>{r.cpFormatted}</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+    </w:tr>
+    {/for}
+
+    <!-- Total row -->
+    <w:tr>
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="3026" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                        <w:sz w:val="24"/>
+                        <w:b/>
+                    </w:rPr>
+                    <w:t>Total des dépenses</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="3000" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                        <w:sz w:val="24"/>
+                        <w:b/>
+                    </w:rPr>
+                    <w:t>{view.totalAE}</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+        <w:tc>
+            <w:tcPr>
+                <w:tcW w:w="3000" w:type="dxa"/>
+                <w:vAlign w:val="center"/>
+            </w:tcPr>
+            <w:p>
+                <w:pPr>
+                    <w:jc w:val="center"/>
+                </w:pPr>
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                        <w:sz w:val="24"/>
+                        <w:b/>
+                    </w:rPr>
+                    <w:t>{view.totalCP}</w:t>
+                </w:r>
+            </w:p>
+        </w:tc>
+    </w:tr>
+</w:tbl>

@@ -18,6 +18,7 @@
         <poi.version>5.4.1</poi.version>
         <docx4j.version>11.5.5</docx4j.version>
         <jstachio.version>1.3.7</jstachio.version>
+
     </properties>
 
     <modules>

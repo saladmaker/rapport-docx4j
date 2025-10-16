@@ -15,8 +15,8 @@ import java.util.stream.Stream;
 
 public class Launcher {
 
-    private static final String THEMES_DIR = "themes";
-    private static final String OUTPUT_DIR = "output";
+    private static final String THEMES_DIR = "../themes";
+    private static final String OUTPUT_DIR = "../output";
 
     public static void main(String[] args) throws Exception {
         if (args.length < 2) {

@@ -91,6 +91,7 @@ interface FichePortefeuilleBlueprint extends Writable {
         ViewEvolutionPostes evolutionPostes =
                 ViewEvolutionPostes.of(context, evolutionPostesServices());
         context.addRenderedContent(evolutionPostes);
+        System.out.println(RepartitionProgrammeQute.of(context, repartitionProgrammes()).render());
     }
     default void writeTable(){
     }

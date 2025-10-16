@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 set -e  # stop script if any command fails
 
@@ -10,8 +11,9 @@ fi
 
 # === STEP 1: Build project ===
 echo "🚀 Building project with Maven..."
-mvn clean package -DskipTests
-#1994
-# === STEP 2: Run the test module jar with all provided arguments ===
+mvn clean install -DskipTests
+
+# === STEP 2: Run the test module with exec plugin ===
 echo "🏃 Running test module with args: $@"
-java -jar test/target/rpp-test-1.0-SNAPSHOT.jar "$@"
+cd test
+mvn exec:java -Dexec.args="$*"
